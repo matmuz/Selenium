@@ -31,4 +31,13 @@ public class TestSuite extends BaseTest {
         Assert.assertEquals(popularProductToFind, productModel.getProductName().toLowerCase());
 
     }
+
+    @Test
+    public void standaloneProduct(){
+
+        homePage= new HomePage(driver);
+        homePage.enterPopularProduct("good day poster");
+        productModel = new ProductModel(driver);
+        System.out.println(productModel.getQuantity());
+    }
 }
