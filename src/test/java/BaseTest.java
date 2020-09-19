@@ -17,6 +17,7 @@ public class BaseTest {
     HomePage homePage;
     ProductModel productModel;
     ContactUsPage contactUsPage;
+    int i = 1;
 
     @BeforeMethod
     public void setUp() {
@@ -34,8 +35,9 @@ public class BaseTest {
 
         TakesScreenshot screenshot = ((TakesScreenshot) driver);
         File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
-        File destinationFile = new File("src\\main\\results\\testresult.png");
+        File destinationFile = new File("src\\main\\results\\test_case_" + i + "_result.png");
         FileUtils.copyFile(sourceFile, destinationFile);
+        i++;
 
     }
 

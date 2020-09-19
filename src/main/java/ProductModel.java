@@ -49,7 +49,7 @@ public class ProductModel {
     }
 
     public String getQuantity() {
-        return quantityBox.getText();
+        return quantityBox.getAttribute("value");
     }
 
     public void increaseQuantityBy(int number) {

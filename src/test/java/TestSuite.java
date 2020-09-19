@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class TestSuite extends BaseTest {
 
-    @Test
+    @Test(priority = 1)
     public void sendHelpRequest() {
 
         String expectedMessage = "Your message has been successfully sent to our team.";
@@ -17,7 +17,7 @@ public class TestSuite extends BaseTest {
 
     }
 
-    @Test
+    @Test(priority = 2)
     public void popularProducts() {
 
         int popularProductsCount = 8;
@@ -32,12 +32,13 @@ public class TestSuite extends BaseTest {
 
     }
 
-    @Test
-    public void standaloneProduct(){
+    @Test(priority = 3)
+    public void standaloneProduct() {
 
-        homePage= new HomePage(driver);
+        homePage = new HomePage(driver);
         homePage.enterPopularProduct("good day poster");
         productModel = new ProductModel(driver);
         System.out.println(productModel.getQuantity());
     }
+
 }
