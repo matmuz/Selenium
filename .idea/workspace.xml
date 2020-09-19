@@ -59,6 +59,12 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mateu\IdeaProjects\AnAutomationProject\.idea" />
+      <recent name="C:\Users\mateu\IdeaProjects\AnAutomationProject" />
+    </key>
+  </component>
   <component name="RunManager" selected="TestNG.TestSuite.standaloneProduct">
     <configuration name="TestSuite" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="AnAutomationProject" />
