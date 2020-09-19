@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c559c661-16cb-4084-98fa-7c99bcb0e4f3" name="Default Changelist" comment="Commit3" />
+    <list default="true" id="c559c661-16cb-4084-98fa-7c99bcb0e4f3" name="Default Changelist" comment="Commit3">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600497457468</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="gitignore commit">
+      <created>1600499809772</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600499809775</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,7 +138,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit2" />
     <MESSAGE value="Commit3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit3" />
+    <MESSAGE value="gitignore commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600454953624">
