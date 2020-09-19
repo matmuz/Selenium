@@ -21,7 +21,7 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\mateu\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -34,7 +34,7 @@ public class BaseTest {
 
         TakesScreenshot screenshot = ((TakesScreenshot) driver);
         File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
-        File destinationFile = new File("C:\\Users\\mateu\\Desktop\\pliki\\tests\\TestResult.png");
+        File destinationFile = new File("src\\main\\results\\testresult.png");
         FileUtils.copyFile(sourceFile, destinationFile);
 
     }
