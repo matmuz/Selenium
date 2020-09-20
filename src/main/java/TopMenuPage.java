@@ -48,6 +48,12 @@ public class TopMenuPage {
     @FindBy(xpath = "//a[@class='dropdown-item']")
     List<WebElement> categories;
 
+    @FindBy(xpath = "(//span[@class='hidden-sm-down'])[1]")
+    WebElement loggedUserBox;
+
+    @FindBy(xpath = "//a[@class='logout hidden-sm-down']")
+    WebElement signOutButton;
+
     public void goToContactUsPage() {
         contactUsLink.click();
     }
@@ -108,6 +114,14 @@ public class TopMenuPage {
 
     public void getNumberOfItemsInCart() {
         cartProductsCount.getText();
+    }
+
+    public String getLoggedUsername(){
+        return loggedUserBox.getText();
+    }
+
+    public void signOut(){
+        signOutButton.click();
     }
 
 }

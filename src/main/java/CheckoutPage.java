@@ -16,9 +16,6 @@ public class CheckoutPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(name = "id_gender")
-    List<WebElement> genderRadioButtons;
-
     @FindBy(xpath = "//input[@name='firstname']")
     WebElement firstNameBox;
 
@@ -64,20 +61,19 @@ public class CheckoutPage {
     @FindBy(xpath = "//h3[@class='h1 card-title']")
     WebElement confirmationMessageBox;
 
-    public void placeOrder() {
+    public void placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String state, String postalCode, String country) {
         Random random = new Random();
-        genderRadioButtons.get(random.nextInt(genderRadioButtons.size())).click();
-        firstNameBox.sendKeys("test");
-        lastNameBox.sendKeys("test");
-        emailBox.sendKeys("test@test.com");
+        firstNameBox.sendKeys(firstName);
+        lastNameBox.sendKeys(lastName);
+        emailBox.sendKeys(email);
         goToAddressButton.click();
-        addressBox.sendKeys("test");
-        cityBox.sendKeys("City");
+        addressBox.sendKeys(address);
+        cityBox.sendKeys(city);
         Select selectState = new Select(stateDropdown);
-        selectState.selectByVisibleText("New York");
-        postalCodeBox.sendKeys("12345");
+        selectState.selectByVisibleText(state);
+        postalCodeBox.sendKeys(postalCode);
         Select selectCountry = new Select(countryDropdown);
-        selectCountry.selectByVisibleText("United States");
+        selectCountry.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
         paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();

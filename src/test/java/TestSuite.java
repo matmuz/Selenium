@@ -1,6 +1,11 @@
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -65,6 +70,8 @@ public class TestSuite extends BaseTest {
     @Test(priority = 5)
     public void addRandomProducts() {
 
+        // To be changed - rounding double number to a better solution (not in test)
+
         int numberOfRandomProducts;
         double productsPrice = 0;
         Random random = new Random();
@@ -89,11 +96,89 @@ public class TestSuite extends BaseTest {
         int numberOfProducts = cartPage.getNumberOfItems();
         Assert.assertEquals(numberOfRandomProducts, numberOfProducts);
         Assert.assertEquals(cartPage.getItemsPrice(), productsPrice);
-//        cartPage.proceedToCheckout();
-//        checkoutPage = new CheckoutPage(driver);
-//        checkoutPage.placeOrder();
-//        System.out.println(checkoutPage.getConfirmationMessage());
+        cartPage.proceedToCheckout();
+        checkoutPage = new CheckoutPage(driver);
+        checkoutPage.placeOrderAsGuest(
+                "Shop", "Presta", "shoppresta@test.com",
+                "address", "city", "New York", "12345", "United States"
+        );
+        System.out.println(checkoutPage.getConfirmationMessage());
 
     }
+
+    @Test(priority = 6)
+    public void createAlreadyExitingAccount() {
+
+        topMenuPage = new TopMenuPage(driver);
+        topMenuPage.goToSignInSection();
+        signInPage = new SignInPage(driver);
+        signInPage.createAccountButton.click();
+        signInPage.createAccount("Presta", "Shop", "prestashop@test.com", "test123");
+        System.out.println(signInPage.getAlertMessage());
+        String usernameAfterCreateAccount = topMenuPage.getLoggedUsername();
+        System.out.println(usernameAfterCreateAccount);
+        if (usernameAfterCreateAccount.equals("Presta Shop")) {
+            Assert.fail();
+        }
+
+    }
+
+    @Test(priority = 7)
+    public void logIn() {
+
+        topMenuPage = new TopMenuPage(driver);
+        topMenuPage.goToSignInSection();
+        signInPage = new SignInPage(driver);
+        signInPage.logIn("prestashop@test.com", "test123");
+        String expectedName = "Presta Shop";
+        String actualName = topMenuPage.getLoggedUsername();
+        Assert.assertEquals(expectedName, actualName);
+    }
+
+    @Test(priority = 8)
+    public void fullTest() {
+
+        Random random = new Random();
+        topMenuPage = new TopMenuPage(driver);
+        topMenuPage.goToRandomSection();
+        productsPage = new ProductsPage(driver);
+        productsPage.allProducts.get(random.nextInt(productsPage.allProducts.size())).click();
+        productPage = new ProductPage(driver);
+        productPage.increaseQuantityBy(2);
+        productPage.addProductToCart();
+        topMenuPage.goToCart();
+        cartPage = new CartPage(driver);
+        cartPage.proceedToCheckout();
+        checkoutPage = new CheckoutPage(driver);
+        checkoutPage.placeOrderAsGuest(
+                "Shop", "Presta", "shoppresta@test.com",
+                "address", "city", "New York", "12345", "United States"
+        );
+        String expectedMessage = "\uE876YOUR ORDER IS CONFIRMED";
+        String actualMessage = checkoutPage.getConfirmationMessage();
+        Assert.assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test(priority = 9)
+    public void createAccountUsingJson() throws IOException, ParseException {
+
+        JSONParser jsonParser = new JSONParser();
+        Object object = jsonParser.parse(new FileReader("src\\main\\resources\\testdata\\AccountDetails.json"));
+        JSONObject jsonObject = (JSONObject) object;
+        String firstName = (String) jsonObject.get("firstName");
+        String lastName = (String) jsonObject.get("lastName");
+        String email = (String) jsonObject.get("email");
+        String password = (String) jsonObject.get("password");
+
+        topMenuPage = new TopMenuPage(driver);
+        topMenuPage.goToSignInSection();
+        signInPage = new SignInPage(driver);
+        signInPage.createAccountButton.click();
+        signInPage.createAccount(firstName, lastName, email, password);
+        String userAfterLogin = topMenuPage.getLoggedUsername();
+        Assert.assertEquals(firstName + " " + lastName, userAfterLogin);
+
+    }
+
 
 }

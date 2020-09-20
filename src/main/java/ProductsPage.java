@@ -8,7 +8,6 @@ import java.util.List;
 public class ProductsPage {
 
     WebDriver driver;
-    ProductPage productPage;
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -26,11 +25,5 @@ public class ProductsPage {
                 break;
             }
         }
-    }
-
-    public void addProduct(String productName) {
-        goToProduct(productName);
-        productPage = new ProductPage(driver);
-        productPage.addProductToCart();
     }
 }
