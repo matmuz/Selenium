@@ -2,12 +2,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductModel {
+public class ProductPage {
 
     WebDriver driver;
 
-    public ProductModel(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -39,12 +41,15 @@ public class ProductModel {
         return productNameBox.getText();
     }
 
-    public String getProductPrice() {
-        return priceBox.getText();
+    public double getProductPrice() {
+        String[] split = (priceBox.getText().split("\\$"));
+        return Double.parseDouble(split[1]);
     }
 
     public void addProductToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         addToCartButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
     }
 

@@ -15,13 +15,15 @@ public class BaseTest {
     WebDriver driver;
     TopMenuPage topMenuPage;
     HomePage homePage;
-    ProductModel productModel;
+    ProductPage productPage;
     ContactUsPage contactUsPage;
+    CartPage cartPage;
+    ProductsPage productsPage;
+    CheckoutPage checkoutPage;
     int i = 1;
 
     @BeforeMethod
     public void setUp() {
-
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
