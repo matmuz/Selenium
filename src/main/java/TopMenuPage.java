@@ -5,6 +5,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+import java.util.Random;
+
 public class TopMenuPage {
 
     WebDriver driver;
@@ -42,6 +45,15 @@ public class TopMenuPage {
     @FindBy(xpath = "//span[@class='cart-products-count']")
     WebElement cartProductsCount;
 
+    @FindBy(xpath = "//a[@class='dropdown-item']")
+    List<WebElement> categories;
+
+    @FindBy(xpath = "(//span[@class='hidden-sm-down'])[1]")
+    WebElement loggedUserBox;
+
+    @FindBy(xpath = "//a[@class='logout hidden-sm-down']")
+    WebElement signOutButton;
+
     public void goToContactUsPage() {
         contactUsLink.click();
     }
@@ -58,6 +70,10 @@ public class TopMenuPage {
         }
     }
 
+    public void goToClothesSection() {
+        clothesDropdown.click();
+    }
+
     public void goToAccessoriesSection(String type) {
         Actions action = new Actions(driver);
         action.moveToElement(accessoriesDropdown).build().perform();
@@ -70,6 +86,10 @@ public class TopMenuPage {
         }
     }
 
+    public void goToAccessoriesSection() {
+        accessoriesDropdown.click();
+    }
+
     public void goToArtSection() {
         artLink.click();
     }
@@ -77,6 +97,11 @@ public class TopMenuPage {
     public void searchByText(String searchInput) {
         searchBox.sendKeys(searchInput);
         searchButton.click();
+    }
+
+    public void goToRandomSection() {
+        Random random = new Random();
+        categories.get(random.nextInt(categories.size())).click();
     }
 
     public void goToSignInSection() {
@@ -89,6 +114,14 @@ public class TopMenuPage {
 
     public void getNumberOfItemsInCart() {
         cartProductsCount.getText();
+    }
+
+    public String getLoggedUsername(){
+        return loggedUserBox.getText();
+    }
+
+    public void signOut(){
+        signOutButton.click();
     }
 
 }

@@ -18,6 +18,9 @@ public class HomePage {
     @FindBy(className = "product-description")
     List<WebElement> popularProducts;
 
+    @FindBy(xpath = "//a[@class='all-product-link float-xs-left float-md-right h4']")
+    WebElement allProductsButton;
+
     public void enterPopularProduct(String popularProductName) {
         for (WebElement popularProduct : popularProducts) {
             if (popularProduct.getText().toLowerCase().contains(popularProductName)) {
@@ -25,5 +28,9 @@ public class HomePage {
                 break;
             }
         }
+    }
+
+    public void goToAllProducts() {
+        allProductsButton.click();
     }
 }
