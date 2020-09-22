@@ -1,12 +1,12 @@
-package products;
+package pages.products;
 
 import base.BasePage;
-import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.menu.TopMenuPage;
 
 public class ProductPage extends BasePage {
 
@@ -14,25 +14,25 @@ public class ProductPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//h1[@class='h1']")
+    @FindBy(css = ".h1")
     private WebElement productNameBox;
 
-    @FindBy(xpath = "//span[@itemprop='price']")
+    @FindBy(css = "span[itemprop='price']")
     private WebElement priceBox;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary add-to-cart']")
+    @FindBy(css = ".btn.btn-primary.add-to-cart")
     private WebElement addToCartButton;
 
-    @FindBy(xpath = "//input[@id='quantity_wanted']")
+    @FindBy(css = "#quantity_wanted")
     private WebElement quantityBox;
 
-    @FindBy(xpath = "//i[@class='material-icons touchspin-up']")
+    @FindBy(css = ".material-icons.touchspin-up")
     private WebElement increaseQuantitySpin;
 
-    @FindBy(xpath = "//i[@class='material-icons touchspin-down']")
+    @FindBy(css = ".material-icons.touchspin-down")
     private WebElement decreaseQuantitySpin;
 
-    @FindBy(xpath = "//button[@class='btn btn-secondary']")
+    @FindBy(css = ".btn btn-secondary")
     private WebElement continueShoppingButton;
 
     public String getProductName() {
@@ -45,7 +45,7 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage addProductToCart() {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         addToCartButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
@@ -70,7 +70,7 @@ public class ProductPage extends BasePage {
         return this;
     }
     public TopMenuPage getTopMenuPage(){
-        return new TopMenuPage(getDriver());
+        return new TopMenuPage(driver);
     }
 
 }

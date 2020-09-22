@@ -1,6 +1,6 @@
 package base;
 
-import application.PrestaShop;
+import pages.application.PrestaShop;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,12 +20,9 @@ public class BaseTest {
 
     int i = 1;
 
-    protected WebDriver getDriver() {
-        return driver;
-    }
-
     @BeforeMethod
     public void setUp() {
+
         System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\drivers\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -52,5 +49,4 @@ public class BaseTest {
         driver.quit();
 
     }
-
 }

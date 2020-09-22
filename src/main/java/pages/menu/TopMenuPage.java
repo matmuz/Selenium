@@ -1,14 +1,14 @@
-package menu;
+package pages.menu;
 
-import account.SignInPage;
 import base.BasePage;
-import cart.CartPage;
-import help.ContactUsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import products.HomePage;
-import products.ProductsPage;
+import pages.account.SignInPage;
+import pages.cart.CartPage;
+import pages.help.ContactUsPage;
+import pages.products.HomePage;
+import pages.products.ProductsPage;
 
 import java.util.List;
 import java.util.Random;
@@ -19,40 +19,40 @@ public class TopMenuPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//div[@id='contact-link']//a[contains(text(),'Contact us')]")
+    @FindBy(css = "a[href*='contact-us']")
     private WebElement contactUsLink;
 
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[1]")
+    @FindBy(css = "a[href*='clothes']")
     private WebElement clothesDropdown;
 
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[2]")
+    @FindBy(css = "a[href*='accessories']")
     private WebElement accessoriesDropdown;
 
-    @FindBy(xpath = "(//a[@class='dropdown-item'])[3]")
+    @FindBy(css = "a[href*='9-art']")
     private WebElement artLink;
 
-    @FindBy(xpath = "//input[@placeholder='Search our catalog']")
+    @FindBy(css = ".ui-autocomplete-input")
     private WebElement searchBox;
 
-    @FindBy(xpath = "//div[@id='search_widget']//i[@class='material-icons search']")
+    @FindBy(css = ".material-icons search")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//span[contains(text(),'Sign in')]")
+    @FindBy(css = ".hidden-sm-down")
     private WebElement signInButton;
 
-    @FindBy(xpath = "//span[contains(text(),'Cart')]")
+    @FindBy(css = ".material-icons shopping-cart")
     private WebElement cartIcon;
 
-    @FindBy(xpath = "//span[@class='cart-products-count']")
+    @FindBy(css = ".cart-products-count")
     private WebElement cartProductsCount;
 
-    @FindBy(xpath = "//a[@class='dropdown-item']")
+    @FindBy(css = ".dropdown-item")
     private List<WebElement> categories;
 
-    @FindBy(xpath = "(//span[@class='hidden-sm-down'])[1]")
+    @FindBy(css = ".account")
     private WebElement loggedUserBox;
 
-    @FindBy(xpath = "//a[@class='logout hidden-sm-down']")
+    @FindBy(css = ".logout hidden-sm-down")
     private WebElement signOutButton;
 
     public List<WebElement> getCategories() {
@@ -61,44 +61,44 @@ public class TopMenuPage extends BasePage {
 
     public ContactUsPage goToContactUsPage() {
         contactUsLink.click();
-        return new ContactUsPage(getDriver());
+        return new ContactUsPage(driver);
     }
 
     public SignInPage goToSignInSection() {
         signInButton.click();
-        return new SignInPage(getDriver());
+        return new SignInPage (driver);
     }
 
     public ProductsPage goToClothesSection() {
         clothesDropdown.click();
-        return new ProductsPage(getDriver());
+        return new ProductsPage(driver);
     }
 
     public ProductsPage goToAccessoriesSection() {
         accessoriesDropdown.click();
-        return new ProductsPage(getDriver());
+        return new ProductsPage(driver);
     }
 
     public ProductsPage goToArtSection() {
         artLink.click();
-        return new ProductsPage(getDriver());
+        return new ProductsPage(driver);
     }
 
     public ProductsPage searchByText(String searchInput) {
         searchBox.sendKeys(searchInput);
         searchButton.click();
-        return new ProductsPage(getDriver());
+        return new ProductsPage(driver);
     }
 
     public ProductsPage goToRandomProductsSection() {
         Random random = new Random();
         categories.get(random.nextInt(categories.size())).click();
-        return new ProductsPage(getDriver());
+        return new ProductsPage(driver);
     }
 
     public CartPage goToCart() {
         cartIcon.click();
-        return new CartPage(getDriver());
+        return new CartPage(driver);
     }
 
     public String getLoggedUsername() {
@@ -107,7 +107,7 @@ public class TopMenuPage extends BasePage {
 
     public HomePage signOut() {
         signOutButton.click();
-        return new HomePage(getDriver());
+        return new HomePage(driver);
     }
 
 }

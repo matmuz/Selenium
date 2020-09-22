@@ -1,11 +1,11 @@
-package help;
+package pages.help;
 
 import base.BasePage;
-import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import pages.menu.TopMenuPage;
 
 public class ContactUsPage extends BasePage {
 
@@ -13,22 +13,22 @@ public class ContactUsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//select[@name='id_contact']")
+    @FindBy(css = "select[name='id_contact']")
     private WebElement subjectDropdown;
 
-    @FindBy(xpath = "//input[@placeholder='your@email.com']")
+    @FindBy(css = "input[placeholder='your@email.com']")
     private WebElement emailAddressBox;
 
-    @FindBy(xpath = "//div[@class='bootstrap-filestyle input-group']//input[contains(@class,'form-control')]")
+    @FindBy(css = ".form-control")
     private WebElement attachmentPath;
 
-    @FindBy(xpath = "//textarea[@placeholder='How can we help?']")
+    @FindBy(css = "textarea[name='message']")
     private WebElement messageBox;
 
-    @FindBy(xpath = "//input[@name='submitMessage']")
+    @FindBy(css = "input[name='submitMessage']")
     private WebElement sendButton;
 
-    @FindBy(xpath = "//section[@id='content']")
+    @FindBy(css = "section[id='content']")
     private WebElement responseMessage;
 
 
@@ -66,6 +66,6 @@ public class ContactUsPage extends BasePage {
     }
 
     public TopMenuPage getTopMenuPage(){
-        return new TopMenuPage(getDriver());
+        return new TopMenuPage(driver);
     }
 }

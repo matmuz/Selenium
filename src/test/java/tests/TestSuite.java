@@ -18,12 +18,12 @@ public class TestSuite extends BaseTest {
 
         String expectedMessage = "Your message has been successfully sent to our team.";
         Assert.assertEquals(prestaShop.
-                        openPrestaShop().
-                        getTopMenuPage().
-                        goToContactUsPage().
-                        submitHelpRequest("Webmaster", "test@test.com", "test message").
-                        getResponseMessage(),
-                expectedMessage);
+                                    openPrestaShop().
+                                    getTopMenuPage().
+                                    goToContactUsPage().
+                                    submitHelpRequest("Webmaster", "test@test.com", "test message").
+                                    getResponseMessage(),
+                            expectedMessage);
 
     }
 
@@ -40,7 +40,7 @@ public class TestSuite extends BaseTest {
                 goToCart().
                 proceedToCheckout().
                 placeOrderAsGuest("test", "testowy", "test@testowy.com", "test",
-                        "test", "New York", "12345", "United States").
+                                  "test", "New York", "12345", "United States").
                 getConfirmationMessage());
 
     }
@@ -58,7 +58,6 @@ public class TestSuite extends BaseTest {
                 getTopMenuPage().
                 goToCart().
                 getTotalPrice());
-
     }
 
     @Test(priority = 4)
@@ -81,10 +80,11 @@ public class TestSuite extends BaseTest {
     public void logIn() {
 
         System.out.println(prestaShop
-                .openPrestaShop()
-                .getTopMenuPage()
-                .goToSignInSection()
-                .logIn("prestashop@test.com", "test123").getTopMenuPage().getLoggedUsername());
+                                   .openPrestaShop()
+                                   .getTopMenuPage()
+                                   .goToSignInSection()
+                                   .logIn("prestashop@test.com", "test123").getTopMenuPage().getLoggedUsername());
+
     }
 
     @Test(priority = 6)
@@ -101,7 +101,7 @@ public class TestSuite extends BaseTest {
                 goToCart().
                 proceedToCheckout().
                 placeOrderAsGuest("Shop", "Presta", "shoppresta@test.com", "address",
-                        "city", "New York", "12345", "United States").
+                                  "city", "New York", "12345", "United States").
                 getConfirmationMessage());
 
     }
@@ -122,10 +122,16 @@ public class TestSuite extends BaseTest {
                 openPrestaShop().
                 getTopMenuPage().
                 goToSignInSection().
-                createAccount(firstName, lastName,email,password).
+                createAccount(firstName, lastName, email, password).
                 getTopMenuPage().
                 getLoggedUsername();
         Assert.assertEquals(firstName + " " + lastName, userAfterLogin);
+
+    }
+
+    @Test
+    public void dryRunTestOne(){
+
 
     }
 

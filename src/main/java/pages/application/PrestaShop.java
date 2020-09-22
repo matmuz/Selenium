@@ -1,8 +1,8 @@
-package application;
+package pages.application;
 
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
-import products.HomePage;
+import pages.products.HomePage;
 
 public class PrestaShop extends BasePage {
 
@@ -11,6 +11,6 @@ public class PrestaShop extends BasePage {
 
     }
     public HomePage openPrestaShop(){
-        return new HomePage(getDriver());
+        return new HomePage(driver);
     }
 }

@@ -1,10 +1,10 @@
-package products;
+package pages.products;
 
 import base.BasePage;
-import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.menu.TopMenuPage;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(className = "product-description")
+    @FindBy(css = ".product-description")
     private List<WebElement> allProducts;
 
     public List<WebElement> getAllProducts() {
@@ -28,10 +28,10 @@ public class ProductsPage extends BasePage {
                 break;
             }
         }
-        return new ProductPage(getDriver());
+        return new ProductPage(driver);
     }
     public TopMenuPage getTopMenuPage(){
-        return new TopMenuPage(getDriver());
+        return new TopMenuPage(driver);
     }
 
 }

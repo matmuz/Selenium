@@ -1,11 +1,11 @@
-package cart;
+package pages.cart;
 
 import base.BasePage;
-import menu.TopMenuPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.menu.TopMenuPage;
 
 import java.util.List;
 
@@ -14,33 +14,31 @@ public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
+
     }
 
-    @FindBy(className = "cart-item")
+    @FindBy(css = ".cart-item")
     private List<WebElement> cartItems;
 
-    @FindBy(xpath = "//a[@class='btn btn-primary']")
+    @FindBy(css = ".btn.btn-primary")
     private WebElement proceedToCheckoutButton;
 
-    @FindBy(xpath = "//div[@id='cart-subtotal-products'] //span[@class='value']")
-    private WebElement itemsPriceBox;
-
-    @FindBy(xpath = "//div[@id='cart-subtotal-shipping'] //span[@class='value']")
+    @FindBy(css = "#cart-subtotal-shipping")
     private WebElement shippingCostBox;
 
-    @FindBy(xpath = "//div[@class='cart-summary-line cart-total'] //span[@class='value']")
+    @FindBy(css = ".cart-summary-line.cart-total")
     private WebElement totalPriceBox;
 
-    @FindBy(xpath = "//span[@class='label js-subtotal']")
-    private WebElement numberOfItemsBox;
+    @FindBy(css = "#cart-subtotal-products")
+    private WebElement summaryLine;
 
     public List<WebElement> getCartItems() {
         return cartItems;
     }
 
-    public Double getItemsPrice() {
-        String[] split = (itemsPriceBox.getText().split("\\$"));
-        return Double.parseDouble(split[1]);
+    public int getItemsQuantity() {
+        String[] split = (summaryLine.getText().split(" "));
+        return Integer.parseInt(split[0]);
     }
 
     public Double getShippingCost() {
@@ -53,9 +51,9 @@ public class CartPage extends BasePage {
         return Double.parseDouble(split[1]);
     }
 
-    public int getNumberOfItems(){
-        String[] split = (numberOfItemsBox.getText().split(" "));
-        return Integer.parseInt(split[0]);
+    public double getItemsPrice() {
+        String[] split = (summaryLine.getText().split("\\$"));
+        return Double.parseDouble(split[1]);
     }
 
     public CartPage deleteItemFromCart(String name) {
@@ -68,11 +66,12 @@ public class CartPage extends BasePage {
 
     }
 
-    public CheckoutPage proceedToCheckout(){
+    public CheckoutPage proceedToCheckout() {
         proceedToCheckoutButton.click();
-        return new CheckoutPage(getDriver());
+        return new CheckoutPage(driver);
     }
-    public TopMenuPage getTopMenuPage(){
-        return new TopMenuPage(getDriver());
+
+    public TopMenuPage getTopMenuPage() {
+        return new TopMenuPage(driver);
     }
 }

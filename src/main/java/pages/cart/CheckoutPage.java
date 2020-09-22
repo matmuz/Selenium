@@ -1,11 +1,11 @@
-package cart;
+package pages.cart;
 
 import base.BasePage;
-import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import pages.menu.TopMenuPage;
 
 import java.util.List;
 import java.util.Random;
@@ -16,49 +16,49 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//input[@name='firstname']")
+    @FindBy(css = "input[name='firstname']")
     private WebElement firstNameBox;
 
-    @FindBy(xpath = "//input[@name='lastname']")
+    @FindBy(css = "input[name='lastname']")
     private WebElement lastNameBox;
 
-    @FindBy(xpath = "//form[@id='customer-form']//input[@name='email']")
+    @FindBy(css = "form[id='customer-form'] input[name='email']")
     private WebElement emailBox;
 
-    @FindBy(xpath = "//footer[@class='form-footer clearfix']//button[@name='continue'][contains(text(),'Continue')]")
+    @FindBy(css = "button[data-link-action='register-new-customer']")
     private WebElement goToAddressButton;
 
-    @FindBy(xpath = "//input[@name='address1']")
+    @FindBy(css = "input[name='address1']")
     private WebElement addressBox;
 
-    @FindBy(xpath = "//input[@name='city']")
+    @FindBy(css = "input[name='city']")
     private WebElement cityBox;
 
-    @FindBy(xpath = "//select[@name='id_state']")
+    @FindBy(css = "select[name='id_state']")
     private WebElement stateDropdown;
 
-    @FindBy(xpath = "//input[@name='postcode']")
+    @FindBy(css = "input[name='postcode']")
     private WebElement postalCodeBox;
 
-    @FindBy(xpath = "//select[@name='id_country']")
+    @FindBy(css = "select[name='id_country']")
     private WebElement countryDropdown;
 
-    @FindBy(xpath = "//button[@name='confirm-addresses']")
+    @FindBy(css = "button[name='confirm-addresses']")
     private WebElement goToShippingButton;
 
-    @FindBy(xpath = "//button[@name='confirmDeliveryOption']")
+    @FindBy(css = "button[name='confirmDeliveryOption']")
     private WebElement confirmShippingButton;
 
-    @FindBy(name = "payment-option")
+    @FindBy(css = "input[name='payment-option']")
     private List<WebElement> paymentRadioButtons;
 
-    @FindBy(id = "conditions_to_approve[terms-and-conditions]")
+    @FindBy(css = "input[id*='conditions_to_approve']")
     private WebElement agreeCheckbox;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary center-block']")
+    @FindBy(css = ".btn.btn-primary.center-block")
     private WebElement placeOrderButton;
 
-    @FindBy(xpath = "//h3[@class='h1 card-title']")
+    @FindBy(css = ".h1.card-title")
     private WebElement confirmationMessageBox;
 
     public List<WebElement> getPaymentRadioButtons() {
@@ -91,6 +91,6 @@ public class CheckoutPage extends BasePage {
     }
 
     public TopMenuPage getTopMenuPage(){
-        return new TopMenuPage(getDriver());
+        return new TopMenuPage(driver);
     }
 }
