@@ -1,74 +1,77 @@
+package account;
+
+import base.BasePage;
+import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import products.HomePage;
 
-public class SignInPage {
-
-    WebDriver driver;
+public class SignInPage extends BasePage {
 
     public SignInPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
-    @FindBy(className = "form-control")
-    WebElement loginEmailBox;
+    @FindBy(css = ".form-control")
+    private WebElement loginEmailBox;
 
     @FindBy(xpath = "//input[@name='password']")
-    WebElement loginPasswordBox;
+    private WebElement loginPasswordBox;
 
     @FindBy(xpath = "//button[@id='submit-login']")
-    WebElement signInButton;
+    private WebElement signInButton;
 
     @FindBy(xpath = "//a[contains(text(),'No account? Create one here')]")
-    WebElement createAccountButton;
+    private WebElement createAccountButton;
 
     @FindBy(xpath = "//a[contains(text(),'Forgot your password?')]")
-    WebElement passwordRecoveryButton;
+    private WebElement passwordRecoveryButton;
 
     @FindBy(xpath = "//input[@id='email']")
-    WebElement passwordResetEmail;
+    private WebElement passwordResetEmail;
 
     @FindBy(xpath = "//button[contains(text(),'Send reset link')]")
-    WebElement sendResetLink;
+    private WebElement sendResetLink;
 
     @FindBy(xpath = "//input[@name='firstname']")
-    WebElement firstNameBox;
+    private WebElement firstNameBox;
 
     @FindBy(xpath = "//input[@name='lastname']")
-    WebElement lastNameBox;
+    private WebElement lastNameBox;
 
     @FindBy(xpath = "//div[@class='col-md-6']//input[@name='email']")
-    WebElement emailToSetBox;
+    private WebElement emailToSetBox;
 
     @FindBy(xpath = "//input[@name='password']")
-    WebElement passwordToSetBox;
+    private WebElement passwordToSetBox;
 
     @FindBy(xpath = "//button[@class='btn btn-primary form-control-submit float-xs-right']")
-    WebElement createAccountBox;
+    private WebElement createAccountBox;
 
     @FindBy(xpath = "//li[@class='alert alert-danger']")
-    WebElement alertBox;
+    private WebElement alertBox;
 
-    public void logIn(String email, String password) {
+    public HomePage logIn(String email, String password) {
         loginEmailBox.sendKeys(email);
         loginPasswordBox.sendKeys(password);
         signInButton.click();
+        return new HomePage(getDriver());
     }
 
-    public void createAccount(String firstName, String lastName, String email, String password) {
+    public HomePage createAccount(String firstName, String lastName, String email, String password) {
 
+        createAccountButton.click();
         firstNameBox.sendKeys(firstName);
         lastNameBox.sendKeys(lastName);
         emailToSetBox.sendKeys(email);
         passwordToSetBox.sendKeys(password);
         createAccountBox.click();
+        return new HomePage(getDriver());
 
     }
 
-    public String getAlertMessage(){
-        return alertBox.getText();
+    public TopMenuPage getTopMenuPage(){
+        return new TopMenuPage(getDriver());
     }
-
 }

@@ -1,3 +1,6 @@
+package base;
+
+import application.PrestaShop;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,16 +15,14 @@ import java.io.IOException;
 
 public class BaseTest {
 
-    WebDriver driver;
-    TopMenuPage topMenuPage;
-    HomePage homePage;
-    ProductPage productPage;
-    ContactUsPage contactUsPage;
-    CartPage cartPage;
-    ProductsPage productsPage;
-    CheckoutPage checkoutPage;
-    SignInPage signInPage;
+    private WebDriver driver;
+    protected PrestaShop prestaShop;
+
     int i = 1;
+
+    protected WebDriver getDriver() {
+        return driver;
+    }
 
     @BeforeMethod
     public void setUp() {
@@ -30,6 +31,7 @@ public class BaseTest {
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
         driver.get("http://5.196.7.235/");
+        prestaShop = new PrestaShop(driver);
 
     }
 

@@ -1,36 +1,36 @@
+package products;
+
+import base.BasePage;
+import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class HomePage {
-
-    WebDriver driver;
-
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(className = "product-description")
-    List<WebElement> popularProducts;
+    private List<WebElement> popularProducts;
 
-    @FindBy(xpath = "//a[@class='all-product-link float-xs-left float-md-right h4']")
-    WebElement allProductsButton;
+    public List<WebElement> getPopularProducts() {
+        return popularProducts;
+    }
 
-    public void enterPopularProduct(String popularProductName) {
+    public ProductPage enterPopularProduct(String popularProductName) {
         for (WebElement popularProduct : popularProducts) {
             if (popularProduct.getText().toLowerCase().contains(popularProductName)) {
                 popularProduct.click();
                 break;
             }
         }
+        return new ProductPage(getDriver());
     }
-
-    public void goToAllProducts() {
-        allProductsButton.click();
+    public TopMenuPage getTopMenuPage(){
+        return new TopMenuPage(getDriver());
     }
 }

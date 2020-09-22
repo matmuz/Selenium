@@ -1,41 +1,39 @@
+package products;
+
+import base.BasePage;
+import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductPage {
-
-    WebDriver driver;
+public class ProductPage extends BasePage {
 
     public ProductPage(WebDriver driver) {
-
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-
+        super(driver);
     }
 
     @FindBy(xpath = "//h1[@class='h1']")
-    WebElement productNameBox;
+    private WebElement productNameBox;
 
     @FindBy(xpath = "//span[@itemprop='price']")
-    WebElement priceBox;
+    private WebElement priceBox;
 
     @FindBy(xpath = "//button[@class='btn btn-primary add-to-cart']")
-    WebElement addToCartButton;
+    private WebElement addToCartButton;
 
     @FindBy(xpath = "//input[@id='quantity_wanted']")
-    WebElement quantityBox;
+    private WebElement quantityBox;
 
     @FindBy(xpath = "//i[@class='material-icons touchspin-up']")
-    WebElement increaseQuantitySpin;
+    private WebElement increaseQuantitySpin;
 
     @FindBy(xpath = "//i[@class='material-icons touchspin-down']")
-    WebElement decreaseQuantitySpin;
+    private WebElement decreaseQuantitySpin;
 
     @FindBy(xpath = "//button[@class='btn btn-secondary']")
-    WebElement continueShoppingButton;
+    private WebElement continueShoppingButton;
 
     public String getProductName() {
         return productNameBox.getText();
@@ -46,27 +44,33 @@ public class ProductPage {
         return Double.parseDouble(split[1]);
     }
 
-    public void addProductToCart() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+    public ProductPage addProductToCart() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
         addToCartButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
+        return this;
     }
 
     public String getQuantity() {
         return quantityBox.getAttribute("value");
     }
 
-    public void increaseQuantityBy(int number) {
+    public ProductPage increaseQuantityBy(int number) {
         for (int i = 0; i < number; i++) {
             increaseQuantitySpin.click();
         }
+        return this;
     }
 
-    public void decreaseQuantityBy(int number) {
+    public ProductPage decreaseQuantityBy(int number) {
         for (int i = 0; i < number; i++) {
             decreaseQuantitySpin.click();
         }
+        return this;
+    }
+    public TopMenuPage getTopMenuPage(){
+        return new TopMenuPage(getDriver());
     }
 
 }

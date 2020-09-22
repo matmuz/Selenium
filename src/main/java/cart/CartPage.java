@@ -1,39 +1,42 @@
+package cart;
+
+import base.BasePage;
+import menu.TopMenuPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class CartPage {
+public class CartPage extends BasePage {
 
-    WebDriver driver;
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-
+        super(driver);
     }
 
     @FindBy(className = "cart-item")
-    List<WebElement> cartItems;
+    private List<WebElement> cartItems;
 
     @FindBy(xpath = "//a[@class='btn btn-primary']")
-    WebElement proceedToCheckoutButton;
+    private WebElement proceedToCheckoutButton;
 
     @FindBy(xpath = "//div[@id='cart-subtotal-products'] //span[@class='value']")
-    WebElement itemsPriceBox;
+    private WebElement itemsPriceBox;
 
     @FindBy(xpath = "//div[@id='cart-subtotal-shipping'] //span[@class='value']")
-    WebElement shippingCostBox;
+    private WebElement shippingCostBox;
 
     @FindBy(xpath = "//div[@class='cart-summary-line cart-total'] //span[@class='value']")
-    WebElement totalPriceBox;
+    private WebElement totalPriceBox;
 
     @FindBy(xpath = "//span[@class='label js-subtotal']")
-    WebElement numberOfItemsBox;
+    private WebElement numberOfItemsBox;
 
+    public List<WebElement> getCartItems() {
+        return cartItems;
+    }
 
     public Double getItemsPrice() {
         String[] split = (itemsPriceBox.getText().split("\\$"));
@@ -55,16 +58,21 @@ public class CartPage {
         return Integer.parseInt(split[0]);
     }
 
-    public void deleteItemFromCart(String name) {
+    public CartPage deleteItemFromCart(String name) {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText().contains(name.toUpperCase())) {
                 cartItem.findElement(By.xpath("//i[@class='material-icons float-xs-left']")).click();
             }
         }
+        return this;
 
     }
 
-    public void proceedToCheckout(){
+    public CheckoutPage proceedToCheckout(){
         proceedToCheckoutButton.click();
+        return new CheckoutPage(getDriver());
+    }
+    public TopMenuPage getTopMenuPage(){
+        return new TopMenuPage(getDriver());
     }
 }

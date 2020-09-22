@@ -1,66 +1,71 @@
+package help;
+
+import base.BasePage;
+import menu.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class ContactUsPage {
+public class ContactUsPage extends BasePage {
 
-    WebDriver driver;
-
-    public ContactUsPage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public ContactUsPage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(xpath = "//select[@name='id_contact']")
-    WebElement subjectDropdown;
+    private WebElement subjectDropdown;
 
     @FindBy(xpath = "//input[@placeholder='your@email.com']")
-    WebElement emailAddressBox;
+    private WebElement emailAddressBox;
 
     @FindBy(xpath = "//div[@class='bootstrap-filestyle input-group']//input[contains(@class,'form-control')]")
-    WebElement attachmentPath;
+    private WebElement attachmentPath;
 
     @FindBy(xpath = "//textarea[@placeholder='How can we help?']")
-    WebElement messageBox;
+    private WebElement messageBox;
 
     @FindBy(xpath = "//input[@name='submitMessage']")
-    WebElement sendButton;
+    private WebElement sendButton;
 
     @FindBy(xpath = "//section[@id='content']")
-    WebElement responseMessage;
+    private WebElement responseMessage;
 
 
-    public void selectSubject(String subject){
+    public void selectSubject(String subject) {
         Select select = new Select(subjectDropdown);
         select.selectByVisibleText(subject);
     }
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         emailAddressBox.sendKeys(email);
     }
 
-    public void addAttachment(String pathToFile){
+    public void addAttachment(String pathToFile) {
         attachmentPath.sendKeys(pathToFile);
     }
 
-    public void setMessage(String message){
+    public void setMessage(String message) {
         messageBox.sendKeys(message);
     }
 
-    public void clickSend(){
+    public void clickSend() {
         sendButton.click();
     }
 
-    public void submitHelpRequest(String subject, String email, String message){
+    public ContactUsPage submitHelpRequest(String subject, String email, String message) {
         selectSubject(subject);
         setEmail(email);
         setMessage(message);
         clickSend();
+        return this;
     }
 
-    public String getResponseMessage(){
+    public String getResponseMessage() {
         return responseMessage.getText();
+    }
+
+    public TopMenuPage getTopMenuPage(){
+        return new TopMenuPage(getDriver());
     }
 }
