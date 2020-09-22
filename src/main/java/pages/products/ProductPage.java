@@ -32,7 +32,7 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".material-icons.touchspin-down")
     private WebElement decreaseQuantitySpin;
 
-    @FindBy(css = ".btn btn-secondary")
+    @FindBy(css = ".btn.btn-secondary")
     private WebElement continueShoppingButton;
 
     public String getProductName() {

@@ -1,6 +1,7 @@
 package pages.menu;
 
 import base.BasePage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,13 +35,13 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".ui-autocomplete-input")
     private WebElement searchBox;
 
-    @FindBy(css = ".material-icons search")
+    @FindBy(css = ".material-icons.search")
     private WebElement searchButton;
 
-    @FindBy(css = ".hidden-sm-down")
+    @FindBy(css = "span[class='hidden-sm-down']")
     private WebElement signInButton;
 
-    @FindBy(css = ".material-icons shopping-cart")
+    @FindBy(css = ".material-icons.shopping-cart")
     private WebElement cartIcon;
 
     @FindBy(css = ".cart-products-count")
@@ -52,7 +53,7 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".account")
     private WebElement loggedUserBox;
 
-    @FindBy(css = ".logout hidden-sm-down")
+    @FindBy(css = ".logout.hidden-sm-down")
     private WebElement signOutButton;
 
     public List<WebElement> getCategories() {
@@ -66,7 +67,7 @@ public class TopMenuPage extends BasePage {
 
     public SignInPage goToSignInSection() {
         signInButton.click();
-        return new SignInPage (driver);
+        return new SignInPage(driver);
     }
 
     public ProductsPage goToClothesSection() {
@@ -102,7 +103,11 @@ public class TopMenuPage extends BasePage {
     }
 
     public String getLoggedUsername() {
-        return loggedUserBox.getText();
+        try {
+            return loggedUserBox.getText();
+        } catch (NoSuchElementException exception) {
+            return "null";
+        }
     }
 
     public HomePage signOut() {
