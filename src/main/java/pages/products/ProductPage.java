@@ -1,41 +1,39 @@
+package pages.products;
+
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.menu.TopMenuPage;
 
-public class ProductPage {
-
-    WebDriver driver;
+public class ProductPage extends BasePage {
 
     public ProductPage(WebDriver driver) {
-
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-
+        super(driver);
     }
 
-    @FindBy(xpath = "//h1[@class='h1']")
-    WebElement productNameBox;
+    @FindBy(css = ".h1")
+    private WebElement productNameBox;
 
-    @FindBy(xpath = "//span[@itemprop='price']")
-    WebElement priceBox;
+    @FindBy(css = "span[itemprop='price']")
+    private WebElement priceBox;
 
-    @FindBy(xpath = "//button[@class='btn btn-primary add-to-cart']")
-    WebElement addToCartButton;
+    @FindBy(css = ".btn.btn-primary.add-to-cart")
+    private WebElement addToCartButton;
 
-    @FindBy(xpath = "//input[@id='quantity_wanted']")
-    WebElement quantityBox;
+    @FindBy(css = "#quantity_wanted")
+    private WebElement quantityBox;
 
-    @FindBy(xpath = "//i[@class='material-icons touchspin-up']")
-    WebElement increaseQuantitySpin;
+    @FindBy(css = ".material-icons.touchspin-up")
+    private WebElement increaseQuantitySpin;
 
-    @FindBy(xpath = "//i[@class='material-icons touchspin-down']")
-    WebElement decreaseQuantitySpin;
+    @FindBy(css = ".material-icons.touchspin-down")
+    private WebElement decreaseQuantitySpin;
 
-    @FindBy(xpath = "//button[@class='btn btn-secondary']")
-    WebElement continueShoppingButton;
+    @FindBy(css = ".btn.btn-secondary")
+    private WebElement continueShoppingButton;
 
     public String getProductName() {
         return productNameBox.getText();
@@ -46,27 +44,33 @@ public class ProductPage {
         return Double.parseDouble(split[1]);
     }
 
-    public void addProductToCart() {
+    public ProductPage addProductToCart() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         addToCartButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
+        return this;
     }
 
     public String getQuantity() {
         return quantityBox.getAttribute("value");
     }
 
-    public void increaseQuantityBy(int number) {
+    public ProductPage increaseQuantityBy(int number) {
         for (int i = 0; i < number; i++) {
             increaseQuantitySpin.click();
         }
+        return this;
     }
 
-    public void decreaseQuantityBy(int number) {
+    public ProductPage decreaseQuantityBy(int number) {
         for (int i = 0; i < number; i++) {
             decreaseQuantitySpin.click();
         }
+        return this;
+    }
+    public TopMenuPage getTopMenuPage(){
+        return new TopMenuPage(driver);
     }
 
 }
