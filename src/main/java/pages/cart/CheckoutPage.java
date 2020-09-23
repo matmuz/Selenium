@@ -52,7 +52,7 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "input[name='payment-option']")
     private List<WebElement> paymentRadioButtons;
 
-    @FindBy(css = "input[id*='conditions_to_approve']")
+    @FindBy(css = "#conditions_to_approve\\[terms-and-conditions\\]")
     private WebElement agreeCheckbox;
 
     @FindBy(css = ".btn.btn-primary.center-block")

@@ -11,10 +11,8 @@ import java.util.List;
 
 public class CartPage extends BasePage {
 
-
     public CartPage(WebDriver driver) {
         super(driver);
-
     }
 
     @FindBy(css = ".cart-item")
@@ -59,11 +57,10 @@ public class CartPage extends BasePage {
     public CartPage deleteItemFromCart(String name) {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText().contains(name.toUpperCase())) {
-                cartItem.findElement(By.xpath("//i[@class='material-icons float-xs-left']")).click();
+                cartItem.findElement(By.xpath(".material-icons.float-xs-left")).click();
             }
         }
         return this;
-
     }
 
     public CheckoutPage proceedToCheckout() {

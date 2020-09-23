@@ -28,7 +28,7 @@ public class ContactUsPage extends BasePage {
     @FindBy(css = "input[name='submitMessage']")
     private WebElement sendButton;
 
-    @FindBy(css = "section[id='content']")
+    @FindBy(css = "#content")
     private WebElement responseMessage;
 
 

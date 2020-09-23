@@ -8,8 +8,8 @@ public class PrestaShop extends BasePage {
 
     public PrestaShop(WebDriver driver){
         super(driver);
-
     }
+
     public HomePage openPrestaShop(){
         return new HomePage(driver);
     }
