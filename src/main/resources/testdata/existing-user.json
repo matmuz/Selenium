@@ -1,0 +1,11 @@
+{
+  "firstname": "Presta",
+  "lastname": "Shop",
+  "email": "prestashop@test.com",
+  "password": "test123",
+  "address": "address",
+  "city": "city",
+  "state": "Connecticut",
+  "postal_code": "12345",
+  "country": "United States"
+}

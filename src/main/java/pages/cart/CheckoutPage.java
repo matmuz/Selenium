@@ -1,6 +1,7 @@
 package pages.cart;
 
 import base.BasePage;
+import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,6 +28,9 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(css = "button[data-link-action='register-new-customer']")
     private WebElement goToAddressButton;
+
+    @FindBy(css = ".continue.btn.btn-primary.float-xs-right")
+    private WebElement continueButton;
 
     @FindBy(css = "input[name='address1']")
     private WebElement addressBox;
@@ -61,9 +65,8 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = ".h1.card-title")
     private WebElement confirmationMessageBox;
 
-    public List<WebElement> getPaymentRadioButtons() {
-        return paymentRadioButtons;
-    }
+    @FindBy(css = "#order-details")
+    private WebElement orderReferenceNumberBox;
 
     public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String state, String postalCode, String country) {
         Random random = new Random();
@@ -80,7 +83,37 @@ public class CheckoutPage extends BasePage {
         selectCountry.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
+                .click();
+        agreeCheckbox.click();
+        placeOrderButton.click();
+        return this;
+    }
+
+    public CheckoutPage placeOrderAsLoggedUser(String address, String city, String state, String postalCode, String country) {
+        Random random = new Random();
+        addressBox.sendKeys(address);
+        cityBox.sendKeys(city);
+        Select selectState = new Select(stateDropdown);
+        selectState.selectByVisibleText(state);
+        postalCodeBox.sendKeys(postalCode);
+        Select selectCountry = new Select(countryDropdown);
+        selectCountry.selectByVisibleText(country);
+        goToShippingButton.click();
+        confirmShippingButton.click();
+        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
+                .click();
+        agreeCheckbox.click();
+        placeOrderButton.click();
+        return this;
+    }
+
+    public CheckoutPage placeOrderAsLoggedUser() {
+        Random random = new Random();
+        goToShippingButton.click();
+        confirmShippingButton.click();
+        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
+                .click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -90,7 +123,21 @@ public class CheckoutPage extends BasePage {
         return confirmationMessageBox.getText();
     }
 
-    public TopMenuPage getTopMenuPage(){
+    public String getOrderReference() {
+        String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
+        return split[1].trim();
+    }
+
+    public CheckoutPage getOrderReference(OrderModel order) {
+        String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
+        String orderNumber = split[1].trim();
+        String[] secondSplit = orderNumber.split("Payment");
+        String secondOrderNumber = secondSplit[0].trim();
+        order.setOrderReferenceNumber(secondOrderNumber);
+        return new CheckoutPage(driver);
+    }
+
+    public TopMenuPage getTopMenuPage() {
         return new TopMenuPage(driver);
     }
 }

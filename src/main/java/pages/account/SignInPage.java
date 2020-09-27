@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.menu.TopMenuPage;
 import pages.products.HomePage;
 
+import java.util.List;
+
 public class SignInPage extends BasePage {
 
     public SignInPage(WebDriver driver) {
@@ -52,6 +54,12 @@ public class SignInPage extends BasePage {
     @FindBy(css = ".alert.alert-danger")
     private WebElement alertBox;
 
+    @FindBy(css = "#history-link")
+    private WebElement orderHistory;
+
+    @FindBy(css = "th[scope='row']")
+    private List<WebElement> orderReferenceNumbersList;
+
     public HomePage logIn(String email, String password) {
         loginEmailBox.sendKeys(email);
         loginPasswordBox.sendKeys(password);
@@ -60,7 +68,6 @@ public class SignInPage extends BasePage {
     }
 
     public HomePage createAccount(String firstName, String lastName, String email, String password) {
-
         createAccountButton.click();
         firstNameBox.sendKeys(firstName);
         lastNameBox.sendKeys(lastName);
@@ -68,15 +75,31 @@ public class SignInPage extends BasePage {
         passwordToSetBox.sendKeys(password);
         createAccountBox.click();
         return new HomePage(driver);
-
     }
 
-    public SignInPage resetPassword(){
+    public SignInPage resetPassword() {
         passwordRecoveryButton.click();
         return this;
     }
 
-    public TopMenuPage getTopMenuPage(){
+    public String findOrderNumber(String orderNumber) {
+        for (WebElement webElement : orderReferenceNumbersList) {
+            if (webElement
+                    .getText()
+                    .equals(orderNumber)) {
+                return webElement
+                        .getText();
+            }
+        }
+        return "null";
+    }
+
+    public SignInPage goToOrderHistory() {
+        orderHistory.click();
+        return new SignInPage(driver);
+    }
+
+    public TopMenuPage getTopMenuPage() {
         return new TopMenuPage(driver);
     }
 }

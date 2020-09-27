@@ -1,6 +1,7 @@
 package pages.cart;
 
 import base.BasePage;
+import models.OrderModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,37 +31,63 @@ public class CartPage extends BasePage {
     @FindBy(css = "#cart-subtotal-products")
     private WebElement summaryLine;
 
-    public List<WebElement> getCartItems() {
-        return cartItems;
-    }
-
     public int getItemsQuantity() {
-        String[] split = (summaryLine.getText().split(" "));
+        String[] split = (summaryLine.getText()
+                .split(" "));
         return Integer.parseInt(split[0]);
     }
 
     public Double getShippingCost() {
-        String[] split = (shippingCostBox.getText().split("\\$"));
+        String[] split = (shippingCostBox.getText()
+                .split("\\$"));
         return Double.parseDouble(split[1]);
     }
 
     public double getTotalPrice() {
-        String[] split = (totalPriceBox.getText().split("\\$"));
+        String[] split = (totalPriceBox.getText()
+                .split("\\$"));
         return Double.parseDouble(split[1]);
     }
 
     public double getItemsPrice() {
-        String[] split = (summaryLine.getText().split("\\$"));
+        String[] split = (summaryLine.getText()
+                .split("\\$"));
         return Double.parseDouble(split[1]);
     }
 
     public CartPage deleteItemFromCart(String name) {
         for (WebElement cartItem : cartItems) {
-            if (cartItem.getText().contains(name.toUpperCase())) {
-                cartItem.findElement(By.xpath(".material-icons.float-xs-left")).click();
+            if (cartItem.getText()
+                    .contains(name.toUpperCase())) {
+                cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
+                        .click();
             }
         }
         return this;
+    }
+
+    public CartPage deleteItemFromCart(OrderModel order, String name) {
+        for (WebElement cartItem : cartItems) {
+            if (cartItem.getText()
+                    .contains(name.toUpperCase())) {
+                cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
+                        .click();
+                order.deleteProductFromList(name);
+            }
+        }
+        return this;
+    }
+
+    public String getItemDetailsByName(String productName) {
+        for (WebElement cartItem : cartItems) {
+            if (cartItem
+                    .getText()
+                    .contains(productName)) {
+                return cartItem
+                        .getText();
+            }
+        }
+        return "null";
     }
 
     public CheckoutPage proceedToCheckout() {

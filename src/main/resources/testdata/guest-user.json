@@ -1,0 +1,11 @@
+{
+  "firstname": "guest",
+  "lastname": "user",
+  "email": "guestuser@test.com",
+  "password": "nonexistingpassword",
+  "address": "address",
+  "city": "city",
+  "state": "New York",
+  "postal_code": "12345",
+  "country": "United States"
+}

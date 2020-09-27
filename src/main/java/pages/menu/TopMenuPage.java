@@ -47,7 +47,7 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".cart-products-count")
     private WebElement cartProductsCount;
 
-    @FindBy(css = ".dropdown-item")
+    @FindBy(css = "a[class='dropdown-item']")
     private List<WebElement> categories;
 
     @FindBy(css = ".account")
@@ -56,8 +56,12 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".logout.hidden-sm-down")
     private WebElement signOutButton;
 
-    public List<WebElement> getCategories() {
-        return categories;
+    @FindBy(css = ".logo.img-responsive")
+    private WebElement myStoreButton;
+
+    public HomePage goToHomePage() {
+        myStoreButton.click();
+        return new HomePage(driver);
     }
 
     public ContactUsPage goToContactUsPage() {
@@ -93,7 +97,8 @@ public class TopMenuPage extends BasePage {
 
     public ProductsPage goToRandomProductsSection() {
         Random random = new Random();
-        categories.get(random.nextInt(categories.size())).click();
+        categories.get(random.nextInt(categories.size()))
+                .click();
         return new ProductsPage(driver);
     }
 
@@ -114,5 +119,4 @@ public class TopMenuPage extends BasePage {
         signOutButton.click();
         return new HomePage(driver);
     }
-
 }
