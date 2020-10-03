@@ -6,19 +6,19 @@ import org.testng.annotations.Test;
 
 public class AccountTests extends BaseTest {
 
-    @Test(priority = 1)
-    public void createAccount() {
+//    @Test
+//    public void createAccount() {
+//
+//        String createdUsername = newUserData.getFirstName() + " " + newUserData.getLastName();
+//        Assert.assertEquals(prestaShop.openPrestaShop()
+//                                    .getTopMenuPage()
+//                                    .goToSignInSection()
+//                                    .createAccount(newUserData.getFirstName(), newUserData.getLastName(), newUserData.getEmail(), newUserData.getPassword())
+//                                    .getTopMenuPage()
+//                                    .getLoggedUsername(), createdUsername);
+//    }
 
-        String createdUsername = newUserData.getFirstName() + " " + newUserData.getLastName();
-        Assert.assertEquals(prestaShop.openPrestaShop()
-                                    .getTopMenuPage()
-                                    .goToSignInSection()
-                                    .createAccount(newUserData.getFirstName(), newUserData.getLastName(), newUserData.getEmail(), newUserData.getPassword())
-                                    .getTopMenuPage()
-                                    .getLoggedUsername(), createdUsername);
-    }
-
-    @Test(priority = 2)
+    @Test
     public void logIn() {
 
         String username = userData.getFirstName() + " " + userData.getLastName();
@@ -30,7 +30,7 @@ public class AccountTests extends BaseTest {
                                     .getLoggedUsername(), username);
     }
 
-    @Test(priority = 3)
+    @Test
     public void logOut() {
 
         String noUsername = "null";
@@ -44,7 +44,7 @@ public class AccountTests extends BaseTest {
                                     .getLoggedUsername(), noUsername);
     }
 
-    @Test(priority = 4)
+    @Test
     public void logInAsGuest() {
 
         String noUsername = "null";
@@ -56,7 +56,7 @@ public class AccountTests extends BaseTest {
                                     .getLoggedUsername(), noUsername);
     }
 
-    @Test(priority = 5)
+    @Test
     public void createAlreadyExitingAccount() {
 
         String usernameAfterCreateAccount = prestaShop.

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class HelpRequestTests extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void sendContactMessageAsGuest() {
 
         String expectedMessage = testData.getHelpResponseMessage();
@@ -17,7 +17,7 @@ public class HelpRequestTests extends BaseTest {
                                     .getResponseMessage(), expectedMessage);
     }
 
-    @Test(priority = 2)
+    @Test
     public void sendContactMessageAsLoggedUser() {
 
         String expectedMessage = testData.getHelpResponseMessage();

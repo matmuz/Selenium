@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class OrderTests extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void orderPrice() {
 
         OrderModel order = new OrderModel();
@@ -22,7 +22,7 @@ public class OrderTests extends BaseTest {
                                     .getItemsPrice(), order.getOrderItemsPrice());
     }
 
-    @Test(priority = 2)
+    @Test
     public void orderItemsQuantity() {
 
         OrderModel order = new OrderModel();
@@ -50,7 +50,7 @@ public class OrderTests extends BaseTest {
                                     .getItemsQuantity(), order.getOrderItemsQuantity());
     }
 
-    @Test(priority = 3)
+    @Test
     public void placeOrderAsGuest() {
 
         String confirmationMessage = testData.getConfirmationMessage();
@@ -65,7 +65,7 @@ public class OrderTests extends BaseTest {
                                     .getConfirmationMessage(), confirmationMessage);
     }
 
-    @Test(priority = 4)
+    @Test
     public void placeOrderAsLoggedUser() {
 
         String confirmationMessage = testData.getConfirmationMessage();
@@ -83,7 +83,7 @@ public class OrderTests extends BaseTest {
                                     .getConfirmationMessage(), confirmationMessage);
     }
 
-    @Test(priority = 5)
+    @Test
     public void orderHistory() {
 
         OrderModel order = new OrderModel();

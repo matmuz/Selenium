@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTests extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void popularProduct() {
 
         OrderModel order = new OrderModel();
@@ -19,7 +19,7 @@ public class ProductsTests extends BaseTest {
                                     .getItemsPrice(), order.getOrderItemsPrice());
     }
 
-    @Test(priority = 2)
+    @Test
     public void popularProducts() {
 
         OrderModel order = new OrderModel();
@@ -30,7 +30,7 @@ public class ProductsTests extends BaseTest {
                                     .getItemsQuantity(), order.getOrderItemsQuantity());
     }
 
-    @Test(priority = 3)
+    @Test
     public void addRandomProductsToCart() {
 
         OrderModel order = new OrderModel();
@@ -43,7 +43,7 @@ public class ProductsTests extends BaseTest {
                                     .getItemsQuantity(), 6);
     }
 
-    @Test(priority = 4)
+    @Test
     public void addSpecificProduct() {
 
         OrderModel order = new OrderModel();
@@ -60,7 +60,7 @@ public class ProductsTests extends BaseTest {
         }
     }
 
-    @Test(priority = 5)
+    @Test
     public void productDeletionInCart() {
 
         OrderModel order = new OrderModel();
@@ -73,7 +73,7 @@ public class ProductsTests extends BaseTest {
                                     .getItemsPrice(), order.getOrderItemsPrice());
     }
 
-    @Test(priority = 6)
+    @Test
     public void searchForProduct() {
 
         OrderModel order = new OrderModel();
