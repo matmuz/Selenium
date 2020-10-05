@@ -17,7 +17,7 @@ public class OrderModel {
         for (ProductModel productModel : productsInOrder) {
             orderItemsPrice += productModel.getProductPrice() * productModel.getQuantity();
         }
-        return orderItemsPrice;
+        return Math.round(orderItemsPrice * 100.0) / 100.0;
     }
 
     public int getOrderItemsQuantity() {
