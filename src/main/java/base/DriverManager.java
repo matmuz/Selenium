@@ -14,7 +14,6 @@ public abstract class DriverManager {
             driver.quit();
             driver = null;
         }
-
     }
 
     public WebDriver getDriver() {
