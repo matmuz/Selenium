@@ -53,7 +53,6 @@ public class OrderTests extends BaseTest {
     @Test
     public void placeOrderAsGuest() {
 
-        String confirmationMessage = testData.getConfirmationMessage();
         Assert.assertEquals(prestaShop.openPrestaShop()
                                     .getTopMenuPage()
                                     .goToRandomProductsSection()
@@ -62,13 +61,12 @@ public class OrderTests extends BaseTest {
                                     .goToCart()
                                     .proceedToCheckout()
                                     .placeOrderAsGuest(guestData.getFirstName(), guestData.getLastName(), guestData.getEmail(), guestData.getAddress(), guestData.getCity(), guestData.getState(), guestData.getPostalCode(), guestData.getCountry())
-                                    .getConfirmationMessage(), confirmationMessage);
+                                    .getConfirmationMessage(), testData.getConfirmationMessage());
     }
 
     @Test
     public void placeOrderAsLoggedUser() {
 
-        String confirmationMessage = testData.getConfirmationMessage();
         Assert.assertEquals(prestaShop.openPrestaShop()
                                     .getTopMenuPage()
                                     .goToSignInSection()
@@ -80,7 +78,7 @@ public class OrderTests extends BaseTest {
                                     .goToCart()
                                     .proceedToCheckout()
                                     .placeOrderAsLoggedUser()
-                                    .getConfirmationMessage(), confirmationMessage);
+                                    .getConfirmationMessage(), testData.getConfirmationMessage());
     }
 
     @Test

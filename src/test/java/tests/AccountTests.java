@@ -9,31 +9,28 @@ public class AccountTests extends BaseTest {
 //    @Test
 //    public void createAccount() {
 //
-//        String createdUsername = newUserData.getFirstName() + " " + newUserData.getLastName();
 //        Assert.assertEquals(prestaShop.openPrestaShop()
 //                                    .getTopMenuPage()
 //                                    .goToSignInSection()
 //                                    .createAccount(newUserData.getFirstName(), newUserData.getLastName(), newUserData.getEmail(), newUserData.getPassword())
 //                                    .getTopMenuPage()
-//                                    .getLoggedUsername(), createdUsername);
+//                                    .getLoggedUsername(), newUserData.getFirstName() + " " + newUserData.getLastName());
 //    }
 
     @Test
     public void logIn() {
 
-        String username = userData.getFirstName() + " " + userData.getLastName();
         Assert.assertEquals(prestaShop.openPrestaShop()
                                     .getTopMenuPage()
                                     .goToSignInSection()
                                     .logIn(userData.getEmail(), userData.getPassword())
                                     .getTopMenuPage()
-                                    .getLoggedUsername(), username);
+                                    .getLoggedUsername(), userData.getFirstName() + " " + userData.getLastName());
     }
 
     @Test
     public void logOut() {
 
-        String noUsername = "null";
         Assert.assertEquals(prestaShop.openPrestaShop()
                                     .getTopMenuPage()
                                     .goToSignInSection()
@@ -41,19 +38,18 @@ public class AccountTests extends BaseTest {
                                     .getTopMenuPage()
                                     .signOut()
                                     .getTopMenuPage()
-                                    .getLoggedUsername(), noUsername);
+                                    .getLoggedUsername(), "null");
     }
 
     @Test
     public void logInAsGuest() {
 
-        String noUsername = "null";
         Assert.assertEquals(prestaShop.openPrestaShop()
                                     .getTopMenuPage()
                                     .goToSignInSection()
                                     .logIn(guestData.getEmail(), guestData.getPassword())
                                     .getTopMenuPage()
-                                    .getLoggedUsername(), noUsername);
+                                    .getLoggedUsername(), "null");
     }
 
     @Test
