@@ -1,12 +1,14 @@
 package pages.products;
 
 import base.BasePage;
+import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
+import java.util.Random;
 
 public class HomePage extends BasePage {
 
@@ -17,20 +19,34 @@ public class HomePage extends BasePage {
     @FindBy(css = ".product-description")
     private List<WebElement> popularProducts;
 
-    public List<WebElement> getPopularProducts() {
-        return popularProducts;
-    }
-
     public ProductPage enterPopularProduct(String popularProductName) {
         for (WebElement popularProduct : popularProducts) {
-            if (popularProduct.getText().toLowerCase().contains(popularProductName)) {
+            if (popularProduct.getText()
+                    .toLowerCase()
+                    .contains(popularProductName)) {
                 popularProduct.click();
                 break;
             }
         }
         return new ProductPage(driver);
     }
-    public TopMenuPage getTopMenuPage(){
+
+    public ProductPage enterRandomPopularProduct() {
+        Random random = new Random();
+        popularProducts.get(random.nextInt(popularProducts.size()))
+                .click();
+        return new ProductPage(driver);
+    }
+
+    public HomePage addRandomPopularProducts(OrderModel order, int numberOfProducts) {
+        for (int i = 0; i < numberOfProducts; i++) {
+            enterRandomPopularProduct().addProductToCart(order)
+                    .goToProductsPage();
+        }
+        return new HomePage(driver);
+    }
+
+    public TopMenuPage getTopMenuPage() {
         return new TopMenuPage(driver);
     }
 }

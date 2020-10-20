@@ -94,4 +94,4 @@ fabric.properties
 
 # Added by me
 /.idea/
-/src/main/results/
+/src/test/resources/results/

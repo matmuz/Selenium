@@ -1,6 +1,8 @@
 package pages.products;
 
 import base.BasePage;
+import models.OrderModel;
+import models.ProductModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,20 +42,33 @@ public class ProductPage extends BasePage {
     }
 
     public double getProductPrice() {
-        String[] split = (priceBox.getText().split("\\$"));
+        String[] split = (priceBox.getText()
+                .split("\\$"));
         return Double.parseDouble(split[1]);
     }
 
-    public ProductPage addProductToCart() {
+    public ProductPage addProductToCart(OrderModel order) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        ProductModel productToAdd = new ProductModel(getProductName(), getProductPrice(), getQuantity());
+        order.addProductToList(productToAdd);
         addToCartButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }
 
-    public String getQuantity() {
-        return quantityBox.getAttribute("value");
+    public ProductPage addProductToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        addToCartButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        continueShoppingButton.click();
+        return this;
+    }
+
+    public int getQuantity() {
+        return Integer.parseInt(quantityBox.getAttribute("value"));
     }
 
     public ProductPage increaseQuantityBy(int number) {
@@ -69,8 +84,13 @@ public class ProductPage extends BasePage {
         }
         return this;
     }
-    public TopMenuPage getTopMenuPage(){
-        return new TopMenuPage(driver);
+
+    public void goToProductsPage() {
+        driver.navigate()
+                .back();
     }
 
+    public TopMenuPage getTopMenuPage() {
+        return new TopMenuPage(driver);
+    }
 }

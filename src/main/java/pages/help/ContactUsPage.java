@@ -19,9 +19,6 @@ public class ContactUsPage extends BasePage {
     @FindBy(css = "input[placeholder='your@email.com']")
     private WebElement emailAddressBox;
 
-    @FindBy(css = ".form-control")
-    private WebElement attachmentPath;
-
     @FindBy(css = "textarea[name='message']")
     private WebElement messageBox;
 
@@ -41,10 +38,6 @@ public class ContactUsPage extends BasePage {
         emailAddressBox.sendKeys(email);
     }
 
-    public void addAttachment(String pathToFile) {
-        attachmentPath.sendKeys(pathToFile);
-    }
-
     public void setMessage(String message) {
         messageBox.sendKeys(message);
     }
@@ -56,6 +49,13 @@ public class ContactUsPage extends BasePage {
     public ContactUsPage submitHelpRequest(String subject, String email, String message) {
         selectSubject(subject);
         setEmail(email);
+        setMessage(message);
+        clickSend();
+        return this;
+    }
+
+    public ContactUsPage submitHelpRequest(String subject, String message){
+        selectSubject(subject);
         setMessage(message);
         clickSend();
         return this;
