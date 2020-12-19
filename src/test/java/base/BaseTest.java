@@ -1,13 +1,14 @@
 package base;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.application.PrestaShop;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
 
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,13 +16,12 @@ public class BaseTest {
 
     private DriverManager driverManager;
     private WebDriver driver;
+    private String testName;
     protected TestData userData;
     protected TestData guestData;
     protected TestData testData;
     protected TestData newUserData;
     protected PrestaShop prestaShop;
-
-    private int i = 1;
 
     @BeforeMethod
     public void setUp() throws IOException {
@@ -36,12 +36,15 @@ public class BaseTest {
     }
 
     @AfterMethod
+    public void getTestName(ITestResult result) {
+        testName = result.getMethod()
+                .getMethodName();
+    }
+
+    @AfterMethod
     public void takeScreenshot() throws IOException {
-        TakesScreenshot screenshot = ((TakesScreenshot) driver);
-        File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
-        File destinationFile = new File("src\\test\\resources\\results\\test_case_" + i + "_result.png");
-        FileUtils.copyFile(sourceFile, destinationFile);
-        i++;
+        Screenshot screenshot = new AShot().takeScreenshot(driver);
+        ImageIO.write(screenshot.getImage(), "png", new File("src\\test\\resources\\results\\" + testName + "TestResult.png"));
     }
 
     @AfterMethod
