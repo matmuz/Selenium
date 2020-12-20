@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="PrestaShop Tests">
+
+<!--    <test name="Account Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.AccountTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Help Request Tests">
+        <classes>
+            <class name="tests.HelpRequestTests"/>
+        </classes>
+    </test>
+
+<!--    <test name="Order Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.OrderTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="Products Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ProductsTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+</suite>
