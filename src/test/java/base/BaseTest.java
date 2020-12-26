@@ -25,9 +25,9 @@ public class BaseTest {
 
     @BeforeTest
     public void prepareTestData() throws IOException {
+        test = new TestMethods();
         testUser = UserProvider.getUserProvider();
         guestUser = UserProvider.getGuestUserProvider();
-        test = new TestMethods();
         testData = TestData.get("src\\test\\resources\\testdata\\test-data.json");
     }
 
