@@ -1,6 +1,7 @@
 package pages.cart;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -68,6 +69,7 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "#order-details")
     private WebElement orderReferenceNumberBox;
 
+    @Step("Place order")
     public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String state, String postalCode, String country) {
         Random random = new Random();
         firstNameBox.sendKeys(firstName);
@@ -90,6 +92,7 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    @Step("Place order")
     public CheckoutPage placeOrderAsLoggedUser(String address, String city, String state, String postalCode, String country) {
         Random random = new Random();
         addressBox.sendKeys(address);
@@ -108,6 +111,7 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    @Step("Place order")
     public CheckoutPage placeOrderAsLoggedUser() {
         Random random = new Random();
         goToShippingButton.click();

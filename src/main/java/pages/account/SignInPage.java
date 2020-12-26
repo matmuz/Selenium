@@ -1,6 +1,7 @@
 package pages.account;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -60,6 +61,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "th[scope='row']")
     private List<WebElement> orderReferenceNumbersList;
 
+    @Step("Log in")
     public HomePage logIn(String email, String password) {
         loginEmailBox.sendKeys(email);
         loginPasswordBox.sendKeys(password);
@@ -67,6 +69,7 @@ public class SignInPage extends BasePage {
         return new HomePage(driver);
     }
 
+    @Step("Create account")
     public HomePage createAccount(String firstName, String lastName, String email, String password) {
         createAccountButton.click();
         firstNameBox.sendKeys(firstName);
@@ -77,11 +80,13 @@ public class SignInPage extends BasePage {
         return new HomePage(driver);
     }
 
+    @Step("Click reset password")
     public SignInPage resetPassword() {
         passwordRecoveryButton.click();
         return this;
     }
 
+    @Step("Find order number")
     public String findOrderNumber(String orderNumber) {
         for (WebElement webElement : orderReferenceNumbersList) {
             if (webElement
@@ -94,6 +99,7 @@ public class SignInPage extends BasePage {
         return "null";
     }
 
+    @Step("Go to order history")
     public SignInPage goToOrderHistory() {
         orderHistory.click();
         return new SignInPage(driver);

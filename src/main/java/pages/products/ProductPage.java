@@ -1,6 +1,7 @@
 package pages.products;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +48,7 @@ public class ProductPage extends BasePage {
         return Double.parseDouble(split[1]);
     }
 
+    @Step("Add product to cart")
     public ProductPage addProductToCart(OrderModel order) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
@@ -58,6 +60,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
+    @Step("Add product to cart")
     public ProductPage addProductToCart() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
@@ -71,6 +74,7 @@ public class ProductPage extends BasePage {
         return Integer.parseInt(quantityBox.getAttribute("value"));
     }
 
+    @Step("Increase quantity")
     public ProductPage increaseQuantityBy(int number) {
         for (int i = 0; i < number; i++) {
             increaseQuantitySpin.click();
@@ -78,6 +82,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
+    @Step("Decrease quantity")
     public ProductPage decreaseQuantityBy(int number) {
         for (int i = 0; i < number; i++) {
             decreaseQuantitySpin.click();
@@ -85,6 +90,7 @@ public class ProductPage extends BasePage {
         return this;
     }
 
+    @Step("Go to products page")
     public void goToProductsPage() {
         driver.navigate()
                 .back();

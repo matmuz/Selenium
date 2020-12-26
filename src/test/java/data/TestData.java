@@ -1,4 +1,4 @@
-package base;
+package data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,33 +8,6 @@ import java.io.IOException;
 
 public class TestData {
 
-    @JsonProperty("firstname")
-    private String firstName;
-
-    @JsonProperty("lastname")
-    private String lastName;
-
-    @JsonProperty("email")
-    private String email;
-
-    @JsonProperty("password")
-    private String password;
-
-    @JsonProperty("address")
-    private String address;
-
-    @JsonProperty("city")
-    private String city;
-
-    @JsonProperty("state")
-    private String state;
-
-    @JsonProperty("postal_code")
-    private String postalCode;
-
-    @JsonProperty("country")
-    private String country;
-
     @JsonProperty("product_name")
     private String productName;
 
@@ -43,6 +16,9 @@ public class TestData {
 
     @JsonProperty("help_response_message")
     private String helpResponseMessage;
+
+    @JsonProperty("alert_message")
+    private String alertMessage;
 
     @JsonProperty("help_message")
     private String helpMessage;
@@ -55,42 +31,6 @@ public class TestData {
         return mapper.readValue(new File(filename), TestData.class);
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
     public String getProductName() {
         return productName;
     }
@@ -101,6 +41,10 @@ public class TestData {
 
     public String getHelpResponseMessage() {
         return helpResponseMessage;
+    }
+
+    public String getAlertMessage(){
+        return alertMessage;
     }
 
     public String getHelpMessage() {
