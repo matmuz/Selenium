@@ -2,19 +2,14 @@ package base;
 
 public class DriverManagerFactory {
 
-    public enum DriverType {
-        CHROME,
-        EDGE
-    }
-
     private static DriverManager driverManager;
 
-    public static DriverManager getManager(DriverType type) {
+    public static DriverManager getManager(String driverType) {
         if (driverManager == null) {
-            if (type == DriverType.CHROME) {
+            if (driverType.equals("chrome")) {
                 driverManager = new ChromeDriverManager();
                 return driverManager;
-            } else if (type == DriverType.EDGE) {
+            } else if (driverType.equals("edge")) {
                 driverManager = new EdgeDriverManager();
                 return driverManager;
             }

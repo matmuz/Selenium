@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="PrestaShop">
+
+    <parameter name="browser" value="chrome"/>
+    <parameter name="environment" value="http://5.196.7.235/"/>
+
+    <test name="Account">
+        <classes>
+            <class name="tests.Account"/>
+        </classes>
+    </test>
+
+    <test name="Help Request">
+        <classes>
+            <class name="tests.HelpRequest"/>
+        </classes>
+    </test>
+
+    <test name="Order">
+        <classes>
+            <class name="tests.Order"/>
+        </classes>
+    </test>
+
+    <test name="Products">
+        <classes>
+            <class name="tests.Products"/>
+        </classes>
+    </test>
+
+</suite>

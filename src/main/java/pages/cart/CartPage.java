@@ -1,6 +1,7 @@
 package pages.cart;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -55,6 +56,7 @@ public class CartPage extends BasePage {
         return Double.parseDouble(split[1]);
     }
 
+    @Step("Delete item from cart")
     public CartPage deleteItemFromCart(String name) {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText()
@@ -66,6 +68,7 @@ public class CartPage extends BasePage {
         return this;
     }
 
+    @Step("Delete item from cart")
     public CartPage deleteItemFromCart(OrderModel order, String name) {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText()
@@ -79,17 +82,22 @@ public class CartPage extends BasePage {
     }
 
     public String getItemDetailsByName(String productName) {
+        String[] split;
+        String product;
         for (WebElement cartItem : cartItems) {
             if (cartItem
                     .getText()
-                    .contains(productName)) {
-                return cartItem
-                        .getText();
+                    .contains(productName.toUpperCase())) {
+                split = cartItem.getText()
+                        .split("\\$");
+                product = split[0].trim();
+                return product.toLowerCase();
             }
         }
         return "null";
     }
 
+    @Step("Go to checkout")
     public CheckoutPage proceedToCheckout() {
         proceedToCheckoutButton.click();
         return new CheckoutPage(driver);

@@ -1,6 +1,7 @@
 package pages.menu;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -64,37 +65,44 @@ public class TopMenuPage extends BasePage {
         return new HomePage(driver);
     }
 
+    @Step("Go to contact us")
     public ContactUsPage goToContactUsPage() {
         contactUsLink.click();
         return new ContactUsPage(driver);
     }
 
+    @Step("Go to sign in section")
     public SignInPage goToSignInSection() {
         signInButton.click();
         return new SignInPage(driver);
     }
 
+    @Step("Go to clothes section")
     public ProductsPage goToClothesSection() {
         clothesDropdown.click();
         return new ProductsPage(driver);
     }
 
+    @Step("Go to accessories section")
     public ProductsPage goToAccessoriesSection() {
         accessoriesDropdown.click();
         return new ProductsPage(driver);
     }
 
+    @Step("Go to art section")
     public ProductsPage goToArtSection() {
         artLink.click();
         return new ProductsPage(driver);
     }
 
+    @Step("Search by text")
     public ProductsPage searchByText(String searchInput) {
         searchBox.sendKeys(searchInput);
         searchButton.click();
         return new ProductsPage(driver);
     }
 
+    @Step("Go to random products section")
     public ProductsPage goToRandomProductsSection() {
         Random random = new Random();
         categories.get(random.nextInt(categories.size()))
@@ -102,6 +110,7 @@ public class TopMenuPage extends BasePage {
         return new ProductsPage(driver);
     }
 
+    @Step("Go to cart")
     public CartPage goToCart() {
         cartIcon.click();
         return new CartPage(driver);
@@ -115,6 +124,7 @@ public class TopMenuPage extends BasePage {
         }
     }
 
+    @Step("Log out")
     public HomePage signOut() {
         signOutButton.click();
         return new HomePage(driver);

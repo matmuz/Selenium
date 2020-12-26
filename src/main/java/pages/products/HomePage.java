@@ -1,6 +1,7 @@
 package pages.products;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ public class HomePage extends BasePage {
     @FindBy(css = ".product-description")
     private List<WebElement> popularProducts;
 
+    @Step("Enter popular product")
     public ProductPage enterPopularProduct(String popularProductName) {
         for (WebElement popularProduct : popularProducts) {
             if (popularProduct.getText()
@@ -31,6 +33,7 @@ public class HomePage extends BasePage {
         return new ProductPage(driver);
     }
 
+    @Step("Enter random popular product")
     public ProductPage enterRandomPopularProduct() {
         Random random = new Random();
         popularProducts.get(random.nextInt(popularProducts.size()))
@@ -38,6 +41,7 @@ public class HomePage extends BasePage {
         return new ProductPage(driver);
     }
 
+    @Step("Add random popular product")
     public HomePage addRandomPopularProducts(OrderModel order, int numberOfProducts) {
         for (int i = 0; i < numberOfProducts; i++) {
             enterRandomPopularProduct().addProductToCart(order)
