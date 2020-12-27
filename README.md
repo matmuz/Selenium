@@ -4,13 +4,15 @@ This is my first automation project which is based on Sii's example app (PrestaS
 
 To run tests (Java and Maven required!):
 
- - From an IDE:
+ From an IDE:
+
     1. Download the project
     2. Open the project
     3. Right click on testng.xml file and run
     4. Done!
 
- - From CMD:
+ From CMD:
+
     1. Download the project
     2. Use CMD to navigate to project
     3. Run mvn clean test command
