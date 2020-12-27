@@ -1,0 +1,2 @@
+cd ..
+del allure-results\*
