@@ -34,8 +34,7 @@ public class ChromeDriverManager extends DriverManager {
     @Override
     public void createDriver() {
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("start-maximized");
-        options.addArguments("--window-size=1920,1080");
+        options.addArguments("start-maximized");
         options.addArguments("--disable-gpu");
         driver = new ChromeDriver(chromeDriverService, options);
     }
