@@ -94,5 +94,3 @@ fabric.properties
 
 # Added by me
 /.idea/
-/src/test/resources/results/
-/allure-results/
