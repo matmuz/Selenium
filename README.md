@@ -2,6 +2,9 @@
 
 This is my first automation project which is based on Sii's example app (PrestaShop). The purpose of this project is to show a sample of my code using Java and Selenium - a testing framework in this case. Feel free to use it, but keep it mind that at this moment it is being constantly updated and developed (which includes fixes and refactoring).
 
+### Important! 
+### At this moment the app is down. When the app is up and running again tests can be used.
+
 To run tests (Java and Maven required!):
 
  From an IDE:
