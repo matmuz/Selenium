@@ -6,6 +6,7 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -41,6 +42,14 @@ public class BaseTest {
     }
 
     @AfterMethod
+    public byte[] onTestFailure(ITestResult result) {
+        if (!result.isSuccess()) {
+            return takeScreenshot();
+        } else {
+            return null;
+        }
+    }
+
     @Attachment(value = "Test result", type = "png")
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
