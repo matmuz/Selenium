@@ -21,7 +21,7 @@ public class TopMenuPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = "a[href*='contact-us']")
+    @FindBy(css = "a[href*='contact']")
     private WebElement contactUsLink;
 
     @FindBy(css = "a[href*='clothes']")

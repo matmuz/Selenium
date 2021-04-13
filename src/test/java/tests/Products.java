@@ -6,17 +6,17 @@ import org.testng.annotations.Test;
 
 public class Products extends BaseTest {
 
-    @Test(priority = 1)
-    public void popularProduct() {
-
-        OrderModel order = new OrderModel();
-        test.assertEquals(prestaShop.openPrestaShop()
-                                  .enterPopularProduct(testData.getProductName())
-                                  .addProductToCart(order)
-                                  .getTopMenuPage()
-                                  .goToCart()
-                                  .getItemsPrice(), order.getOrderItemsPrice());
-    }
+//    @Test(priority = 1)
+//    public void popularProduct() {
+//
+//        OrderModel order = new OrderModel();
+//        test.assertEquals(prestaShop.openPrestaShop()
+//                                  .enterPopularProduct(testData.getProductName())
+//                                  .addProductToCart(order)
+//                                  .getTopMenuPage()
+//                                  .goToCart()
+//                                  .getItemsPrice(), order.getOrderItemsPrice());
+//    }
 
     @Test(priority = 2)
     public void popularProducts() {

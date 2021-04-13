@@ -17,7 +17,7 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = ".product-description")
+    @FindBy(css = ".h3.product-title")
     private List<WebElement> allProducts;
 
     @Step("Go to random product")

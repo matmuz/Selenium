@@ -4,25 +4,25 @@
 <suite name="PrestaShop">
 
     <parameter name="browser" value="chrome"/>
-    <parameter name="environment" value="http://5.196.7.235/"/>
+    <parameter name="environment" value="http://146.59.32.4/"/>
 
-    <test name="Account">
-        <classes>
-            <class name="tests.Account"/>
-        </classes>
-    </test>
+<!--    <test name="Account">-->
+<!--        <classes>-->
+<!--            <class name="tests.Account"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Help Request">
-        <classes>
-            <class name="tests.HelpRequest"/>
-        </classes>
-    </test>
+<!--    <test name="Help Request">-->
+<!--        <classes>-->
+<!--            <class name="tests.HelpRequest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Order">
-        <classes>
-            <class name="tests.Order"/>
-        </classes>
-    </test>
+<!--    <test name="Order">-->
+<!--        <classes>-->
+<!--            <class name="tests.Order"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="Products">
         <classes>

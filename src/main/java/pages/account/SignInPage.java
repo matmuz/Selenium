@@ -49,6 +49,12 @@ public class SignInPage extends BasePage {
     @FindBy(css = "input[name='password']")
     private WebElement passwordToSetBox;
 
+    @FindBy(css = "input[name='psgdpr']")
+    private WebElement privacyAcceptanceCheckbox;
+
+    @FindBy(css = "input[name='customer_privacy']")
+    private WebElement customerPrivacyCheckbox;
+
     @FindBy(css = ".btn.btn-primary.form-control-submit.float-xs-right")
     private WebElement createAccountBox;
 
@@ -76,6 +82,8 @@ public class SignInPage extends BasePage {
         lastNameBox.sendKeys(lastName);
         emailToSetBox.sendKeys(email);
         passwordToSetBox.sendKeys(password);
+        customerPrivacyCheckbox.click();
+        privacyAcceptanceCheckbox.click();
         createAccountBox.click();
         return new HomePage(driver);
     }

@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = ".product-description")
+    @FindBy(css = ".h3.product-title")
     private List<WebElement> popularProducts;
 
     @Step("Enter popular product")

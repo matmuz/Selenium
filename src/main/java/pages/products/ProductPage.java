@@ -43,9 +43,10 @@ public class ProductPage extends BasePage {
     }
 
     public double getProductPrice() {
-        String[] split = (priceBox.getText()
-                .split("\\$"));
-        return Double.parseDouble(split[1]);
+        String price = priceBox.getText()
+                .replace(",", ".");
+        String[] split = (price.split(" "));
+        return Double.parseDouble(split[0]);
     }
 
     @Step("Add product to cart")
