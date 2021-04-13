@@ -24,15 +24,6 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = "a[href*='contact']")
     private WebElement contactUsLink;
 
-    @FindBy(css = "a[href*='clothes']")
-    private WebElement clothesDropdown;
-
-    @FindBy(css = "a[href*='accessories']")
-    private WebElement accessoriesDropdown;
-
-    @FindBy(css = "a[href*='9-art']")
-    private WebElement artLink;
-
     @FindBy(css = ".ui-autocomplete-input")
     private WebElement searchBox;
 
@@ -79,19 +70,31 @@ public class TopMenuPage extends BasePage {
 
     @Step("Go to clothes section")
     public ProductsPage goToClothesSection() {
-        clothesDropdown.click();
+        for (WebElement category: categories){
+            if (category.getText().contains("Clothes")){
+                category.click();
+            }
+        }
         return new ProductsPage(driver);
     }
 
     @Step("Go to accessories section")
     public ProductsPage goToAccessoriesSection() {
-        accessoriesDropdown.click();
+        for (WebElement category: categories){
+            if (category.getText().contains("Produkty powiązane")){
+                category.click();
+            }
+        }
         return new ProductsPage(driver);
     }
 
     @Step("Go to art section")
     public ProductsPage goToArtSection() {
-        artLink.click();
+        for (WebElement category: categories){
+            if (category.getText().contains("Art")){
+                category.click();
+            }
+        }
         return new ProductsPage(driver);
     }
 

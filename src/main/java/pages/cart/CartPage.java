@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
@@ -32,6 +34,9 @@ public class CartPage extends BasePage {
     @FindBy(css = "#cart-subtotal-products")
     private WebElement summaryLine;
 
+    @FindBy(css = "#cart-subtotal-products .value")
+    private WebElement itemsPriceBox;
+
     public int getItemsQuantity() {
         String[] split = (summaryLine.getText()
                 .split(" "));
@@ -39,21 +44,26 @@ public class CartPage extends BasePage {
     }
 
     public Double getShippingCost() {
-        String[] split = (shippingCostBox.getText()
-                .split("\\$"));
-        return Double.parseDouble(split[1]);
+        String price = shippingCostBox.getText()
+                .replace(",", ".");
+        String[] split = (price
+                .split(" "));
+        return Double.parseDouble(split[0]);
     }
 
     public double getTotalPrice() {
-        String[] split = (totalPriceBox.getText()
-                .split("\\$"));
-        return Double.parseDouble(split[1]);
+        String price = totalPriceBox.getText()
+                .replace(",", ".");
+        String[] split = (price
+                .split(" "));
+        return Double.parseDouble(split[0]);
     }
 
     public double getItemsPrice() {
-        String[] split = (summaryLine.getText()
-                .split("\\$"));
-        return Double.parseDouble(split[1]);
+        String price = itemsPriceBox.getText()
+                .replace(",", ".");
+        String[] split = (price.split(" "));
+        return Double.parseDouble(split[0]);
     }
 
     @Step("Delete item from cart")
@@ -72,26 +82,28 @@ public class CartPage extends BasePage {
     public CartPage deleteItemFromCart(OrderModel order, String name) {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText()
+                    .toUpperCase()
                     .contains(name.toUpperCase())) {
                 cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
                 order.deleteProductFromList(name);
+                WebDriverWait wait = new WebDriverWait(driver, 10);
+                wait.until(ExpectedConditions.invisibilityOf(cartItem));
             }
         }
         return this;
     }
 
     public String getItemDetailsByName(String productName) {
-        String[] split;
         String product;
         for (WebElement cartItem : cartItems) {
             if (cartItem
                     .getText()
+                    .toUpperCase()
                     .contains(productName.toUpperCase())) {
-                split = cartItem.getText()
-                        .split("\\$");
-                product = split[0].trim();
-                return product.toLowerCase();
+                product = cartItem.findElement(By.cssSelector(".product-line-info"))
+                        .getText();
+                return product.toUpperCase();
             }
         }
         return "null";

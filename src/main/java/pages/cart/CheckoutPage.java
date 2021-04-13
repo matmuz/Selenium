@@ -6,7 +6,6 @@ import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
@@ -26,6 +25,12 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(css = "form[id='customer-form'] input[name='email']")
     private WebElement emailBox;
+
+    @FindBy(css = "input[name='psgdpr']")
+    private WebElement privacyAcceptanceCheckbox;
+
+    @FindBy(css = "input[name='customer_privacy']")
+    private WebElement customerPrivacyCheckbox;
 
     @FindBy(css = "button[data-link-action='register-new-customer']")
     private WebElement goToAddressButton;
@@ -70,19 +75,17 @@ public class CheckoutPage extends BasePage {
     private WebElement orderReferenceNumberBox;
 
     @Step("Place order")
-    public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String state, String postalCode, String country) {
+    public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String postalCode) {
         Random random = new Random();
         firstNameBox.sendKeys(firstName);
         lastNameBox.sendKeys(lastName);
         emailBox.sendKeys(email);
+        customerPrivacyCheckbox.click();
+        privacyAcceptanceCheckbox.click();
         goToAddressButton.click();
         addressBox.sendKeys(address);
         cityBox.sendKeys(city);
-        Select selectState = new Select(stateDropdown);
-        selectState.selectByVisibleText(state);
         postalCodeBox.sendKeys(postalCode);
-        Select selectCountry = new Select(countryDropdown);
-        selectCountry.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
         paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
@@ -93,15 +96,11 @@ public class CheckoutPage extends BasePage {
     }
 
     @Step("Place order")
-    public CheckoutPage placeOrderAsLoggedUser(String address, String city, String state, String postalCode, String country) {
+    public CheckoutPage placeOrderAsLoggedUser(String address, String city, String postalCode) {
         Random random = new Random();
         addressBox.sendKeys(address);
         cityBox.sendKeys(city);
-        Select selectState = new Select(stateDropdown);
-        selectState.selectByVisibleText(state);
         postalCodeBox.sendKeys(postalCode);
-        Select selectCountry = new Select(countryDropdown);
-        selectCountry.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
         paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
@@ -128,14 +127,14 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getOrderReference() {
-        String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
+        String[] split = (orderReferenceNumberBox.getText()).split("Numer zamówienia:");
         return split[1].trim();
     }
 
     public CheckoutPage getOrderReference(OrderModel order) {
-        String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
+        String[] split = (orderReferenceNumberBox.getText()).split("Numer zamówienia:");
         String orderNumber = split[1].trim();
-        String[] secondSplit = orderNumber.split("Payment");
+        String[] secondSplit = orderNumber.split("Metoda płatności");
         String secondOrderNumber = secondSplit[0].trim();
         order.setOrderReferenceNumber(secondOrderNumber);
         return new CheckoutPage(driver);

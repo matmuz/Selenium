@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.menu.TopMenuPage;
 
+import java.util.List;
+
 public class ProductPage extends BasePage {
 
     public ProductPage(WebDriver driver) {
@@ -35,8 +37,17 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".material-icons.touchspin-down")
     private WebElement decreaseQuantitySpin;
 
+    @FindBy(css = ".product-message")
+    private WebElement productMessage;
+
+    @FindBy(css = ".btn.btn-primary.float-xs-right")
+    private WebElement saveCustomisation;
+
     @FindBy(css = ".btn.btn-secondary")
     private WebElement continueShoppingButton;
+
+    @FindBy(css = "span[itemprop='name']")
+    private List<WebElement> categories;
 
     public String getProductName() {
         return productNameBox.getText();
@@ -51,6 +62,9 @@ public class ProductPage extends BasePage {
 
     @Step("Add product to cart")
     public ProductPage addProductToCart(OrderModel order) {
+        if (getProductName().contains("CUSTOMIZABLE")) {
+            setPersonalisedText();
+        }
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         ProductModel productToAdd = new ProductModel(getProductName(), getProductPrice(), getQuantity());
@@ -63,6 +77,9 @@ public class ProductPage extends BasePage {
 
     @Step("Add product to cart")
     public ProductPage addProductToCart() {
+        if (getProductName().contains("CUSTOMIZABLE")) {
+            setPersonalisedText();
+        }
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
@@ -73,6 +90,11 @@ public class ProductPage extends BasePage {
 
     public int getQuantity() {
         return Integer.parseInt(quantityBox.getAttribute("value"));
+    }
+
+    public void setPersonalisedText() {
+        productMessage.sendKeys("Test Personalisation 123");
+        saveCustomisation.click();
     }
 
     @Step("Increase quantity")
@@ -93,8 +115,8 @@ public class ProductPage extends BasePage {
 
     @Step("Go to products page")
     public void goToProductsPage() {
-        driver.navigate()
-                .back();
+        categories.get(1)
+                .click();
     }
 
     public TopMenuPage getTopMenuPage() {

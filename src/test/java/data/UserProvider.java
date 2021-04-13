@@ -16,9 +16,7 @@ public class UserProvider {
     private String password;
     private String address;
     private String city;
-    private String state;
     private String postalCode;
-    private String country;
 
     private UserProvider() {
         this.firstName = faker.name()
@@ -32,10 +30,7 @@ public class UserProvider {
                 .streetName();
         this.city = faker.address()
                 .city();
-        this.state = faker.address()
-                .state();
         this.postalCode = "" + (random.nextInt(89999) + 10000);
-        this.country = "United States";
     }
 
     public static UserProvider getUserProvider() {
@@ -70,15 +65,9 @@ public class UserProvider {
         return city;
     }
 
-    public String getState() {
-        return state;
-    }
-
     public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCountry() {
-        return country;
+        StringBuilder stringBuilder = new StringBuilder(postalCode);
+        stringBuilder.insert(2, "-");
+        return stringBuilder.toString();
     }
 }

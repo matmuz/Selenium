@@ -18,7 +18,7 @@ public class ContactUsPage extends BasePage {
     @FindBy(css = "select[name='id_contact']")
     private WebElement subjectDropdown;
 
-    @FindBy(css = "input[placeholder='your@email.com']")
+    @FindBy(css = "input[placeholder='twój@email.com']")
     private WebElement emailAddressBox;
 
     @FindBy(css = "textarea[name='message']")

@@ -6,17 +6,16 @@ import org.testng.annotations.Test;
 
 public class Products extends BaseTest {
 
-//    @Test(priority = 1)
-//    public void popularProduct() {
-//
-//        OrderModel order = new OrderModel();
-//        test.assertEquals(prestaShop.openPrestaShop()
-//                                  .enterPopularProduct(testData.getProductName())
-//                                  .addProductToCart(order)
-//                                  .getTopMenuPage()
-//                                  .goToCart()
-//                                  .getItemsPrice(), order.getOrderItemsPrice());
-//    }
+    @Test(priority = 1)
+    public void customisableProduct() {
+
+        test.assertEquals(prestaShop.openPrestaShop()
+                                  .getTopMenuPage()
+                                  .searchByText(testData.getCustomizableProductName())
+                                  .goToProduct(testData.getCustomizableProductName())
+                                  .addProductToCart()
+                                  .getProductName(), testData.getCustomizableProductName());
+    }
 
     @Test(priority = 2)
     public void popularProducts() {
@@ -56,16 +55,19 @@ public class Products extends BaseTest {
     }
 
     @Test(priority = 5)
-    public void productDeletionInCart() {
+    public void productDeletionInCart() throws InterruptedException {
 
         OrderModel order = new OrderModel();
         test.assertEquals(prestaShop.openPrestaShop()
-                                  .enterPopularProduct(testData.getProductName())
+                                  .getTopMenuPage()
+                                  .searchByText(testData.getProductName())
+                                  .goToProduct(testData.getProductName())
                                   .addProductToCart(order)
                                   .getTopMenuPage()
                                   .goToCart()
                                   .deleteItemFromCart(order, testData.getProductName())
                                   .getItemsPrice(), order.getOrderItemsPrice());
+        Thread.sleep(3000);
     }
 
     @Test(priority = 6)

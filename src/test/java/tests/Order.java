@@ -75,7 +75,7 @@ public class Order extends BaseTest {
                                   .getTopMenuPage()
                                   .goToCart()
                                   .proceedToCheckout()
-                                  .placeOrderAsGuest(guestUser.getFirstName(), guestUser.getLastName(), guestUser.getEmail(), guestUser.getAddress(), guestUser.getCity(), guestUser.getState(), guestUser.getPostalCode(), guestUser.getCountry())
+                                  .placeOrderAsGuest(guestUser.getFirstName(), guestUser.getLastName(), guestUser.getEmail(), guestUser.getAddress(), guestUser.getCity(), guestUser.getPostalCode())
                                   .getConfirmationMessage(), testData.getConfirmationMessage());
     }
 
@@ -92,7 +92,7 @@ public class Order extends BaseTest {
                                   .getTopMenuPage()
                                   .goToCart()
                                   .proceedToCheckout()
-                                  .placeOrderAsLoggedUser(testUser.getAddress(), testUser.getCity(), testUser.getState(), testUser.getPostalCode(), testUser.getCountry())
+                                  .placeOrderAsLoggedUser(testUser.getAddress(), testUser.getCity(), testUser.getPostalCode())
                                   .getConfirmationMessage(), testData.getConfirmationMessage());
     }
 

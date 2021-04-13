@@ -1,8 +1,9 @@
 {
-  "product_name": "hummingbird tshirt",
-  "confirmation_message": "\uE876YOUR ORDER IS CONFIRMED",
-  "help_response_message": "Your message has been successfully sent to our team.",
-  "alert_message": "Invalid email address.",
+  "product_name": "HUMMINGBIRD PRINTED T-SHIRT",
+  "customizable_product_name": "CUSTOMIZABLE MUG",
+  "confirmation_message": "\uE876TWOJE ZAMÓWIENIE ZOSTAŁO POTWIERDZONE",
+  "help_response_message": "Twoja wiadomość została pomyślnie wysłana do obsługi.",
+  "alert_message": "Nieprawidłowy adres e-mail",
   "help_message": "Test message 123",
-  "help_subject": "Customer service"
+  "help_subject": "Biuro Obsługi Klienta"
 }

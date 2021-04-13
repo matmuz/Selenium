@@ -11,6 +11,9 @@ public class TestData {
     @JsonProperty("product_name")
     private String productName;
 
+    @JsonProperty("customizable_product_name")
+    private String customizableProductName;
+
     @JsonProperty("confirmation_message")
     private String confirmationMessage;
 
@@ -35,6 +38,10 @@ public class TestData {
         return productName;
     }
 
+    public String getCustomizableProductName() {
+        return customizableProductName;
+    }
+
     public String getConfirmationMessage() {
         return confirmationMessage;
     }
@@ -43,7 +50,7 @@ public class TestData {
         return helpResponseMessage;
     }
 
-    public String getAlertMessage(){
+    public String getAlertMessage() {
         return alertMessage;
     }
 

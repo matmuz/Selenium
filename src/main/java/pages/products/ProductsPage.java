@@ -32,6 +32,7 @@ public class ProductsPage extends BasePage {
     public ProductPage goToProduct(String productName) {
         for (WebElement allProduct : allProducts) {
             if (allProduct.getText()
+                    .toUpperCase()
                     .contains(productName.toUpperCase())) {
                 allProduct.click();
                 break;
