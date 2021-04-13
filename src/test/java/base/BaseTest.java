@@ -3,6 +3,7 @@ package base;
 import data.TestData;
 import data.UserProvider;
 import io.qameta.allure.Attachment;
+import org.apache.log4j.BasicConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -39,16 +40,21 @@ public class BaseTest {
         driver = driverManager.getDriver();
         driver.get(environment);
         prestaShop = new PrestaShop(driver);
+        BasicConfigurator.configure();
     }
 
     @AfterMethod
-    @Attachment(value = "Test result", type = "png")
-    public byte[] screenshotOnTestFailure(ITestResult result) {
+    public byte[] onTestFailure(ITestResult result) {
         if (!result.isSuccess()) {
-            return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            return takeScreenshot();
         } else {
             return null;
         }
+    }
+
+    @Attachment(value = "Test result", type = "png")
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     @AfterMethod
