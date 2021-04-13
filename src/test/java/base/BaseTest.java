@@ -3,7 +3,6 @@ package base;
 import data.TestData;
 import data.UserProvider;
 import io.qameta.allure.Attachment;
-import org.apache.log4j.BasicConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +39,6 @@ public class BaseTest {
         driver = driverManager.getDriver();
         driver.get(environment);
         prestaShop = new PrestaShop(driver);
-        BasicConfigurator.configure();
     }
 
     @AfterMethod
