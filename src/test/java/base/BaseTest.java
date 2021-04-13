@@ -42,17 +42,13 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public byte[] onTestFailure(ITestResult result) {
+    @Attachment(value = "Test result", type = "png")
+    public byte[] screenshotOnTestFailure(ITestResult result) {
         if (!result.isSuccess()) {
-            return takeScreenshot();
+            return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         } else {
             return null;
         }
-    }
-
-    @Attachment(value = "Test result", type = "png")
-    public byte[] takeScreenshot() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     @AfterMethod
