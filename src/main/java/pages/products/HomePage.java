@@ -24,8 +24,8 @@ public class HomePage extends BasePage {
     public ProductPage enterPopularProduct(String popularProductName) {
         for (WebElement popularProduct : popularProducts) {
             if (popularProduct.getText()
-                    .toLowerCase()
-                    .contains(popularProductName)) {
+                    .toUpperCase()
+                    .contains(popularProductName.toUpperCase())) {
                 popularProduct.click();
                 break;
             }

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import pages.menu.TopMenuPage;
 
 public class ContactUsPage extends BasePage {
@@ -69,11 +68,6 @@ public class ContactUsPage extends BasePage {
         setMessage(message);
         clickSend();
         return this;
-    }
-
-    @Step("Check response message")
-    public void checkResponseMessage(String expectedMessage, String actualMessage){
-        Assert.assertEquals(expectedMessage, actualMessage);
     }
 
     public String getResponseMessage() {

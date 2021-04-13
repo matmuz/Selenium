@@ -126,11 +126,6 @@ public class CheckoutPage extends BasePage {
         return confirmationMessageBox.getText();
     }
 
-    public String getOrderReference() {
-        String[] split = (orderReferenceNumberBox.getText()).split("Numer zamówienia:");
-        return split[1].trim();
-    }
-
     public CheckoutPage getOrderReference(OrderModel order) {
         String[] split = (orderReferenceNumberBox.getText()).split("Numer zamówienia:");
         String orderNumber = split[1].trim();
