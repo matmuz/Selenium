@@ -55,7 +55,7 @@ public class Products extends BaseTest {
     }
 
     @Test(priority = 5)
-    public void productDeletionInCart() throws InterruptedException {
+    public void productDeletionInCart() {
 
         OrderModel order = new OrderModel();
         test.assertEquals(prestaShop.openPrestaShop()
@@ -67,7 +67,6 @@ public class Products extends BaseTest {
                                   .goToCart()
                                   .deleteItemFromCart(order, testData.getProductName())
                                   .getItemsPrice(), order.getOrderItemsPrice());
-        Thread.sleep(3000);
     }
 
     @Test(priority = 6)
