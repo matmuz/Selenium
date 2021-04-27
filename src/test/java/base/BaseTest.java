@@ -1,6 +1,7 @@
 package base;
 
 import data.TestData;
+import data.TestUser;
 import data.UserProvider;
 import driver.DriverManager;
 import driver.DriverManagerFactory;
@@ -25,13 +26,15 @@ public class BaseTest {
     protected PrestaShop prestaShop;
     protected UserProvider testUser, guestUser;
     protected TestData testData;
+    protected TestUser existingUser;
 
     @BeforeTest
     public void prepareTestData() throws IOException {
         test = new TestMethods();
+        testData = new TestData();
         testUser = UserProvider.getUserProvider();
         guestUser = UserProvider.getGuestUserProvider();
-        testData = TestData.get("src\\test\\resources\\testdata\\test-data.json");
+        existingUser = TestUser.get("src\\test\\resources\\test-data\\existing-user.json");
     }
 
     @BeforeMethod

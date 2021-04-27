@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class Order extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void orderPrice() {
 
         OrderModel order = new OrderModel();
@@ -21,7 +21,7 @@ public class Order extends BaseTest {
                                   .getItemsPrice(), order.getOrderItemsPrice());
     }
 
-    @Test(priority = 2)
+    @Test
     public void orderItemsQuantity() {
 
         OrderModel order = new OrderModel();
@@ -49,14 +49,14 @@ public class Order extends BaseTest {
                                   .getItemsQuantity(), order.getOrderItemsQuantity());
     }
 
-    @Test(priority = 3)
+    @Test
     public void orderItemsQuantityNegativeCase() {
 
         OrderModel order = new OrderModel();
         test.assertNotEquals(prestaShop.openPrestaShop()
                                      .getTopMenuPage()
                                      .goToSignInSection()
-                                     .logIn(testUser.getEmail(), testUser.getPassword())
+                                     .logIn(existingUser.getEmail(), existingUser.getPassword())
                                      .getTopMenuPage()
                                      .goToRandomProductsSection()
                                      .addRandomProducts(order, 3)
@@ -65,7 +65,7 @@ public class Order extends BaseTest {
                                      .getItemsQuantity(), 5);
     }
 
-    @Test(priority = 4)
+    @Test
     public void placeOrderAsGuest() {
 
         test.assertEquals(prestaShop.openPrestaShop()
@@ -79,31 +79,31 @@ public class Order extends BaseTest {
                                   .getConfirmationMessage(), testData.getConfirmationMessage());
     }
 
-    @Test(priority = 5)
+    @Test
     public void placeOrderAsLoggedUser() {
 
         test.assertEquals(prestaShop.openPrestaShop()
                                   .getTopMenuPage()
                                   .goToSignInSection()
-                                  .logIn(testUser.getEmail(), testUser.getPassword())
+                                  .logIn(existingUser.getEmail(), existingUser.getPassword())
                                   .getTopMenuPage()
                                   .goToRandomProductsSection()
                                   .addRandomProducts(5)
                                   .getTopMenuPage()
                                   .goToCart()
                                   .proceedToCheckout()
-                                  .placeOrderAsLoggedUser(testUser.getAddress(), testUser.getCity(), testUser.getPostalCode())
+                                  .placeOrderAsLoggedUser()
                                   .getConfirmationMessage(), testData.getConfirmationMessage());
     }
 
-    @Test(priority = 6)
+    @Test
     public void orderHistory() {
 
         OrderModel order = new OrderModel();
         test.assertEquals(prestaShop.openPrestaShop()
                                   .getTopMenuPage()
                                   .goToSignInSection()
-                                  .logIn(testUser.getEmail(), testUser.getPassword())
+                                  .logIn(existingUser.getEmail(), existingUser.getPassword())
                                   .getTopMenuPage()
                                   .goToRandomProductsSection()
                                   .addRandomProducts(5)

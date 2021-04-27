@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class HelpRequest extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void sendContactMessageAsGuest() {
 
         test.assertEquals(prestaShop.openPrestaShop()
@@ -15,20 +15,20 @@ public class HelpRequest extends BaseTest {
                                   .getResponseMessage(), testData.getHelpResponseMessage());
     }
 
-    @Test(priority = 2)
+    @Test
     public void sendContactMessageAsLoggedUser() {
 
         test.assertEquals(prestaShop.openPrestaShop()
                                   .getTopMenuPage()
                                   .goToSignInSection()
-                                  .logIn(testUser.getEmail(), testUser.getPassword())
+                                  .logIn(existingUser.getEmail(), existingUser.getPassword())
                                   .getTopMenuPage()
                                   .goToContactUsPage()
                                   .submitHelpRequest(testData.getHelpSubject(), testData.getHelpMessage())
                                   .getResponseMessage(), testData.getHelpResponseMessage());
     }
 
-    @Test(priority = 3)
+    @Test
     public void sendContactMessageNegativeCase() {
 
         test.assertEquals(prestaShop.openPrestaShop()

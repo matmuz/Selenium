@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class Products extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void customisableProduct() {
 
         test.assertEquals(prestaShop.openPrestaShop()
@@ -17,7 +17,7 @@ public class Products extends BaseTest {
                                   .getProductName(), testData.getCustomizableProductName());
     }
 
-    @Test(priority = 2)
+    @Test
     public void popularProducts() {
 
         OrderModel order = new OrderModel();
@@ -28,7 +28,7 @@ public class Products extends BaseTest {
                                   .getItemsQuantity(), order.getOrderItemsQuantity());
     }
 
-    @Test(priority = 3)
+    @Test
     public void addRandomProductsToCart() {
 
         OrderModel order = new OrderModel();
@@ -41,7 +41,7 @@ public class Products extends BaseTest {
                                   .getItemsQuantity(), order.getOrderItemsQuantity());
     }
 
-    @Test(priority = 4)
+    @Test
     public void addSpecificProduct() {
 
         test.assertEquals(prestaShop.openPrestaShop()
@@ -54,7 +54,7 @@ public class Products extends BaseTest {
                                   .getItemDetailsByName(testData.getProductName()), testData.getProductName());
     }
 
-    @Test(priority = 5)
+    @Test
     public void productDeletionInCart() {
 
         OrderModel order = new OrderModel();
@@ -69,7 +69,7 @@ public class Products extends BaseTest {
                                   .getItemsPrice(), order.getOrderItemsPrice());
     }
 
-    @Test(priority = 6)
+    @Test
     public void searchForProduct() {
 
         test.assertEquals(prestaShop.openPrestaShop()

@@ -5,18 +5,18 @@ import org.testng.annotations.Test;
 
 public class Account extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void logInNegativeCase() {
 
         test.assertEquals(prestaShop.openPrestaShop()
                                   .getTopMenuPage()
                                   .goToSignInSection()
-                                  .logIn(testUser.getEmail(), testUser.getPassword())
+                                  .logIn(guestUser.getEmail(), guestUser.getPassword())
                                   .getTopMenuPage()
                                   .getLoggedUsername(), "null");
     }
 
-    @Test(priority = 2)
+    @Test
     public void createAccount() {
 
         test.assertEquals(prestaShop.openPrestaShop()
@@ -27,35 +27,35 @@ public class Account extends BaseTest {
                                   .getLoggedUsername(), testUser.getFirstName() + " " + testUser.getLastName());
     }
 
-    @Test(priority = 3)
+    @Test
     public void createAccountNegativeCase() {
 
         test.assertNotEquals(prestaShop.openPrestaShop()
                                      .getTopMenuPage()
                                      .goToSignInSection()
-                                     .createAccount(testUser.getFirstName(), testUser.getLastName(), testUser.getEmail(), testUser.getPassword())
+                                     .createAccount(existingUser.getFirstName(), existingUser.getLastName(), existingUser.getEmail(), existingUser.getPassword())
                                      .getTopMenuPage()
-                                     .getLoggedUsername(), testUser.getFirstName() + " " + testUser.getLastName());
+                                     .getLoggedUsername(), existingUser.getFirstName() + " " + existingUser.getLastName());
     }
 
-    @Test(priority = 4)
+    @Test
     public void logIn() {
 
         test.assertEquals(prestaShop.openPrestaShop()
                                   .getTopMenuPage()
                                   .goToSignInSection()
-                                  .logIn(testUser.getEmail(), testUser.getPassword())
+                                  .logIn(existingUser.getEmail(), existingUser.getPassword())
                                   .getTopMenuPage()
-                                  .getLoggedUsername(), testUser.getFirstName() + " " + testUser.getLastName());
+                                  .getLoggedUsername(), existingUser.getFirstName() + " " + existingUser.getLastName());
     }
 
-    @Test(priority = 5)
+    @Test
     public void logOut() {
 
         test.assertEquals(prestaShop.openPrestaShop()
                                   .getTopMenuPage()
                                   .goToSignInSection()
-                                  .logIn(testUser.getEmail(), testUser.getPassword())
+                                  .logIn(existingUser.getEmail(), existingUser.getPassword())
                                   .getTopMenuPage()
                                   .signOut()
                                   .getTopMenuPage()

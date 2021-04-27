@@ -1,37 +1,23 @@
 package data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-
 public class TestData {
 
-    @JsonProperty("product_name")
     private String productName;
-
-    @JsonProperty("customizable_product_name")
     private String customizableProductName;
-
-    @JsonProperty("confirmation_message")
     private String confirmationMessage;
-
-    @JsonProperty("help_response_message")
     private String helpResponseMessage;
-
-    @JsonProperty("alert_message")
     private String alertMessage;
-
-    @JsonProperty("help_message")
     private String helpMessage;
-
-    @JsonProperty("help_subject")
     private String helpSubject;
 
-    public static TestData get(String filename) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(new File(filename), TestData.class);
+    public TestData() {
+        productName = "HUMMINGBIRD PRINTED T-SHIRT";
+        customizableProductName = "CUSTOMIZABLE MUG";
+        confirmationMessage = "\uE876TWOJE ZAMÓWIENIE ZOSTAŁO POTWIERDZONE";
+        helpResponseMessage = "Twoja wiadomość została pomyślnie wysłana do obsługi.";
+        alertMessage = "Nieprawidłowy adres e-mail";
+        helpMessage = "Test message 123";
+        helpSubject = "Biuro Obsługi Klienta";
     }
 
     public String getProductName() {
