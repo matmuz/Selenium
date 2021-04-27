@@ -1,6 +1,6 @@
 package pages.products;
 
-import base.BasePage;
+import driver.DriverWait;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
@@ -65,12 +65,11 @@ public class ProductPage extends BasePage {
         if (getProductName().contains("CUSTOMIZABLE")) {
             setPersonalisedText();
         }
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
         ProductModel productToAdd = new ProductModel(getProductName(), getProductPrice(), getQuantity());
         order.addProductToList(productToAdd);
         addToCartButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }
@@ -80,10 +79,9 @@ public class ProductPage extends BasePage {
         if (getProductName().contains("CUSTOMIZABLE")) {
             setPersonalisedText();
         }
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }

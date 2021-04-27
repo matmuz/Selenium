@@ -1,6 +1,6 @@
 package pages.products;
 
-import base.BasePage;
+import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
@@ -47,7 +47,7 @@ public class ProductsPage extends BasePage {
             goToRandomProduct().addProductToCart(order)
                     .goToProductsPage();
         }
-        return new ProductsPage(driver);
+        return this;
     }
 
     @Step("Add random products")
@@ -56,7 +56,7 @@ public class ProductsPage extends BasePage {
             goToRandomProduct().addProductToCart()
                     .goToProductsPage();
         }
-        return new ProductsPage(driver);
+        return this;
     }
 
     public TopMenuPage getTopMenuPage() {

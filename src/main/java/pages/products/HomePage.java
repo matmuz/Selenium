@@ -1,6 +1,6 @@
 package pages.products;
 
-import base.BasePage;
+import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
@@ -47,7 +47,7 @@ public class HomePage extends BasePage {
             enterRandomPopularProduct().addProductToCart(order)
                     .goToProductsPage();
         }
-        return new HomePage(driver);
+        return this;
     }
 
     public TopMenuPage getTopMenuPage() {

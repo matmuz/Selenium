@@ -1,4 +1,4 @@
-package base;
+package driver;
 
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;

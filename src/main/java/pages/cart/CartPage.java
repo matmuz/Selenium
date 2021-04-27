@@ -1,6 +1,6 @@
 package pages.cart;
 
-import base.BasePage;
+import driver.DriverWait;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.By;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
@@ -87,8 +87,8 @@ public class CartPage extends BasePage {
                 cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
                 order.deleteProductFromList(name);
-                WebDriverWait wait = new WebDriverWait(driver, 10);
-                wait.until(ExpectedConditions.invisibilityOf(cartItem));
+                DriverWait.getWait(driver)
+                        .until(ExpectedConditions.invisibilityOf(cartItem));
             }
         }
         return this;

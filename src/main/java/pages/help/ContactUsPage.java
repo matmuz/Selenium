@@ -1,6 +1,6 @@
 package pages.help;
 
-import base.BasePage;
+import pages.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,7 +63,7 @@ public class ContactUsPage extends BasePage {
     }
 
     @Step("Submit help request")
-    public ContactUsPage submitHelpRequest(String subject, String message){
+    public ContactUsPage submitHelpRequest(String subject, String message) {
         selectSubject(subject);
         setMessage(message);
         clickSend();
@@ -74,11 +74,11 @@ public class ContactUsPage extends BasePage {
         return responseMessage.getText();
     }
 
-    public String getAlertMessage(){
+    public String getAlertMessage() {
         return alertMessage.getText();
     }
 
-    public TopMenuPage getTopMenuPage(){
+    public TopMenuPage getTopMenuPage() {
         return new TopMenuPage(driver);
     }
 }

@@ -1,6 +1,6 @@
 package pages.application;
 
-import base.BasePage;
+import pages.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.products.HomePage;

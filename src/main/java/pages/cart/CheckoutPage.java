@@ -1,6 +1,6 @@
 package pages.cart;
 
-import base.BasePage;
+import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;

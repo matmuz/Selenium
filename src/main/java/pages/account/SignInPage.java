@@ -1,6 +1,6 @@
 package pages.account;
 
-import base.BasePage;
+import pages.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -110,7 +110,7 @@ public class SignInPage extends BasePage {
     @Step("Go to order history")
     public SignInPage goToOrderHistory() {
         orderHistory.click();
-        return new SignInPage(driver);
+        return this;
     }
 
     public TopMenuPage getTopMenuPage() {
