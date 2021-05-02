@@ -6,67 +6,67 @@ import java.util.Random;
 
 public class UserProvider {
 
-    private static UserProvider userProvider = new UserProvider();
-    private static UserProvider guestUserProvider = new UserProvider();
-    private Faker faker = new Faker();
-    private Random random = new Random();
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String address;
-    private String city;
-    private String postalCode;
+    private static final UserProvider USER = new UserProvider();
+    private static final UserProvider GUEST_USER = new UserProvider();
+    private final String FIRSTNAME;
+    private final String LASTNAME;
+    private final String EMAIL;
+    private final String PASSWORD;
+    private final String ADDRESS;
+    private final String CITY;
+    private final String POSTAL_CODE;
 
     private UserProvider() {
-        this.firstName = faker.name()
+        Faker faker = new Faker();
+        FIRSTNAME = faker.name()
                 .firstName();
-        this.lastName = faker.name()
+        LASTNAME = faker.name()
                 .lastName();
-        this.email = firstName + lastName + "@gmail.com";
-        this.password = faker.phoneNumber()
+        EMAIL = FIRSTNAME + LASTNAME + "@gmail.com";
+        PASSWORD = faker.phoneNumber()
                 .cellPhone();
-        this.address = faker.address()
+        ADDRESS = faker.address()
                 .streetName();
-        this.city = faker.address()
+        CITY = faker.address()
                 .city();
-        this.postalCode = "" + (random.nextInt(89999) + 10000);
+        Random random = new Random();
+        POSTAL_CODE = "" + (random.nextInt(89999) + 10000);
     }
 
-    public static UserProvider getUserProvider() {
-        return userProvider;
+    public static UserProvider getUser() {
+        return USER;
     }
 
-    public static UserProvider getGuestUserProvider() {
-        return guestUserProvider;
+    public static UserProvider getGuestUser() {
+        return GUEST_USER;
     }
 
     public String getFirstName() {
-        return firstName;
+        return FIRSTNAME;
     }
 
     public String getLastName() {
-        return lastName;
+        return LASTNAME;
     }
 
     public String getEmail() {
-        return email;
+        return EMAIL;
     }
 
     public String getPassword() {
-        return password;
+        return PASSWORD;
     }
 
     public String getAddress() {
-        return address;
+        return ADDRESS;
     }
 
     public String getCity() {
-        return city;
+        return CITY;
     }
 
     public String getPostalCode() {
-        StringBuilder stringBuilder = new StringBuilder(postalCode);
+        StringBuilder stringBuilder = new StringBuilder(POSTAL_CODE);
         stringBuilder.insert(2, "-");
         return stringBuilder.toString();
     }

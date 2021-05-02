@@ -22,7 +22,6 @@ public class BaseTest {
 
     private DriverManager driverManager;
     private WebDriver driver;
-    protected TestMethods test;
     protected PrestaShop prestaShop;
     protected UserProvider testUser, guestUser;
     protected TestData testData;
@@ -30,10 +29,9 @@ public class BaseTest {
 
     @BeforeTest
     public void prepareTestData() throws IOException {
-        test = new TestMethods();
-        testData = new TestData();
-        testUser = UserProvider.getUserProvider();
-        guestUser = UserProvider.getGuestUserProvider();
+        testData = TestData.getTestData();
+        testUser = UserProvider.getUser();
+        guestUser = UserProvider.getGuestUser();
         existingUser = TestUser.get("src\\test\\resources\\test-data\\existing-user.json");
     }
 
