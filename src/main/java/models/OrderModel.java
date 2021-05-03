@@ -5,16 +5,16 @@ import java.util.List;
 
 public class OrderModel {
 
-    private List<ProductModel> productsInOrder;
+    private final List<ProductModel> PRODUCTS_IN_ORDER;
     private String orderReferenceNumber;
 
     public OrderModel() {
-        this.productsInOrder = new ArrayList<>();
+        PRODUCTS_IN_ORDER = new ArrayList<>();
     }
 
     public double getOrderItemsPrice() {
         double orderItemsPrice = 0;
-        for (ProductModel productModel : productsInOrder) {
+        for (ProductModel productModel : PRODUCTS_IN_ORDER) {
             orderItemsPrice += productModel.getProductPrice() * productModel.getQuantity();
         }
         return Math.round(orderItemsPrice * 100.0) / 100.0;
@@ -22,22 +22,22 @@ public class OrderModel {
 
     public int getOrderItemsQuantity() {
         int orderItemsQuantity = 0;
-        for (ProductModel productModel : productsInOrder) {
+        for (ProductModel productModel : PRODUCTS_IN_ORDER) {
             orderItemsQuantity += productModel.getQuantity();
         }
         return orderItemsQuantity;
     }
 
     public void addProductToList(ProductModel productModel) {
-        this.productsInOrder.add(productModel);
+        this.PRODUCTS_IN_ORDER.add(productModel);
     }
 
     public void deleteProductFromList(String productName) {
-        for (int i = 0; i < productsInOrder.size(); i++) {
-            if (productsInOrder.get(i)
+        for (int i = 0; i < PRODUCTS_IN_ORDER.size(); i++) {
+            if (PRODUCTS_IN_ORDER.get(i)
                     .getProductName()
                     .contains(productName)) {
-                productsInOrder.remove(i);
+                PRODUCTS_IN_ORDER.remove(i);
                 break;
             }
         }

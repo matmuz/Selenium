@@ -2,25 +2,25 @@ package models;
 
 public class ProductModel {
 
-    private String productName;
-    private double productPrice;
-    private int quantity;
+    private final String PRODUCT_NAME;
+    private final double PRODUCT_PRICE;
+    private final int QUANTITY;
 
     public ProductModel(String productName, double productPrice, int quantity) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.quantity = quantity;
+        PRODUCT_NAME = productName;
+        PRODUCT_PRICE = productPrice;
+        QUANTITY = quantity;
     }
 
     public String getProductName() {
-        return productName;
+        return PRODUCT_NAME;
     }
 
     public double getProductPrice() {
-        return productPrice;
+        return PRODUCT_PRICE;
     }
 
     public int getQuantity() {
-        return quantity;
+        return QUANTITY;
     }
 }
