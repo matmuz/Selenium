@@ -3,22 +3,22 @@ package data;
 public class TestData {
 
     private static final TestData TEST_DATA = new TestData();
-    private final String PRODUCT_NAME;
-    private final String CUSTOMIZABLE_PRODUCT_NAME;
-    private final String CONFIRMATION_MESSAGE;
-    private final String HELP_RESPONSE_MESSAGE;
-    private final String ALERT_MESSAGE;
-    private final String HELP_MESSAGE;
-    private final String HELP_SUBJECT;
+    private final String productName;
+    private final String customizableProductName;
+    private final String confirmationMessage;
+    private final String helpResponseMessage;
+    private final String alertMessage;
+    private final String helpMessage;
+    private final String helpSubject;
 
     private TestData() {
-        PRODUCT_NAME = "HUMMINGBIRD PRINTED T-SHIRT";
-        CUSTOMIZABLE_PRODUCT_NAME = "CUSTOMIZABLE MUG";
-        CONFIRMATION_MESSAGE = "\uE876TWOJE ZAMÓWIENIE ZOSTAŁO POTWIERDZONE";
-        HELP_RESPONSE_MESSAGE = "Twoja wiadomość została pomyślnie wysłana do obsługi.";
-        ALERT_MESSAGE = "Nieprawidłowy adres e-mail";
-        HELP_MESSAGE = "Test message 123";
-        HELP_SUBJECT = "Biuro Obsługi Klienta";
+        productName = "HUMMINGBIRD PRINTED T-SHIRT";
+        customizableProductName = "CUSTOMIZABLE MUG";
+        confirmationMessage = "\uE876TWOJE ZAMÓWIENIE ZOSTAŁO POTWIERDZONE";
+        helpResponseMessage = "Twoja wiadomość została pomyślnie wysłana do obsługi.";
+        alertMessage = "Nieprawidłowy adres e-mail";
+        helpMessage = "Test message 123";
+        helpSubject = "Biuro Obsługi Klienta";
     }
 
     public static TestData getTestData() {
@@ -26,30 +26,30 @@ public class TestData {
     }
 
     public String getProductName() {
-        return PRODUCT_NAME;
+        return productName;
     }
 
     public String getCustomizableProductName() {
-        return CUSTOMIZABLE_PRODUCT_NAME;
+        return customizableProductName;
     }
 
     public String getConfirmationMessage() {
-        return CONFIRMATION_MESSAGE;
+        return confirmationMessage;
     }
 
     public String getHelpResponseMessage() {
-        return HELP_RESPONSE_MESSAGE;
+        return helpResponseMessage;
     }
 
     public String getAlertMessage() {
-        return ALERT_MESSAGE;
+        return alertMessage;
     }
 
     public String getHelpMessage() {
-        return HELP_MESSAGE;
+        return helpMessage;
     }
 
     public String getHelpSubject() {
-        return HELP_SUBJECT;
+        return helpSubject;
     }
 }

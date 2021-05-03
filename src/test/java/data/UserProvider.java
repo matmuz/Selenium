@@ -8,29 +8,29 @@ public class UserProvider {
 
     private static final UserProvider USER = new UserProvider();
     private static final UserProvider GUEST_USER = new UserProvider();
-    private final String FIRSTNAME;
-    private final String LASTNAME;
-    private final String EMAIL;
-    private final String PASSWORD;
-    private final String ADDRESS;
-    private final String CITY;
-    private final String POSTAL_CODE;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final String password;
+    private final String address;
+    private final String city;
+    private final String postalCode;
 
     private UserProvider() {
         Faker faker = new Faker();
-        FIRSTNAME = faker.name()
+        firstName = faker.name()
                 .firstName();
-        LASTNAME = faker.name()
+        lastName = faker.name()
                 .lastName();
-        EMAIL = FIRSTNAME + LASTNAME + "@gmail.com";
-        PASSWORD = faker.phoneNumber()
+        email = firstName + lastName + "@gmail.com";
+        password = faker.phoneNumber()
                 .cellPhone();
-        ADDRESS = faker.address()
+        address = faker.address()
                 .streetName();
-        CITY = faker.address()
+        city = faker.address()
                 .city();
         Random random = new Random();
-        POSTAL_CODE = "" + (random.nextInt(89999) + 10000);
+        postalCode = "" + (random.nextInt(89999) + 10000);
     }
 
     public static UserProvider getUser() {
@@ -42,31 +42,31 @@ public class UserProvider {
     }
 
     public String getFirstName() {
-        return FIRSTNAME;
+        return firstName;
     }
 
     public String getLastName() {
-        return LASTNAME;
+        return lastName;
     }
 
     public String getEmail() {
-        return EMAIL;
+        return email;
     }
 
     public String getPassword() {
-        return PASSWORD;
+        return password;
     }
 
     public String getAddress() {
-        return ADDRESS;
+        return address;
     }
 
     public String getCity() {
-        return CITY;
+        return city;
     }
 
     public String getPostalCode() {
-        StringBuilder stringBuilder = new StringBuilder(POSTAL_CODE);
+        StringBuilder stringBuilder = new StringBuilder(postalCode);
         stringBuilder.insert(2, "-");
         return stringBuilder.toString();
     }
