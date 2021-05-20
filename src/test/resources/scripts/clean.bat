@@ -1,2 +1,2 @@
 cd ../../../..
-del target\allure-results\*
+echo y | del target\allure-results\*

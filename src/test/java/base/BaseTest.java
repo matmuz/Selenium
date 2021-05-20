@@ -5,17 +5,15 @@ import data.TestUser;
 import data.UserProvider;
 import driver.DriverManager;
 import driver.DriverManagerFactory;
-import io.qameta.allure.Attachment;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.application.PrestaShop;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class BaseTest {
@@ -45,21 +43,10 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public byte[] onTestFailure(ITestResult result) {
+    public void tearDown(ITestResult result) {
         if (!result.isSuccess()) {
-            return takeScreenshot();
-        } else {
-            return null;
+            Allure.addAttachment("Test failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
-    }
-
-    @Attachment(value = "Test result", type = "png")
-    public byte[] takeScreenshot() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
-
-    @AfterMethod
-    public void tearDown() {
         driverManager.quitDriver();
     }
 }
