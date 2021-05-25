@@ -1,6 +1,6 @@
 package pages.products;
 
-import driver.DriverWait;
+import driver.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
@@ -65,11 +65,11 @@ public class ProductPage extends BasePage {
         if (getProductName().contains("CUSTOMIZABLE")) {
             setPersonalisedText();
         }
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
         ProductModel productToAdd = new ProductModel(getProductName(), getProductPrice(), getQuantity());
         order.addProductToList(productToAdd);
         addToCartButton.click();
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }
@@ -79,9 +79,9 @@ public class ProductPage extends BasePage {
         if (getProductName().contains("CUSTOMIZABLE")) {
             setPersonalisedText();
         }
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }

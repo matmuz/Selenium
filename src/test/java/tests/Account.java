@@ -2,9 +2,10 @@ package tests;
 
 import base.BaseTest;
 import base.TestMethods;
+import data.ITestData;
 import org.testng.annotations.Test;
 
-public class Account extends BaseTest {
+public class Account extends BaseTest implements ITestData {
 
     @Test
     public void logInNegativeCase() {
@@ -14,7 +15,7 @@ public class Account extends BaseTest {
                                          .goToSignInSection()
                                          .logIn(guestUser.getEmail(), guestUser.getPassword())
                                          .getTopMenuPage()
-                                         .getLoggedUsername(), "null");
+                                         .getLoggedUsername(), LOGIN_TEXT);
     }
 
     @Test
@@ -25,7 +26,7 @@ public class Account extends BaseTest {
                                          .goToSignInSection()
                                          .createAccount(testUser.getFirstName(), testUser.getLastName(), testUser.getEmail(), testUser.getPassword())
                                          .getTopMenuPage()
-                                         .getLoggedUsername(), testUser.getFirstName() + " " + testUser.getLastName());
+                                         .getLoggedUsername(), testUser.getFullName());
     }
 
     @Test
@@ -36,7 +37,7 @@ public class Account extends BaseTest {
                                             .goToSignInSection()
                                             .createAccount(existingUser.getFirstName(), existingUser.getLastName(), existingUser.getEmail(), existingUser.getPassword())
                                             .getTopMenuPage()
-                                            .getLoggedUsername(), existingUser.getFirstName() + " " + existingUser.getLastName());
+                                            .getLoggedUsername(), existingUser.getFullName());
     }
 
     @Test
@@ -47,7 +48,7 @@ public class Account extends BaseTest {
                                          .goToSignInSection()
                                          .logIn(existingUser.getEmail(), existingUser.getPassword())
                                          .getTopMenuPage()
-                                         .getLoggedUsername(), existingUser.getFirstName() + " " + existingUser.getLastName());
+                                         .getLoggedUsername(), existingUser.getFullName());
     }
 
     @Test
@@ -60,6 +61,6 @@ public class Account extends BaseTest {
                                          .getTopMenuPage()
                                          .signOut()
                                          .getTopMenuPage()
-                                         .getLoggedUsername(), "null");
+                                         .getLoggedUsername(), LOGIN_TEXT);
     }
 }

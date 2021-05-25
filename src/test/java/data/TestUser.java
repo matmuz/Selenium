@@ -1,64 +1,14 @@
 package data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+public class TestUser extends User {
 
-import java.io.File;
-import java.io.IOException;
+    private static final TestUser TEST_USER = new TestUser();
 
-public class TestUser {
-
-    @JsonProperty("firstname")
-    private String firstName;
-
-    @JsonProperty("lastname")
-    private String lastName;
-
-    @JsonProperty("email")
-    private String email;
-
-    @JsonProperty("password")
-    private String password;
-
-    @JsonProperty("address")
-    private String address;
-
-    @JsonProperty("postal-code")
-    private String postalCode;
-
-    @JsonProperty("city")
-    private String city;
-
-    public static TestUser get(String filename) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(new File(filename), TestUser.class);
+    private TestUser() {
+        super();
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCity() {
-        return city;
+    public static TestUser getUser() {
+        return TEST_USER;
     }
 }

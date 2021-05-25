@@ -2,20 +2,21 @@ package tests;
 
 import base.BaseTest;
 import base.TestMethods;
+import data.ITestData;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
-public class Products extends BaseTest {
+public class Products extends BaseTest implements ITestData {
 
     @Test
     public void customisableProduct() {
 
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
-                                         .searchByText(getCustomizableProductName())
-                                         .goToProduct(getCustomizableProductName())
+                                         .searchByText(CUSTOMIZABLE_PRODUCT_NAME)
+                                         .goToProduct(CUSTOMIZABLE_PRODUCT_NAME)
                                          .addProductToCart()
-                                         .getProductName(), getCustomizableProductName());
+                                         .getProductName(), CUSTOMIZABLE_PRODUCT_NAME);
     }
 
     @Test
@@ -48,11 +49,11 @@ public class Products extends BaseTest {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToClothesSection()
-                                         .goToProduct(getProductName())
+                                         .goToProduct(TEST_PRODUCT_NAME)
                                          .addProductToCart()
                                          .getTopMenuPage()
                                          .goToCart()
-                                         .getItemDetailsByName(getProductName()), getProductName());
+                                         .getItemDetailsByName(TEST_PRODUCT_NAME), TEST_PRODUCT_NAME);
     }
 
     @Test
@@ -61,12 +62,12 @@ public class Products extends BaseTest {
         OrderModel order = new OrderModel();
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
-                                         .searchByText(getProductName())
-                                         .goToProduct(getProductName())
+                                         .searchByText(TEST_PRODUCT_NAME)
+                                         .goToProduct(TEST_PRODUCT_NAME)
                                          .addProductToCart(order)
                                          .getTopMenuPage()
                                          .goToCart()
-                                         .deleteItemFromCart(order, getProductName())
+                                         .deleteItemFromCart(order, TEST_PRODUCT_NAME)
                                          .getItemsPrice(), order.getOrderItemsPrice());
     }
 
@@ -75,11 +76,11 @@ public class Products extends BaseTest {
 
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
-                                         .searchByText(getProductName())
-                                         .goToProduct(getProductName())
+                                         .searchByText(TEST_PRODUCT_NAME)
+                                         .goToProduct(TEST_PRODUCT_NAME)
                                          .addProductToCart()
                                          .getTopMenuPage()
                                          .goToCart()
-                                         .getItemDetailsByName(getProductName()), getProductName());
+                                         .getItemDetailsByName(TEST_PRODUCT_NAME), TEST_PRODUCT_NAME);
     }
 }

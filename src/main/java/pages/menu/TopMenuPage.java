@@ -123,7 +123,7 @@ public class TopMenuPage extends BasePage {
         try {
             return loggedUserBox.getText();
         } catch (NoSuchElementException exception) {
-            return "null";
+            return signInButton.getText();
         }
     }
 

@@ -1,6 +1,6 @@
 package pages.cart;
 
-import driver.DriverWait;
+import driver.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.By;
@@ -87,7 +87,7 @@ public class CartPage extends BasePage {
                 cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
                 order.deleteProductFromList(name);
-                DriverWait.getWait(driver)
+                Waiter.wait(driver)
                         .until(ExpectedConditions.invisibilityOf(cartItem));
             }
         }

@@ -2,9 +2,10 @@ package tests;
 
 import base.BaseTest;
 import base.TestMethods;
+import data.ITestData;
 import org.testng.annotations.Test;
 
-public class HelpRequest extends BaseTest {
+public class HelpRequest extends BaseTest implements ITestData {
 
     @Test
     public void sendContactMessageAsGuest() {
@@ -12,8 +13,8 @@ public class HelpRequest extends BaseTest {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(getHelpSubject(), guestUser.getEmail(), getHelpMessage())
-                                         .getResponseMessage(), getHelpResponseMessage());
+                                         .submitHelpRequest(TEST_HELP_SUBJECT, guestUser.getEmail(), TEST_HELP_MESSAGE)
+                                         .getResponseMessage(), HELP_RESPONSE_MESSAGE);
     }
 
     @Test
@@ -25,8 +26,8 @@ public class HelpRequest extends BaseTest {
                                          .logIn(existingUser.getEmail(), existingUser.getPassword())
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(getHelpSubject(), getHelpMessage())
-                                         .getResponseMessage(), getHelpResponseMessage());
+                                         .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
+                                         .getResponseMessage(), HELP_RESPONSE_MESSAGE);
     }
 
     @Test
@@ -35,7 +36,7 @@ public class HelpRequest extends BaseTest {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(getHelpSubject(), getHelpMessage())
-                                         .getAlertMessage(), getAlertMessage());
+                                         .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
+                                         .getAlertMessage(), ALERT_MESSAGE);
     }
 }

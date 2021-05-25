@@ -3,14 +3,14 @@ package driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DriverWait {
+public class Waiter {
 
     private static WebDriverWait wait;
 
-    private DriverWait() {
+    private Waiter() {
     }
 
-    public static WebDriverWait getWait(WebDriver driver) {
+    public static WebDriverWait wait(WebDriver driver) {
         if (wait == null) {
             wait = new WebDriverWait(driver, 10);
         }
