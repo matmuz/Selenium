@@ -34,6 +34,26 @@ public class ExistingUser extends User {
         return mapper.readValue(new File(filename), ExistingUser.class);
     }
 
+    @Override public String getFirstName() {
+        return firstName;
+    }
+
+    @Override public String getLastName() {
+        return lastName;
+    }
+
+    @Override public String getEmail() {
+        return email;
+    }
+
+    @Override public String getPassword() {
+        return password;
+    }
+
+    @Override public String getFullName() {
+        return city;
+    }
+
     public String getAddress() {
         return address;
     }
