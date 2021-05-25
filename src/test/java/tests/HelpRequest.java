@@ -12,8 +12,8 @@ public class HelpRequest extends BaseTest {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(testData.getHelpSubject(), guestUser.getEmail(), testData.getHelpMessage())
-                                         .getResponseMessage(), testData.getHelpResponseMessage());
+                                         .submitHelpRequest(getHelpSubject(), guestUser.getEmail(), getHelpMessage())
+                                         .getResponseMessage(), getHelpResponseMessage());
     }
 
     @Test
@@ -25,8 +25,8 @@ public class HelpRequest extends BaseTest {
                                          .logIn(existingUser.getEmail(), existingUser.getPassword())
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(testData.getHelpSubject(), testData.getHelpMessage())
-                                         .getResponseMessage(), testData.getHelpResponseMessage());
+                                         .submitHelpRequest(getHelpSubject(), getHelpMessage())
+                                         .getResponseMessage(), getHelpResponseMessage());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class HelpRequest extends BaseTest {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(testData.getHelpSubject(), testData.getHelpMessage())
-                                         .getAlertMessage(), testData.getAlertMessage());
+                                         .submitHelpRequest(getHelpSubject(), getHelpMessage())
+                                         .getAlertMessage(), getAlertMessage());
     }
 }

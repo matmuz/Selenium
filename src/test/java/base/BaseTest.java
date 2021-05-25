@@ -1,6 +1,6 @@
 package base;
 
-import data.TestData;
+import data.ITestData;
 import data.TestUser;
 import data.UserProvider;
 import driver.DriverManager;
@@ -10,24 +10,25 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import pages.application.PrestaShop;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-public class BaseTest {
+public class BaseTest implements ITestData {
 
     private DriverManager driverManager;
     private WebDriver driver;
     protected PrestaShop prestaShop;
     protected UserProvider testUser, guestUser;
-    protected TestData testData;
     protected TestUser existingUser;
 
     @BeforeTest
     public void prepareTestData() throws IOException {
-        testData = TestData.getTestData();
         testUser = UserProvider.getUser();
         guestUser = UserProvider.getGuestUser();
         existingUser = TestUser.get("src\\test\\resources\\test-data\\existing-user.json");
