@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
-public class ExistingUser extends User {
+public class ExistingUser {
 
     @JsonProperty("firstname")
     private String firstName;
@@ -34,24 +34,20 @@ public class ExistingUser extends User {
         return mapper.readValue(new File(filename), ExistingUser.class);
     }
 
-    @Override public String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    @Override public String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    @Override public String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    @Override public String getPassword() {
+    public String getPassword() {
         return password;
-    }
-
-    @Override public String getFullName() {
-        return city;
     }
 
     public String getAddress() {
@@ -64,5 +60,9 @@ public class ExistingUser extends User {
 
     public String getCity() {
         return city;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }
