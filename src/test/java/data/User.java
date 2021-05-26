@@ -8,10 +8,10 @@ public abstract class User {
 
     static final Faker FAKER = new Faker();
     static final Random RANDOM = new Random();
-    protected String firstName;
-    protected String lastName;
-    protected String email;
-    protected String password;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final String password;
 
     protected User() {
         firstName = FAKER.name()

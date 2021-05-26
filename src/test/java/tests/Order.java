@@ -1,12 +1,11 @@
 package tests;
 
 import base.BaseTest;
-import base.TestMethods;
-import data.ITestData;
+import data.TestData;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
-public class Order extends BaseTest implements ITestData {
+public class Order extends BaseTest {
 
     @Test
     public void orderPrice() {
@@ -78,7 +77,7 @@ public class Order extends BaseTest implements ITestData {
                                          .goToCart()
                                          .proceedToCheckout()
                                          .placeOrderAsGuest(guestUser.getFirstName(), guestUser.getLastName(), guestUser.getEmail(), guestUser.getAddress(), guestUser.getCity(), guestUser.getPostalCode())
-                                         .getConfirmationMessage(), CONFIRMATION_MESSAGE);
+                                         .getConfirmationMessage(), TestData.CONFIRMATION_MESSAGE);
     }
 
     @Test
@@ -95,7 +94,7 @@ public class Order extends BaseTest implements ITestData {
                                          .goToCart()
                                          .proceedToCheckout()
                                          .placeOrderAsLoggedUser()
-                                         .getConfirmationMessage(), CONFIRMATION_MESSAGE);
+                                         .getConfirmationMessage(), TestData.CONFIRMATION_MESSAGE);
     }
 
     @Test

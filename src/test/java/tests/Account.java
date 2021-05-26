@@ -1,11 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import base.TestMethods;
-import data.ITestData;
+import data.TestData;
 import org.testng.annotations.Test;
 
-public class Account extends BaseTest implements ITestData {
+public class Account extends BaseTest {
 
     @Test
     public void logInNegativeCase() {
@@ -15,7 +14,7 @@ public class Account extends BaseTest implements ITestData {
                                          .goToSignInSection()
                                          .logIn(guestUser.getEmail(), guestUser.getPassword())
                                          .getTopMenuPage()
-                                         .getLoggedUsername(), LOGIN_TEXT);
+                                         .getLoggedUsername(), TestData.LOGIN_TEXT);
     }
 
     @Test
@@ -61,6 +60,6 @@ public class Account extends BaseTest implements ITestData {
                                          .getTopMenuPage()
                                          .signOut()
                                          .getTopMenuPage()
-                                         .getLoggedUsername(), LOGIN_TEXT);
+                                         .getLoggedUsername(), TestData.LOGIN_TEXT);
     }
 }

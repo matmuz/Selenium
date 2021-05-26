@@ -1,11 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import base.TestMethods;
-import data.ITestData;
+import data.TestData;
 import org.testng.annotations.Test;
 
-public class HelpRequest extends BaseTest implements ITestData {
+public class HelpRequest extends BaseTest {
 
     @Test
     public void sendContactMessageAsGuest() {
@@ -13,8 +12,8 @@ public class HelpRequest extends BaseTest implements ITestData {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(TEST_HELP_SUBJECT, guestUser.getEmail(), TEST_HELP_MESSAGE)
-                                         .getResponseMessage(), HELP_RESPONSE_MESSAGE);
+                                         .submitHelpRequest(TestData.TEST_HELP_SUBJECT, guestUser.getEmail(), TestData.TEST_HELP_MESSAGE)
+                                         .getResponseMessage(), TestData.HELP_RESPONSE_MESSAGE);
     }
 
     @Test
@@ -26,8 +25,8 @@ public class HelpRequest extends BaseTest implements ITestData {
                                          .logIn(existingUser.getEmail(), existingUser.getPassword())
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
-                                         .getResponseMessage(), HELP_RESPONSE_MESSAGE);
+                                         .submitHelpRequest(TestData.TEST_HELP_SUBJECT, TestData.TEST_HELP_MESSAGE)
+                                         .getResponseMessage(), TestData.HELP_RESPONSE_MESSAGE);
     }
 
     @Test
@@ -36,7 +35,7 @@ public class HelpRequest extends BaseTest implements ITestData {
         TestMethods.assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToContactUsPage()
-                                         .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
-                                         .getAlertMessage(), ALERT_MESSAGE);
+                                         .submitHelpRequest(TestData.TEST_HELP_SUBJECT, TestData.TEST_HELP_MESSAGE)
+                                         .getAlertMessage(), TestData.ALERT_MESSAGE);
     }
 }
