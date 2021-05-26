@@ -30,7 +30,7 @@ public class BaseTest {
     public void prepareTestData() throws IOException {
         testUser = TestUser.getUser();
         guestUser = GuestUser.getUser();
-        existingUser = ExistingUser.get("src\\test\\resources\\test-data\\existing-user.json");
+        existingUser = ExistingUser.get("src\\test\\resources\\data\\existing-user.json");
     }
 
     @BeforeMethod
