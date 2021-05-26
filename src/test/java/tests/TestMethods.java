@@ -5,7 +5,7 @@ import org.testng.Assert;
 
 public final class TestMethods {
 
-    private TestMethods(){
+    private TestMethods() {
     }
 
     @Step("Check if text is the same")

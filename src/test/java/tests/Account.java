@@ -4,7 +4,9 @@ import base.BaseTest;
 import org.testng.annotations.Test;
 
 import static data.TestData.LOGIN_TEXT;
-import static tests.TestMethods.*;
+import static data.TestData.RESET_RESPONSE;
+import static tests.TestMethods.assertEquals;
+import static tests.TestMethods.assertNotEquals;
 
 public class Account extends BaseTest {
 
@@ -63,5 +65,14 @@ public class Account extends BaseTest {
                              .signOut()
                              .getTopMenuPage()
                              .getLoggedUsername(), LOGIN_TEXT);
+    }
+
+    @Test
+    public void resetPassword() {
+
+        assertEquals(prestaShop.openPrestaShop()
+                             .getTopMenuPage()
+                             .goToSignInSection()
+                             .resetPassword(existingUser.getEmail()), RESET_RESPONSE + existingUser.getEmail());
     }
 }

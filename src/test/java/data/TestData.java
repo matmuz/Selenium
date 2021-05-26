@@ -11,6 +11,7 @@ public final class TestData {
     public static final String TEST_HELP_MESSAGE = "Test message 123";
     public static final String TEST_HELP_SUBJECT = "Biuro Obsługi Klienta";
     public static final String LOGIN_TEXT = "Zaloguj się";
+    public static final String RESET_RESPONSE = "Jeżeli ten adres e-mail został zarejestrowany w naszym sklepie otrzymasz link do zresetowania hasła na ";
 
     private TestData() {
     }
