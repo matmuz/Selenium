@@ -1,6 +1,6 @@
 package data;
 
-public class TestData {
+public final class TestData {
 
     public static final String CHECK_MARK = "";
     public static final String TEST_PRODUCT_NAME = "HUMMINGBIRD PRINTED T-SHIRT";
@@ -11,5 +11,8 @@ public class TestData {
     public static final String TEST_HELP_MESSAGE = "Test message 123";
     public static final String TEST_HELP_SUBJECT = "Biuro Obsługi Klienta";
     public static final String LOGIN_TEXT = "Zaloguj się";
+
+    private TestData() {
+    }
 
 }

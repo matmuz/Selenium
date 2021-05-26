@@ -3,7 +3,10 @@ package tests;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
-public class TestMethods {
+public final class TestMethods {
+
+    private TestMethods(){
+    }
 
     @Step("Check if text is the same")
     public static void assertEquals(String actual, String expected) {
