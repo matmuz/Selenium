@@ -2,22 +2,22 @@ package data;
 
 public class GuestUser extends User {
 
-    private static final GuestUser GUEST_USER = new GuestUser();
+    private static final GuestUser guestUser = new GuestUser();
     private final String address;
     private final String city;
     private final String postalCode;
 
     private GuestUser(){
         super();
-        address = FAKER.address()
+        address = faker.address()
                 .streetName();
-        city = FAKER.address()
+        city = faker.address()
                 .city();
-        postalCode = "" + (RANDOM.nextInt(89999) + 10000);
+        postalCode = "" + (random.nextInt(89999) + 10000);
     }
 
     public static GuestUser getUser() {
-        return GUEST_USER;
+        return guestUser;
     }
 
     public String getAddress() {

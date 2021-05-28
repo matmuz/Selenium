@@ -1,68 +1,19 @@
 package data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.io.IOException;
-
 public class ExistingUser {
 
-    @JsonProperty("firstname")
-    private String firstName;
+    public static final String FIRSTNAME = "Automated";
+    public static final  String LASTNAME = "Test";
+    public static final  String EMAIL = "QA_Automated@gmail.com";
+    public static final  String PASSWORD = "QA_Automated";
+    public static final  String ADDRESS = "Testowa 123";
+    public static final  String POSTAL_CODE = "12-345";
+    public static final  String CITY = "Warszawa";
 
-    @JsonProperty("lastname")
-    private String lastName;
-
-    @JsonProperty("email")
-    private String email;
-
-    @JsonProperty("password")
-    private String password;
-
-    @JsonProperty("address")
-    private String address;
-
-    @JsonProperty("postal-code")
-    private String postalCode;
-
-    @JsonProperty("city")
-    private String city;
-
-    public static ExistingUser get(String filename) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(new File(filename), ExistingUser.class);
+    private ExistingUser () {
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getFullName() {
-        return firstName + " " + lastName;
+    public static String getFullName() {
+        return FIRSTNAME + " " + LASTNAME;
     }
 }

@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.testng.annotations.Test;
 
+import static data.ExistingUser.*;
 import static data.TestData.LOGIN_TEXT;
 import static data.TestData.RESET_RESPONSE;
 import static tests.TestMethods.assertEquals;
@@ -38,9 +39,9 @@ public class Account extends BaseTest {
         assertNotEquals(prestaShop.openPrestaShop()
                                 .getTopMenuPage()
                                 .goToSignInSection()
-                                .createAccount(existingUser.getFirstName(), existingUser.getLastName(), existingUser.getEmail(), existingUser.getPassword())
+                                .createAccount(FIRSTNAME, LASTNAME, EMAIL, PASSWORD)
                                 .getTopMenuPage()
-                                .getLoggedUsername(), existingUser.getFullName());
+                                .getLoggedUsername(), getFullName());
     }
 
     @Test
@@ -49,9 +50,9 @@ public class Account extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
                              .goToSignInSection()
-                             .logIn(existingUser.getEmail(), existingUser.getPassword())
+                             .logIn(EMAIL, PASSWORD)
                              .getTopMenuPage()
-                             .getLoggedUsername(), existingUser.getFullName());
+                             .getLoggedUsername(), getFullName());
     }
 
     @Test
@@ -60,7 +61,7 @@ public class Account extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
                              .goToSignInSection()
-                             .logIn(existingUser.getEmail(), existingUser.getPassword())
+                             .logIn(EMAIL, PASSWORD)
                              .getTopMenuPage()
                              .signOut()
                              .getTopMenuPage()
@@ -73,6 +74,6 @@ public class Account extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
                              .goToSignInSection()
-                             .resetPassword(existingUser.getEmail()), RESET_RESPONSE + existingUser.getEmail());
+                             .resetPassword(EMAIL), RESET_RESPONSE + EMAIL);
     }
 }

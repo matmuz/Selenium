@@ -1,6 +1,7 @@
 package base;
 
-import data.*;
+import data.GuestUser;
+import data.TestUser;
 import driver.DriverManager;
 import driver.DriverManagerFactory;
 import io.qameta.allure.Allure;
@@ -15,7 +16,6 @@ import org.testng.annotations.Parameters;
 import pages.application.PrestaShop;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 public class BaseTest {
 
@@ -24,13 +24,11 @@ public class BaseTest {
     protected PrestaShop prestaShop;
     protected GuestUser guestUser;
     protected TestUser testUser;
-    protected ExistingUser existingUser;
 
     @BeforeTest
-    public void prepareTestData() throws IOException {
+    public void prepareTestUsers() {
         testUser = TestUser.getUser();
         guestUser = GuestUser.getUser();
-        existingUser = ExistingUser.get("src\\test\\resources\\data\\existing-user.json");
     }
 
     @BeforeMethod

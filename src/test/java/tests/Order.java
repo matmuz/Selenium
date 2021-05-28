@@ -4,6 +4,8 @@ import base.BaseTest;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
+import static data.ExistingUser.EMAIL;
+import static data.ExistingUser.PASSWORD;
 import static data.TestData.CONFIRMATION_MESSAGE;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
@@ -60,7 +62,7 @@ public class Order extends BaseTest {
         assertNotEquals(prestaShop.openPrestaShop()
                                             .getTopMenuPage()
                                             .goToSignInSection()
-                                            .logIn(existingUser.getEmail(), existingUser.getPassword())
+                                            .logIn(EMAIL, PASSWORD)
                                             .getTopMenuPage()
                                             .goToRandomProductsSection()
                                             .addRandomProducts(order, 3)
@@ -89,7 +91,7 @@ public class Order extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToSignInSection()
-                                         .logIn(existingUser.getEmail(), existingUser.getPassword())
+                                         .logIn(EMAIL, PASSWORD)
                                          .getTopMenuPage()
                                          .goToRandomProductsSection()
                                          .addRandomProducts(5)
@@ -107,7 +109,7 @@ public class Order extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToSignInSection()
-                                         .logIn(existingUser.getEmail(), existingUser.getPassword())
+                                         .logIn(EMAIL, PASSWORD)
                                          .getTopMenuPage()
                                          .goToRandomProductsSection()
                                          .addRandomProducts(5)

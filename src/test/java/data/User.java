@@ -6,20 +6,20 @@ import java.util.Random;
 
 public abstract class User {
 
-    static final Faker FAKER = new Faker();
-    static final Random RANDOM = new Random();
+    protected static final Faker faker = new Faker();
+    protected static final Random random = new Random();
     private final String firstName;
     private final String lastName;
     private final String email;
     private final String password;
 
     protected User() {
-        firstName = FAKER.name()
+        firstName = faker.name()
                 .firstName();
-        lastName = FAKER.name()
+        lastName = faker.name()
                 .lastName();
         email = firstName + lastName + "@gmail.com";
-        password = FAKER.phoneNumber()
+        password = faker.phoneNumber()
                 .cellPhone();
     }
 
@@ -39,7 +39,7 @@ public abstract class User {
         return password;
     }
 
-     public String getFullName() {
+    public String getFullName() {
         return firstName + " " + lastName;
     }
 }
