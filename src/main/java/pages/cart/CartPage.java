@@ -37,12 +37,6 @@ public class CartPage extends BasePage {
     @FindBy(css = "#cart-subtotal-products .value")
     private WebElement itemsPriceBox;
 
-    @FindBy(css = ".material-icons.float-xs-left")
-    private By.ByCssSelector deleteProductButton;
-
-    @FindBy(css = ".product-line-info")
-    private By.ByCssSelector itemDetails;
-
     public int getItemsQuantity() {
         String[] split = (summaryLine.getText()
                 .split(" "));
@@ -77,7 +71,7 @@ public class CartPage extends BasePage {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText()
                     .contains(name.toUpperCase())) {
-                cartItem.findElement(deleteProductButton)
+                cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
             }
         }
@@ -90,7 +84,7 @@ public class CartPage extends BasePage {
             if (cartItem.getText()
                     .toUpperCase()
                     .contains(name.toUpperCase())) {
-                cartItem.findElement(deleteProductButton)
+                cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
                 order.deleteProductFromList(name);
                 Waiter.wait(driver)
@@ -107,7 +101,7 @@ public class CartPage extends BasePage {
                     .getText()
                     .toUpperCase()
                     .contains(productName.toUpperCase())) {
-                product = cartItem.findElement(itemDetails)
+                product = cartItem.findElement(By.cssSelector(".product-line-info"))
                         .getText();
                 return product.toUpperCase();
             }
