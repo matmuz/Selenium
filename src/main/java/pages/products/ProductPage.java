@@ -15,6 +15,9 @@ import java.util.List;
 
 public class ProductPage extends BasePage {
 
+    private static final String PERSONALIZATION_TEXT = "Test Personalisation 123";
+    private static final String CUSTOMIZABLE_PRODUCT_TEXT = "CUSTOMIZABLE";
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -62,7 +65,7 @@ public class ProductPage extends BasePage {
 
     @Step("Add product to cart")
     public ProductPage addProductToCart(OrderModel order) {
-        if (getProductName().contains("CUSTOMIZABLE")) {
+        if (getProductName().contains(CUSTOMIZABLE_PRODUCT_TEXT)) {
             setPersonalisedText();
         }
         Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
@@ -76,7 +79,7 @@ public class ProductPage extends BasePage {
 
     @Step("Add product to cart")
     public ProductPage addProductToCart() {
-        if (getProductName().contains("CUSTOMIZABLE")) {
+        if (getProductName().contains(CUSTOMIZABLE_PRODUCT_TEXT)) {
             setPersonalisedText();
         }
         Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
@@ -91,7 +94,7 @@ public class ProductPage extends BasePage {
     }
 
     public void setPersonalisedText() {
-        productMessage.sendKeys("Test Personalisation 123");
+        productMessage.sendKeys(PERSONALIZATION_TEXT);
         saveCustomisation.click();
     }
 

@@ -10,6 +10,7 @@ public class Products extends BaseTest {
 
     private static final String TEST_PRODUCT_NAME = "HUMMINGBIRD PRINTED T-SHIRT";
     private static final String CUSTOMIZABLE_PRODUCT_NAME = "CUSTOMIZABLE MUG";
+    private OrderModel order;
 
     @Test
     public void customisableProduct() {
@@ -25,7 +26,8 @@ public class Products extends BaseTest {
     @Test
     public void popularProducts() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertEquals(prestaShop.openPrestaShop()
                                          .addRandomPopularProducts(order, 4)
                                          .getTopMenuPage()
@@ -36,7 +38,8 @@ public class Products extends BaseTest {
     @Test
     public void addRandomProductsToCart() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToRandomProductsSection()
@@ -62,7 +65,8 @@ public class Products extends BaseTest {
     @Test
     public void productDeletionInCart() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .searchByText(TEST_PRODUCT_NAME)
