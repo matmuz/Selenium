@@ -6,16 +6,19 @@ import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
-import static data.TestData.CONFIRMATION_MESSAGE;
+import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
 
 public class Order extends BaseTest {
 
+    private OrderModel order;
+
     @Test
     public void orderPrice() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertEquals(prestaShop.openPrestaShop()
                                          .enterRandomPopularProduct()
                                          .addProductToCart(order)
@@ -30,7 +33,8 @@ public class Order extends BaseTest {
     @Test
     public void orderItemsQuantity() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToRandomProductsSection()
@@ -58,7 +62,8 @@ public class Order extends BaseTest {
     @Test
     public void orderItemsQuantityNegativeCase() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertNotEquals(prestaShop.openPrestaShop()
                                             .getTopMenuPage()
                                             .goToSignInSection()
@@ -105,7 +110,8 @@ public class Order extends BaseTest {
     @Test
     public void orderHistory() {
 
-        OrderModel order = new OrderModel();
+        order = new OrderModel();
+
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToSignInSection()

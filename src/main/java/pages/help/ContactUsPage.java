@@ -10,6 +10,9 @@ import pages.menu.TopMenuPage;
 
 public class ContactUsPage extends BasePage {
 
+    public static final String HELP_RESPONSE_MESSAGE = "Twoja wiadomość została pomyślnie wysłana do obsługi.";
+    public static final String ALERT_MESSAGE = "Nieprawidłowy adres e-mail";
+
     public ContactUsPage(WebDriver driver) {
         super(driver);
     }

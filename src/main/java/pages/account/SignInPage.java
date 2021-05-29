@@ -12,6 +12,8 @@ import java.util.List;
 
 public class SignInPage extends BasePage {
 
+    public static final String RESET_RESPONSE = "Jeżeli ten adres e-mail został zarejestrowany w naszym sklepie otrzymasz link do zresetowania hasła na ";
+
     public SignInPage(WebDriver driver) {
         super(driver);
     }

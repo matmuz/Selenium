@@ -17,6 +17,8 @@ import java.util.Random;
 
 public class TopMenuPage extends BasePage {
 
+    public static final String LOGIN_TEXT = "Zaloguj się";
+
     public TopMenuPage(WebDriver driver) {
         super(driver);
     }

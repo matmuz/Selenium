@@ -4,11 +4,12 @@ import base.BaseTest;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
-import static data.TestData.CUSTOMIZABLE_PRODUCT_NAME;
-import static data.TestData.TEST_PRODUCT_NAME;
 import static tests.TestMethods.assertEquals;
 
 public class Products extends BaseTest {
+
+    private static final String TEST_PRODUCT_NAME = "HUMMINGBIRD PRINTED T-SHIRT";
+    private static final String CUSTOMIZABLE_PRODUCT_NAME = "CUSTOMIZABLE MUG";
 
     @Test
     public void customisableProduct() {

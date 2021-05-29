@@ -4,8 +4,8 @@ import base.BaseTest;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
-import static data.TestData.LOGIN_TEXT;
-import static data.TestData.RESET_RESPONSE;
+import static pages.account.SignInPage.RESET_RESPONSE;
+import static pages.menu.TopMenuPage.LOGIN_TEXT;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
 
