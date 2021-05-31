@@ -1,6 +1,6 @@
 package pages.products;
 
-import driver.DriverWait;
+import driver.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
@@ -13,7 +13,14 @@ import pages.menu.TopMenuPage;
 
 import java.util.List;
 
+/**
+ * A particular product page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
+
 public class ProductPage extends BasePage {
+
+    private static final String PERSONALIZATION_TEXT = "Test Personalisation 123";
+    private static final String CUSTOMIZABLE_PRODUCT_TEXT = "CUSTOMIZABLE";
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -62,26 +69,26 @@ public class ProductPage extends BasePage {
 
     @Step("Add product to cart")
     public ProductPage addProductToCart(OrderModel order) {
-        if (getProductName().contains("CUSTOMIZABLE")) {
+        if (getProductName().contains(CUSTOMIZABLE_PRODUCT_TEXT)) {
             setPersonalisedText();
         }
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
         ProductModel productToAdd = new ProductModel(getProductName(), getProductPrice(), getQuantity());
         order.addProductToList(productToAdd);
         addToCartButton.click();
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }
 
     @Step("Add product to cart")
     public ProductPage addProductToCart() {
-        if (getProductName().contains("CUSTOMIZABLE")) {
+        if (getProductName().contains(CUSTOMIZABLE_PRODUCT_TEXT)) {
             setPersonalisedText();
         }
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
-        DriverWait.getWait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }
@@ -91,7 +98,7 @@ public class ProductPage extends BasePage {
     }
 
     public void setPersonalisedText() {
-        productMessage.sendKeys("Test Personalisation 123");
+        productMessage.sendKeys(PERSONALIZATION_TEXT);
         saveCustomisation.click();
     }
 

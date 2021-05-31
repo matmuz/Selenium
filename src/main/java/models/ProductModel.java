@@ -1,5 +1,9 @@
 package models;
 
+/**
+ * Class responsible for providing a product model (in PrestaShop) that gathers product's details
+ */
+
 public class ProductModel {
 
     private final String productName;

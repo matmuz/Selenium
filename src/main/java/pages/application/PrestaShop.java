@@ -5,6 +5,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.products.HomePage;
 
+/**
+ * This class is responsible for returning the home page of Presta app when the driver gets the environment
+ */
+
 public class PrestaShop extends BasePage {
 
     public PrestaShop(WebDriver driver){

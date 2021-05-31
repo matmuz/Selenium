@@ -11,7 +11,14 @@ import pages.menu.TopMenuPage;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Checkout page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
+
 public class CheckoutPage extends BasePage {
+
+    public static final String CHECK_MARK = "";
+    public static final String CONFIRMATION_MESSAGE = CHECK_MARK + "TWOJE ZAMÓWIENIE ZOSTAŁO POTWIERDZONE";
 
     public CheckoutPage(WebDriver driver) {
         super(driver);

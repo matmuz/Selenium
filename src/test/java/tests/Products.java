@@ -1,28 +1,47 @@
 package tests;
 
 import base.BaseTest;
-import base.TestMethods;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
+import static tests.TestMethods.assertEquals;
+
+/**
+ * A collection of tests that check basic product/s functionalities
+ */
+
 public class Products extends BaseTest {
 
-    @Test
-    public void customisableProduct() {
+    /**
+     * Test constants (data) that are used in tests
+     */
 
-        TestMethods.assertEquals(prestaShop.openPrestaShop()
+    private static final String TEST_PRODUCT_NAME = "HUMMINGBIRD PRINTED T-SHIRT";
+    private static final String CUSTOMIZABLE_PRODUCT_NAME = "CUSTOMIZABLE MUG";
+
+    /**
+     * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
+     */
+
+    private OrderModel order;
+
+    @Test
+    public void shouldAddCustomizableProduct() {
+
+        assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
-                                         .searchByText(testData.getCustomizableProductName())
-                                         .goToProduct(testData.getCustomizableProductName())
+                                         .searchByText(CUSTOMIZABLE_PRODUCT_NAME)
+                                         .goToProduct(CUSTOMIZABLE_PRODUCT_NAME)
                                          .addProductToCart()
-                                         .getProductName(), testData.getCustomizableProductName());
+                                         .getProductName(), CUSTOMIZABLE_PRODUCT_NAME);
     }
 
     @Test
-    public void popularProducts() {
+    public void shouldAddPopularProductsToCart() {
 
-        OrderModel order = new OrderModel();
-        TestMethods.assertEquals(prestaShop.openPrestaShop()
+        order = new OrderModel();
+
+        assertEquals(prestaShop.openPrestaShop()
                                          .addRandomPopularProducts(order, 4)
                                          .getTopMenuPage()
                                          .goToCart()
@@ -30,10 +49,11 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void addRandomProductsToCart() {
+    public void shouldAddRandomProductsToCart() {
 
-        OrderModel order = new OrderModel();
-        TestMethods.assertEquals(prestaShop.openPrestaShop()
+        order = new OrderModel();
+
+        assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToRandomProductsSection()
                                          .addRandomProducts(order, 6)
@@ -43,43 +63,44 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void addSpecificProduct() {
+    public void shouldAddSpecificProductToCart() {
 
-        TestMethods.assertEquals(prestaShop.openPrestaShop()
+        assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
                                          .goToClothesSection()
-                                         .goToProduct(testData.getProductName())
+                                         .goToProduct(TEST_PRODUCT_NAME)
                                          .addProductToCart()
                                          .getTopMenuPage()
                                          .goToCart()
-                                         .getItemDetailsByName(testData.getProductName()), testData.getProductName());
+                                         .getItemDetailsByName(TEST_PRODUCT_NAME), TEST_PRODUCT_NAME);
     }
 
     @Test
-    public void productDeletionInCart() {
+    public void shouldDeleteProductFromCart() {
 
-        OrderModel order = new OrderModel();
-        TestMethods.assertEquals(prestaShop.openPrestaShop()
+        order = new OrderModel();
+
+        assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
-                                         .searchByText(testData.getProductName())
-                                         .goToProduct(testData.getProductName())
+                                         .searchByText(TEST_PRODUCT_NAME)
+                                         .goToProduct(TEST_PRODUCT_NAME)
                                          .addProductToCart(order)
                                          .getTopMenuPage()
                                          .goToCart()
-                                         .deleteItemFromCart(order, testData.getProductName())
+                                         .deleteItemFromCart(order, TEST_PRODUCT_NAME)
                                          .getItemsPrice(), order.getOrderItemsPrice());
     }
 
     @Test
-    public void searchForProduct() {
+    public void shouldFindSearchedProduct() {
 
-        TestMethods.assertEquals(prestaShop.openPrestaShop()
+        assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
-                                         .searchByText(testData.getProductName())
-                                         .goToProduct(testData.getProductName())
+                                         .searchByText(TEST_PRODUCT_NAME)
+                                         .goToProduct(TEST_PRODUCT_NAME)
                                          .addProductToCart()
                                          .getTopMenuPage()
                                          .goToCart()
-                                         .getItemDetailsByName(testData.getProductName()), testData.getProductName());
+                                         .getItemDetailsByName(TEST_PRODUCT_NAME), TEST_PRODUCT_NAME);
     }
 }

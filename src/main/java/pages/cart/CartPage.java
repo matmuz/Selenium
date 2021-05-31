@@ -1,6 +1,6 @@
 package pages.cart;
 
-import driver.DriverWait;
+import driver.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.By;
@@ -12,6 +12,10 @@ import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
+
+/**
+ * Cart page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
 
 public class CartPage extends BasePage {
 
@@ -87,7 +91,7 @@ public class CartPage extends BasePage {
                 cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
                 order.deleteProductFromList(name);
-                DriverWait.getWait(driver)
+                Waiter.wait(driver)
                         .until(ExpectedConditions.invisibilityOf(cartItem));
             }
         }

@@ -1,16 +1,22 @@
 package pages.account;
 
-import pages.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 import pages.products.HomePage;
 
 import java.util.List;
 
+/**
+ * Sign in page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
+
 public class SignInPage extends BasePage {
+
+    public static final String RESET_RESPONSE = "Jeżeli ten adres e-mail został zarejestrowany w naszym sklepie otrzymasz link do zresetowania hasła na ";
 
     public SignInPage(WebDriver driver) {
         super(driver);
@@ -28,7 +34,7 @@ public class SignInPage extends BasePage {
     @FindBy(css = "a[data-link-action='display-register-form']")
     private WebElement createAccountButton;
 
-    @FindBy(css = "a[href*='password-recovery']")
+    @FindBy(css = "a[href*='controller=password']")
     private WebElement passwordRecoveryButton;
 
     @FindBy(css = "#email")
@@ -36,6 +42,9 @@ public class SignInPage extends BasePage {
 
     @FindBy(css = ".form-control-submit.btn.btn-primary.hidden-xs-down")
     private WebElement sendResetLink;
+
+    @FindBy(css = "#content")
+    private WebElement resetResponseMessage;
 
     @FindBy(css = "input[name='firstname']")
     private WebElement firstNameBox;
@@ -89,9 +98,11 @@ public class SignInPage extends BasePage {
     }
 
     @Step("Click reset password")
-    public SignInPage resetPassword() {
+    public String resetPassword(String email) {
         passwordRecoveryButton.click();
-        return this;
+        passwordResetEmail.sendKeys(email);
+        sendResetLink.click();
+        return resetResponseMessage.getText();
     }
 
     @Step("Find order number")

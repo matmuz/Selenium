@@ -8,7 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.menu.TopMenuPage;
 
+/**
+ * Contact us page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
+
 public class ContactUsPage extends BasePage {
+
+    public static final String HELP_RESPONSE_MESSAGE = "Twoja wiadomość została pomyślnie wysłana do obsługi.";
+    public static final String ALERT_MESSAGE = "Nieprawidłowy adres e-mail";
 
     public ContactUsPage(WebDriver driver) {
         super(driver);

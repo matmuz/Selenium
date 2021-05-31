@@ -5,6 +5,10 @@ import org.openqa.selenium.edge.EdgeDriverService;
 
 import java.io.File;
 
+/**
+ * Concrete class that is responsible for managing EdgeDriver's cycle of life
+ */
+
 public class EdgeDriverManager extends DriverManager {
 
     private EdgeDriverService edgeDriverService;
