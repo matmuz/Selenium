@@ -4,6 +4,10 @@ import com.github.javafaker.Faker;
 
 import java.util.Random;
 
+/**
+ * Abstract User class that determines the core for subclasses
+ */
+
 public abstract class User {
 
     protected static final Faker faker = new Faker();

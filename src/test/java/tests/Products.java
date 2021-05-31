@@ -6,14 +6,27 @@ import org.testng.annotations.Test;
 
 import static tests.TestMethods.assertEquals;
 
+/**
+ * A collection of tests that check basic product/s functionalities
+ */
+
 public class Products extends BaseTest {
+
+    /**
+     * Test constants (data) that are used in tests
+     */
 
     private static final String TEST_PRODUCT_NAME = "HUMMINGBIRD PRINTED T-SHIRT";
     private static final String CUSTOMIZABLE_PRODUCT_NAME = "CUSTOMIZABLE MUG";
+
+    /**
+     * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
+     */
+
     private OrderModel order;
 
     @Test
-    public void customisableProduct() {
+    public void shouldAddCustomizableProduct() {
 
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
@@ -24,7 +37,7 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void popularProducts() {
+    public void shouldAddPopularProductsToCart() {
 
         order = new OrderModel();
 
@@ -36,7 +49,7 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void addRandomProductsToCart() {
+    public void shouldAddRandomProductsToCart() {
 
         order = new OrderModel();
 
@@ -50,7 +63,7 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void addSpecificProduct() {
+    public void shouldAddSpecificProductToCart() {
 
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
@@ -63,7 +76,7 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void productDeletionInCart() {
+    public void shouldDeleteProductFromCart() {
 
         order = new OrderModel();
 
@@ -79,7 +92,7 @@ public class Products extends BaseTest {
     }
 
     @Test
-    public void searchForProduct() {
+    public void shouldFindSearchedProduct() {
 
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()

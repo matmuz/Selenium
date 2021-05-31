@@ -6,6 +6,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 
+/**
+ * Concrete class that is responsible for managing ChromeDriver's cycle of life
+ */
+
 public class ChromeDriverManager extends DriverManager {
 
     private ChromeDriverService chromeDriverService;

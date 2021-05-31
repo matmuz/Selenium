@@ -10,12 +10,20 @@ import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
 
+/**
+ * A collection of tests that check basic cart functionalities
+ */
+
 public class Order extends BaseTest {
+
+    /**
+     * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
+     */
 
     private OrderModel order;
 
     @Test
-    public void orderPrice() {
+    public void shouldCheckOrderPrice() {
 
         order = new OrderModel();
 
@@ -31,7 +39,7 @@ public class Order extends BaseTest {
     }
 
     @Test
-    public void orderItemsQuantity() {
+    public void shouldCheckItemsQuantity() {
 
         order = new OrderModel();
 
@@ -60,7 +68,7 @@ public class Order extends BaseTest {
     }
 
     @Test
-    public void orderItemsQuantityNegativeCase() {
+    public void shouldCheckNotEqualItemsQuantity() {
 
         order = new OrderModel();
 
@@ -77,7 +85,7 @@ public class Order extends BaseTest {
     }
 
     @Test
-    public void placeOrderAsGuest() {
+    public void shouldPlaceOrderAsGuest() {
 
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
@@ -91,7 +99,7 @@ public class Order extends BaseTest {
     }
 
     @Test
-    public void placeOrderAsLoggedUser() {
+    public void shouldPlaceOrderAsLoggedUser() {
 
         assertEquals(prestaShop.openPrestaShop()
                                          .getTopMenuPage()
@@ -108,7 +116,7 @@ public class Order extends BaseTest {
     }
 
     @Test
-    public void orderHistory() {
+    public void shouldStoreOrderNumber() {
 
         order = new OrderModel();
 

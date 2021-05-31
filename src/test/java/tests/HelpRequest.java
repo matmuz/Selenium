@@ -9,13 +9,22 @@ import static pages.help.ContactUsPage.ALERT_MESSAGE;
 import static pages.help.ContactUsPage.HELP_RESPONSE_MESSAGE;
 import static tests.TestMethods.assertEquals;
 
+/**
+ * A collection of tests that check sending help requests functionality
+ */
+
 public class HelpRequest extends BaseTest {
+
+    /**
+     * Test constants (data) that are used in tests
+     */
 
     private static final String TEST_HELP_SUBJECT = "Biuro Obsługi Klienta";
     private static final String TEST_HELP_MESSAGE = "Test message 123";
 
     @Test
-    public void sendContactMessageAsGuest() {
+    public void shouldSendContactMessageAsGuest() {
+
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
                              .goToContactUsPage()
@@ -24,7 +33,7 @@ public class HelpRequest extends BaseTest {
     }
 
     @Test
-    public void sendContactMessageAsLoggedUser() {
+    public void shouldSendContactMessageAsLoggedUser() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
@@ -37,7 +46,7 @@ public class HelpRequest extends BaseTest {
     }
 
     @Test
-    public void sendContactMessageNegativeCase() {
+    public void shouldNotSendContactMessageAsGuest() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()

@@ -13,6 +13,10 @@ import pages.menu.TopMenuPage;
 
 import java.util.List;
 
+/**
+ * Cart page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
+
 public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {

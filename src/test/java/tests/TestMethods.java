@@ -3,6 +3,10 @@ package tests;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
+/**
+ * A collection of methods that add @Step to Allure report when performing an assertion at the end of a test
+ */
+
 public final class TestMethods {
 
     private TestMethods() {

@@ -10,6 +10,10 @@ import pages.products.HomePage;
 
 import java.util.List;
 
+/**
+ * Sign in page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ */
+
 public class SignInPage extends BasePage {
 
     public static final String RESET_RESPONSE = "Jeżeli ten adres e-mail został zarejestrowany w naszym sklepie otrzymasz link do zresetowania hasła na ";

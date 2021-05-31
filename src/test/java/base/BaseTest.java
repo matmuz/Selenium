@@ -4,7 +4,6 @@ import data.GuestUser;
 import data.TestUser;
 import driver.DriverManager;
 import driver.DriverManagerFactory;
-import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +15,18 @@ import org.testng.annotations.Parameters;
 import pages.application.PrestaShop;
 
 import java.io.ByteArrayInputStream;
+
+import static io.qameta.allure.Allure.addAttachment;
+
+/**
+ * BaseTest class that responsible for test preparation:
+ * - gets test users
+ * - sets up driver
+ * - launches driver at designated environment
+ * - instantiates HomePage
+ * - adds screenshot on fail
+ * - quits the driver
+ */
 
 public class BaseTest {
 
@@ -43,7 +54,7 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (!result.isSuccess()) {
-            Allure.addAttachment("Test failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            addAttachment("Test failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
         driverManager.quitDriver();
     }

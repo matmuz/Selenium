@@ -9,10 +9,14 @@ import static pages.menu.TopMenuPage.LOGIN_TEXT;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
 
+/**
+ * A collection of tests that check basic account functionalities
+ */
+
 public class Account extends BaseTest {
 
     @Test
-    public void logInNegativeCase() {
+    public void shouldNotLogIn() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
@@ -23,7 +27,7 @@ public class Account extends BaseTest {
     }
 
     @Test
-    public void createAccount() {
+    public void shouldCreateAnAccount() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
@@ -34,7 +38,7 @@ public class Account extends BaseTest {
     }
 
     @Test
-    public void createAccountNegativeCase() {
+    public void shouldNotCreateAnAccount() {
 
         assertNotEquals(prestaShop.openPrestaShop()
                                 .getTopMenuPage()
@@ -45,7 +49,7 @@ public class Account extends BaseTest {
     }
 
     @Test
-    public void logIn() {
+    public void shouldLogIn() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
@@ -56,7 +60,7 @@ public class Account extends BaseTest {
     }
 
     @Test
-    public void logOut() {
+    public void shouldLogOut() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
@@ -69,7 +73,7 @@ public class Account extends BaseTest {
     }
 
     @Test
-    public void resetPassword() {
+    public void shouldSendResetPasswordLink() {
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
