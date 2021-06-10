@@ -19,7 +19,7 @@ public class HelpRequest extends BaseTest {
      * Test constants (data) that are used in tests
      */
 
-    private static final String TEST_HELP_SUBJECT = "Biuro Obsługi Klienta";
+    private static final String TEST_HELP_SUBJECT = "Customer service";
     private static final String TEST_HELP_MESSAGE = "Test message 123";
 
     @Test

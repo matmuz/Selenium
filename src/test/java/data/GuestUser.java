@@ -10,6 +10,7 @@ public class GuestUser extends User {
     private final String address;
     private final String city;
     private final String postalCode;
+    public final String country;
 
     private GuestUser(){
         super();
@@ -18,6 +19,7 @@ public class GuestUser extends User {
         city = faker.address()
                 .city();
         postalCode = "" + (random.nextInt(89999) + 10000);
+        country = "Poland";
     }
 
     public static GuestUser getUser() {
@@ -36,5 +38,9 @@ public class GuestUser extends User {
         StringBuilder stringBuilder = new StringBuilder(postalCode);
         stringBuilder.insert(2, "-");
         return stringBuilder.toString();
+    }
+
+    public String getCountry() {
+        return country;
     }
 }

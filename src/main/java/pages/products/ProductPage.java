@@ -62,33 +62,41 @@ public class ProductPage extends BasePage {
 
     public double getProductPrice() {
         String price = priceBox.getText()
-                .replace(",", ".");
-        String[] split = (price.split(" "));
-        return Double.parseDouble(split[0]);
+                .replace(",", ".")
+                .replace("zł", "");
+        return Double.parseDouble(price);
     }
 
     @Step("Add product to cart")
     public ProductPage addProductToCart(OrderModel order) {
+        Waiter.wait(driver)
+                .until(ExpectedConditions.elementToBeClickable(productNameBox));
         if (getProductName().contains(CUSTOMIZABLE_PRODUCT_TEXT)) {
             setPersonalisedText();
         }
-        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        Waiter.wait(driver)
+                .until(ExpectedConditions.elementToBeClickable(addToCartButton));
         ProductModel productToAdd = new ProductModel(getProductName(), getProductPrice(), getQuantity());
         order.addProductToList(productToAdd);
         addToCartButton.click();
-        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        Waiter.wait(driver)
+                .until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }
 
     @Step("Add product to cart")
     public ProductPage addProductToCart() {
+        Waiter.wait(driver)
+                .until(ExpectedConditions.elementToBeClickable(productNameBox));
         if (getProductName().contains(CUSTOMIZABLE_PRODUCT_TEXT)) {
             setPersonalisedText();
         }
-        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        Waiter.wait(driver)
+                .until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
-        Waiter.wait(driver).until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        Waiter.wait(driver)
+                .until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         return this;
     }

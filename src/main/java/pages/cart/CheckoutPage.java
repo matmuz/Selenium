@@ -1,5 +1,6 @@
 package pages.cart;
 
+import org.openqa.selenium.support.ui.Select;
 import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
@@ -18,7 +19,7 @@ import java.util.Random;
 public class CheckoutPage extends BasePage {
 
     public static final String CHECK_MARK = "";
-    public static final String CONFIRMATION_MESSAGE = CHECK_MARK + "TWOJE ZAMÓWIENIE ZOSTAŁO POTWIERDZONE";
+    public static final String CONFIRMATION_MESSAGE = CHECK_MARK + "YOUR ORDER IS CONFIRMED";
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -82,7 +83,7 @@ public class CheckoutPage extends BasePage {
     private WebElement orderReferenceNumberBox;
 
     @Step("Place order")
-    public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String postalCode) {
+    public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String postalCode, String country) {
         Random random = new Random();
         firstNameBox.sendKeys(firstName);
         lastNameBox.sendKeys(lastName);
@@ -93,6 +94,8 @@ public class CheckoutPage extends BasePage {
         addressBox.sendKeys(address);
         cityBox.sendKeys(city);
         postalCodeBox.sendKeys(postalCode);
+        Select select = new Select(countryDropdown);
+        select.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
         paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
@@ -134,9 +137,9 @@ public class CheckoutPage extends BasePage {
     }
 
     public CheckoutPage getOrderReference(OrderModel order) {
-        String[] split = (orderReferenceNumberBox.getText()).split("Numer zamówienia:");
+        String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
         String orderNumber = split[1].trim();
-        String[] secondSplit = orderNumber.split("Metoda płatności");
+        String[] secondSplit = orderNumber.split("Payment method:");
         String secondOrderNumber = secondSplit[0].trim();
         order.setOrderReferenceNumber(secondOrderNumber);
         return new CheckoutPage(driver);

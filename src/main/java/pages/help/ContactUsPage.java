@@ -14,8 +14,8 @@ import pages.menu.TopMenuPage;
 
 public class ContactUsPage extends BasePage {
 
-    public static final String HELP_RESPONSE_MESSAGE = "Twoja wiadomość została pomyślnie wysłana do obsługi.";
-    public static final String ALERT_MESSAGE = "Nieprawidłowy adres e-mail";
+    public static final String HELP_RESPONSE_MESSAGE = "Your message has been successfully sent to our team.";
+    public static final String ALERT_MESSAGE = "Invalid email address.";
 
     public ContactUsPage(WebDriver driver) {
         super(driver);
@@ -24,7 +24,7 @@ public class ContactUsPage extends BasePage {
     @FindBy(css = "select[name='id_contact']")
     private WebElement subjectDropdown;
 
-    @FindBy(css = "input[placeholder='twój@email.com']")
+    @FindBy(css = "input[placeholder='your@email.com']")
     private WebElement emailAddressBox;
 
     @FindBy(css = "textarea[name='message']")

@@ -21,10 +21,7 @@ import java.util.Random;
 
 public class TopMenuPage extends BasePage {
 
-    public static final String LOGIN_TEXT = "Zaloguj się";
-    private static final String CLOTHES_SECTION_TEXT = "Clothes";
-    private static final String ACCESSORIES_SECTION_TEXT = "Produkty powiązane";
-    private static final String ART_SECTION_TEXT = "Art";
+    public static final String LOGIN_TEXT = "Sign in";
 
     public TopMenuPage(WebDriver driver) {
         super(driver);
@@ -48,7 +45,7 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".cart-products-count")
     private WebElement cartProductsCount;
 
-    @FindBy(css = "a[class='dropdown-item']")
+    @FindBy(css = "ul[id='top-menu'] a[class='dropdown-item']")
     private List<WebElement> categories;
 
     @FindBy(css = ".account")
@@ -79,31 +76,19 @@ public class TopMenuPage extends BasePage {
 
     @Step("Go to clothes section")
     public ProductsPage goToClothesSection() {
-        for (WebElement category: categories){
-            if (category.getText().contains(CLOTHES_SECTION_TEXT)){
-                category.click();
-            }
-        }
+        categories.get(0).click();
         return new ProductsPage(driver);
     }
 
     @Step("Go to accessories section")
     public ProductsPage goToAccessoriesSection() {
-        for (WebElement category: categories){
-            if (category.getText().contains(ACCESSORIES_SECTION_TEXT)){
-                category.click();
-            }
-        }
+        categories.get(1).click();
         return new ProductsPage(driver);
     }
 
     @Step("Go to art section")
     public ProductsPage goToArtSection() {
-        for (WebElement category: categories){
-            if (category.getText().contains(ART_SECTION_TEXT)){
-                category.click();
-            }
-        }
+        categories.get(3).click();
         return new ProductsPage(driver);
     }
 

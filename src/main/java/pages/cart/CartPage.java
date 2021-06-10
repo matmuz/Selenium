@@ -49,34 +49,35 @@ public class CartPage extends BasePage {
 
     public Double getShippingCost() {
         String price = shippingCostBox.getText()
-                .replace(",", ".");
-        String[] split = (price
-                .split(" "));
-        return Double.parseDouble(split[0]);
+                .replace(",", ".")
+                .replace("zł", "");
+        return Double.parseDouble(price);
     }
 
     public double getTotalPrice() {
         String price = totalPriceBox.getText()
-                .replace(",", ".");
-        String[] split = (price
-                .split(" "));
-        return Double.parseDouble(split[0]);
+                .replace(",", ".")
+                .replace("zł", "");
+        return Double.parseDouble(price);
     }
 
     public double getItemsPrice() {
         String price = itemsPriceBox.getText()
-                .replace(",", ".");
-        String[] split = (price.split(" "));
-        return Double.parseDouble(split[0]);
+                .replace(",", ".")
+                .replace("zł", "");
+        return Double.parseDouble(price);
     }
 
     @Step("Delete item from cart")
     public CartPage deleteItemFromCart(String name) {
         for (WebElement cartItem : cartItems) {
             if (cartItem.getText()
+                    .toUpperCase()
                     .contains(name.toUpperCase())) {
                 cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
                         .click();
+                Waiter.wait(driver)
+                        .until(ExpectedConditions.invisibilityOf(cartItem));
             }
         }
         return this;
