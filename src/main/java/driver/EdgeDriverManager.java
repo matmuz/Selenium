@@ -18,7 +18,7 @@ public class EdgeDriverManager extends DriverManager {
         if (null == edgeDriverService) {
             try {
                 edgeDriverService = new EdgeDriverService.Builder()
-                        .usingDriverExecutable(new File("src\\main\\resources\\drivers\\msedgedriver.exe"))
+                        .usingDriverExecutable(new File("src/main/resources/drivers/msedgedriver.exe"))
                         .usingAnyFreePort()
                         .build();
                 edgeDriverService.start();
