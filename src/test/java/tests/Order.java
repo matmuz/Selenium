@@ -1,11 +1,15 @@
 package tests;
 
 import base.BaseTest;
+import issues.Defect;
 import models.OrderModel;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
+import static issues.Defect.DEFECT_MESSAGE;
+import static issues.Defect.Defects.DEFECT_2;
 import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
@@ -24,6 +28,10 @@ public class Order extends BaseTest {
 
     @Test
     public void shouldCheckOrderPrice() {
+
+        if (Defect.isOpen(DEFECT_2)) {
+            throw new SkipException(DEFECT_MESSAGE);
+        }
 
         order = new OrderModel();
 

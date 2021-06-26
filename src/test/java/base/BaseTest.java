@@ -19,7 +19,7 @@ import java.io.ByteArrayInputStream;
 import static io.qameta.allure.Allure.addAttachment;
 
 /**
- * BaseTest class that responsible for test preparation:
+ * BaseTest class that is responsible for test preparation:
  * - gets test users
  * - sets up driver
  * - launches driver at designated environment
@@ -53,8 +53,8 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (!result.isSuccess()) {
-            addAttachment("Test failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+        if (!result.isSuccess() && result.getStatus() != 3) {
+            addAttachment("Screenshot on failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
         driverManager.quitDriver();
     }

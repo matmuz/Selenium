@@ -1,9 +1,13 @@
 package tests;
 
 import base.BaseTest;
+import issues.Defect;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
+import static issues.Defect.DEFECT_MESSAGE;
+import static issues.Defect.Defects.DEFECT_1;
 import static pages.account.SignInPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
 import static tests.TestMethods.assertEquals;
@@ -74,6 +78,10 @@ public class Account extends BaseTest {
 
     @Test
     public void shouldSendResetPasswordLink() {
+
+        if (Defect.isOpen(DEFECT_1)) {
+            throw new SkipException(DEFECT_MESSAGE);
+        }
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()

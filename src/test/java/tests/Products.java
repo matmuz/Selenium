@@ -1,9 +1,13 @@
 package tests;
 
 import base.BaseTest;
+import issues.Defect;
 import models.OrderModel;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
+import static issues.Defect.DEFECT_MESSAGE;
+import static issues.Defect.Defects.DEFECT_3;
 import static tests.TestMethods.assertEquals;
 
 /**
@@ -27,6 +31,10 @@ public class Products extends BaseTest {
 
     @Test
     public void shouldAddCustomizableProduct() {
+
+        if (Defect.isOpen(DEFECT_3)) {
+            throw new SkipException(DEFECT_MESSAGE);
+        }
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
@@ -78,6 +86,10 @@ public class Products extends BaseTest {
     @Test
     public void shouldDeleteProductFromCart() {
 
+        if (Defect.isOpen(DEFECT_3)) {
+            throw new SkipException(DEFECT_MESSAGE);
+        }
+
         order = new OrderModel();
 
         assertEquals(prestaShop.openPrestaShop()
@@ -93,6 +105,10 @@ public class Products extends BaseTest {
 
     @Test
     public void shouldFindSearchedProduct() {
+
+        if (Defect.isOpen(DEFECT_3)) {
+            throw new SkipException(DEFECT_MESSAGE);
+        }
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
