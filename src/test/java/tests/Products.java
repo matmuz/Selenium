@@ -30,11 +30,9 @@ public class Products extends BaseTest implements ITestSkipper {
     @Test
     public void shouldAddCustomizableProduct() {
 
-        skipTestIfDefectIsOpen(DEFECT_3);
-
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
-                             .searchByText(CUSTOMIZABLE_PRODUCT_NAME)
+                             .goToAccessoriesSection()
                              .goToProduct(CUSTOMIZABLE_PRODUCT_NAME)
                              .addProductToCart()
                              .getProductName(), CUSTOMIZABLE_PRODUCT_NAME);
@@ -82,13 +80,11 @@ public class Products extends BaseTest implements ITestSkipper {
     @Test
     public void shouldDeleteProductFromCart() {
 
-        skipTestIfDefectIsOpen(DEFECT_3);
-
         order = new OrderModel();
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()
-                             .searchByText(TEST_PRODUCT_NAME)
+                             .goToClothesSection()
                              .goToProduct(TEST_PRODUCT_NAME)
                              .addProductToCart(order)
                              .getTopMenuPage()
