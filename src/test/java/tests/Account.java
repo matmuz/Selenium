@@ -1,13 +1,11 @@
 package tests;
 
 import base.BaseTest;
-import issues.Defect;
-import org.testng.SkipException;
+import issues.ITestSkipper;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
-import static issues.Defect.DEFECT_MESSAGE;
-import static issues.Defect.Defects.DEFECT_1;
+import static issues.Defects.DEFECT_1;
 import static pages.account.SignInPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
 import static tests.TestMethods.assertEquals;
@@ -17,7 +15,7 @@ import static tests.TestMethods.assertNotEquals;
  * A collection of tests that check basic account functionalities
  */
 
-public class Account extends BaseTest {
+public class Account extends BaseTest implements ITestSkipper {
 
     @Test
     public void shouldNotLogIn() {
@@ -79,9 +77,7 @@ public class Account extends BaseTest {
     @Test
     public void shouldSendResetPasswordLink() {
 
-        if (Defect.isOpen(DEFECT_1)) {
-            throw new SkipException(DEFECT_MESSAGE);
-        }
+        skipTestIfDefectIsOpen(DEFECT_1);
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()

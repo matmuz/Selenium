@@ -1,15 +1,13 @@
 package tests;
 
 import base.BaseTest;
-import issues.Defect;
+import issues.ITestSkipper;
 import models.OrderModel;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
-import static issues.Defect.DEFECT_MESSAGE;
-import static issues.Defect.Defects.DEFECT_2;
+import static issues.Defects.DEFECT_2;
 import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static tests.TestMethods.assertEquals;
 import static tests.TestMethods.assertNotEquals;
@@ -18,7 +16,7 @@ import static tests.TestMethods.assertNotEquals;
  * A collection of tests that check basic cart functionalities
  */
 
-public class Order extends BaseTest {
+public class Order extends BaseTest implements ITestSkipper {
 
     /**
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
@@ -29,9 +27,7 @@ public class Order extends BaseTest {
     @Test
     public void shouldCheckOrderPrice() {
 
-        if (Defect.isOpen(DEFECT_2)) {
-            throw new SkipException(DEFECT_MESSAGE);
-        }
+        skipTestIfDefectIsOpen(DEFECT_2);
 
         order = new OrderModel();
 
