@@ -2,7 +2,7 @@ package issues;
 
 import org.testng.SkipException;
 
-import static issues.DefectChecker.DEFECT_MESSAGE;
+import static issues.Constants.DEFECT_MESSAGE;
 
 /**
  * Interface that provides default implementation of the method that skips test if the related defect is open.
