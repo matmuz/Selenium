@@ -1,12 +1,12 @@
 package tests;
 
 import base.BaseTest;
-import issues.ITestSkipper;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
+import static issues.DefectHandler.skipTestIfDefectIsOpen;
 import static issues.Defects.DEFECT_2;
 import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static tests.TestMethods.assertEquals;
@@ -16,7 +16,7 @@ import static tests.TestMethods.assertNotEquals;
  * A collection of tests that check basic cart functionalities
  */
 
-public class Order extends BaseTest implements ITestSkipper {
+public class Order extends BaseTest {
 
     /**
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing

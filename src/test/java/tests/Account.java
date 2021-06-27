@@ -1,10 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import issues.ITestSkipper;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
+import static issues.DefectHandler.skipTestIfDefectIsOpen;
 import static issues.Defects.DEFECT_1;
 import static pages.account.SignInPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
@@ -15,7 +15,7 @@ import static tests.TestMethods.assertNotEquals;
  * A collection of tests that check basic account functionalities
  */
 
-public class Account extends BaseTest implements ITestSkipper {
+public class Account extends BaseTest {
 
     @Test
     public void shouldNotLogIn() {

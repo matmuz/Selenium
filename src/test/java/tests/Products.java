@@ -1,10 +1,10 @@
 package tests;
 
 import base.BaseTest;
-import issues.ITestSkipper;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
+import static issues.DefectHandler.skipTestIfDefectIsOpen;
 import static issues.Defects.DEFECT_3;
 import static tests.TestMethods.assertEquals;
 
@@ -12,7 +12,7 @@ import static tests.TestMethods.assertEquals;
  * A collection of tests that check basic product/s functionalities
  */
 
-public class Products extends BaseTest implements ITestSkipper {
+public class Products extends BaseTest {
 
     /**
      * Test constants (data) that are used in tests
