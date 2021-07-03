@@ -3,7 +3,6 @@ package issues;
 /**
  * Class responsible for providing constants regarding defects.
  */
-
 public class Constants {
 
     public static final String BASE_URI_ISSUES = "https://api.github.com/repos/matmuz/Automation/issues";

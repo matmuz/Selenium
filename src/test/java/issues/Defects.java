@@ -7,10 +7,10 @@ package issues;
 
 public enum Defects {
 
-    DEFECT_1(21),
-    DEFECT_2(22),
-    DEFECT_3(23),
-    DEFECT_4(24);
+    DEFECT21(21),
+    DEFECT22(22),
+    DEFECT23(23),
+    DEFECT24(24);
 
     private final int defectId;
 

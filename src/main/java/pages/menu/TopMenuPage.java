@@ -18,7 +18,6 @@ import java.util.Random;
 /**
  * Top menu page class responsible for getting needed selectors form the top menu and providing methods for moving between the elements
  */
-
 public class TopMenuPage extends BasePage {
 
     public static final String LOGIN_TEXT = "Sign in";

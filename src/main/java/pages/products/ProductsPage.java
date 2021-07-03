@@ -14,7 +14,6 @@ import java.util.Random;
 /**
  * A group of products page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-
 public class ProductsPage extends BasePage {
 
     public ProductsPage(WebDriver driver) {

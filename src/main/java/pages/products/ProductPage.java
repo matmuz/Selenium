@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * A particular product page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-
 public class ProductPage extends BasePage {
 
     private static final String PERSONALIZATION_TEXT = "Test Personalisation 123";

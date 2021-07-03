@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
 import static issues.DefectHandler.skipTestIfDefectIsOpen;
-import static issues.Defects.DEFECT_1;
+import static issues.Defects.DEFECT21;
 import static pages.account.SignInPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
 import static tests.TestMethods.assertEquals;
@@ -14,7 +14,6 @@ import static tests.TestMethods.assertNotEquals;
 /**
  * A collection of tests that check basic account functionalities
  */
-
 public class Account extends BaseTest {
 
     @Test
@@ -77,7 +76,7 @@ public class Account extends BaseTest {
     @Test
     public void shouldSendResetPasswordLink() {
 
-        skipTestIfDefectIsOpen(DEFECT_1);
+        skipTestIfDefectIsOpen(DEFECT21);
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()

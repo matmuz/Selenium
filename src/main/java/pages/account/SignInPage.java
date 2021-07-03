@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Sign in page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-
 public class SignInPage extends BasePage {
 
     public static final String RESET_RESPONSE = "If this email address has been registered in our shop, you will receive a link to reset your password at ";

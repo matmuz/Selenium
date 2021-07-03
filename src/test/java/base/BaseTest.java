@@ -27,7 +27,6 @@ import static io.qameta.allure.Allure.addAttachment;
  * - adds screenshot on fail
  * - quits the driver
  */
-
 public class BaseTest {
 
     private DriverManager driverManager;

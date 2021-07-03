@@ -8,7 +8,6 @@ import java.io.File;
 /**
  * Concrete class that is responsible for managing EdgeDriver's cycle of life
  */
-
 public class EdgeDriverManager extends DriverManager {
 
     private EdgeDriverService edgeDriverService;

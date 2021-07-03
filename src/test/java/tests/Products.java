@@ -5,26 +5,19 @@ import models.OrderModel;
 import org.testng.annotations.Test;
 
 import static issues.DefectHandler.skipTestIfDefectIsOpen;
-import static issues.Defects.DEFECT_3;
+import static issues.Defects.DEFECT23;
+import static tests.TestData.CUSTOMIZABLE_PRODUCT_NAME;
+import static tests.TestData.TEST_PRODUCT_NAME;
 import static tests.TestMethods.assertEquals;
 
 /**
  * A collection of tests that check basic product/s functionalities
  */
-
 public class Products extends BaseTest {
-
-    /**
-     * Test constants (data) that are used in tests
-     */
-
-    private static final String TEST_PRODUCT_NAME = "HUMMINGBIRD T-SHIRT";
-    private static final String CUSTOMIZABLE_PRODUCT_NAME = "CUSTOMIZABLE MUG";
 
     /**
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
      */
-
     private OrderModel order;
 
     @Test
@@ -96,7 +89,7 @@ public class Products extends BaseTest {
     @Test
     public void shouldFindSearchedProduct() {
 
-        skipTestIfDefectIsOpen(DEFECT_3);
+        skipTestIfDefectIsOpen(DEFECT23);
 
         assertEquals(prestaShop.openPrestaShop()
                              .getTopMenuPage()

@@ -3,7 +3,6 @@ package data;
 /**
  * Class responsible for guest user creation
  */
-
 public class GuestUser extends User {
 
     private static final GuestUser guestUser = new GuestUser();

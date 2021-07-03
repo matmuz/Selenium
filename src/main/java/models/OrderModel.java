@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * Class responsible for providing a model of an order (in PrestaShop) that gathers all the added to cart products info and stores order number (if an order is placed)
  */
-
 public class OrderModel {
 
     private final List<ProductModel> productsInOrder;

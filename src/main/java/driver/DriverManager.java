@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 /**
  * Abstract class responsible for providing the core for subclasses (particular drivers) and managing a driver
  */
-
 public abstract class DriverManager {
 
     protected WebDriver driver;

@@ -9,7 +9,6 @@ import static issues.Constants.DEFECT_MESSAGE;
 /**
  * Class responsible for defect handling.
  */
-
 public class DefectHandler {
 
     private static boolean isOpen(Defects defect) {
