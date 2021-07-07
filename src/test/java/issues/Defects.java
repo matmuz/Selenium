@@ -4,7 +4,6 @@ package issues;
  * A collection of defects in PrestaShop that are reported on GitHub.
  * The defects were found after running this project's tests and analyzing the results from a generated report.
  */
-
 public enum Defects {
 
     DEFECT21(21),
