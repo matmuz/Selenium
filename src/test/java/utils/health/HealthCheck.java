@@ -15,7 +15,7 @@ public final class HealthCheck {
 
     private final static Logger logger = Logger.getRootLogger();
 
-    private HealthCheck(){
+    private HealthCheck() {
         BasicConfigurator.configure();
         logger.setLevel(Level.INFO);
     }
@@ -27,7 +27,7 @@ public final class HealthCheck {
         int statusCode = checkAppsAvailability(environment);
         logger.info("Health check ended with status code: " + statusCode);
         if (statusCode != 200) {
-            logger.info("Health check failed with status code:" + statusCode + " Tests will not run.");
+            logger.info("Health check failed with status code: " + statusCode + " Tests will not run.");
             System.exit(0);
         }
     }
