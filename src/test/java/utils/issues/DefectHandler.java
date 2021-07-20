@@ -1,15 +1,15 @@
-package issues;
+package utils.issues;
 
 import org.testng.SkipException;
 
 import static io.restassured.RestAssured.get;
-import static issues.Constants.BASE_URI_ISSUES;
-import static issues.Constants.DEFECT_MESSAGE;
+import static utils.issues.Constants.BASE_URI_ISSUES;
+import static utils.issues.Constants.DEFECT_MESSAGE;
 
 /**
  * Class responsible for defect handling.
  */
-public class DefectHandler {
+public final class DefectHandler {
 
     private static boolean isOpen(Defects defect) {
         return get(BASE_URI_ISSUES + "/" + defect.getDefectId()).then()

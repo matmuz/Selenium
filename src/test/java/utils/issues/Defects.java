@@ -1,4 +1,4 @@
-package issues;
+package utils.issues;
 
 /**
  * A collection of defects in PrestaShop that are reported on GitHub.

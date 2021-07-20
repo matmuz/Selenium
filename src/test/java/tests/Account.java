@@ -4,17 +4,17 @@ import base.BaseTest;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
-import static issues.DefectHandler.skipTestIfDefectIsOpen;
-import static issues.Defects.DEFECT21;
+import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
+import static utils.issues.Defects.DEFECT21;
 import static pages.account.SignInPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
-import static tests.TestMethods.assertEquals;
-import static tests.TestMethods.assertNotEquals;
+import static utils.methods.TestMethods.assertEquals;
+import static utils.methods.TestMethods.assertNotEquals;
 
 /**
  * A collection of tests that check basic account functionalities
  */
-public class Account extends BaseTest {
+public final class Account extends BaseTest {
 
     @Test
     public void shouldNotLogIn() {

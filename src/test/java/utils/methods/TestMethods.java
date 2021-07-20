@@ -1,4 +1,4 @@
-package tests;
+package utils.methods;
 
 import io.qameta.allure.Step;
 import org.testng.Assert;

@@ -15,7 +15,7 @@ import java.util.Random;
 /**
  * Checkout page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-public class CheckoutPage extends BasePage {
+public final class CheckoutPage extends BasePage {
 
     public static final String CHECK_MARK = "";
     public static final String CONFIRMATION_MESSAGE = CHECK_MARK + "YOUR ORDER IS CONFIRMED";

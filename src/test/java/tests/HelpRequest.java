@@ -7,14 +7,14 @@ import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
 import static pages.help.ContactUsPage.ALERT_MESSAGE;
 import static pages.help.ContactUsPage.HELP_RESPONSE_MESSAGE;
-import static tests.TestData.TEST_HELP_MESSAGE;
-import static tests.TestData.TEST_HELP_SUBJECT;
-import static tests.TestMethods.assertEquals;
+import static utils.data.TestData.TEST_HELP_MESSAGE;
+import static utils.data.TestData.TEST_HELP_SUBJECT;
+import static utils.methods.TestMethods.assertEquals;
 
 /**
  * A collection of tests that check sending help requests functionality
  */
-public class HelpRequest extends BaseTest {
+public final class HelpRequest extends BaseTest {
 
     @Test
     public void shouldSendContactMessageAsGuest() {

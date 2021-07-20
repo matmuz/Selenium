@@ -3,15 +3,15 @@ package data;
 /**
  * Class responsible for guest user creation
  */
-public class GuestUser extends User {
+public final class GuestUser extends User {
 
-    private static final GuestUser guestUser = new GuestUser();
+    private static GuestUser guestUser;
     private final String address;
     private final String city;
     private final String postalCode;
     public final String country;
 
-    private GuestUser(){
+    private GuestUser() {
         super();
         address = faker.address()
                 .streetName();
@@ -22,6 +22,9 @@ public class GuestUser extends User {
     }
 
     public static GuestUser getUser() {
+        if (guestUser == null) {
+            guestUser = new GuestUser();
+        }
         return guestUser;
     }
 

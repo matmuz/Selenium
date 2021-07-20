@@ -3,7 +3,7 @@ package data;
 /**
  * Existing (already registered) user's data as constants
  */
-public class ExistingUser {
+public final class ExistingUser {
 
     public static final String FIRSTNAME = "Automated";
     public static final  String LASTNAME = "Test";

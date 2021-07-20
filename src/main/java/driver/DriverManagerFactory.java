@@ -3,7 +3,7 @@ package driver;
 /**
  * Driver factory class responsible for getting a particular driver manager
  */
-public class DriverManagerFactory {
+public final class DriverManagerFactory {
 
     private static DriverManager driverManager;
 

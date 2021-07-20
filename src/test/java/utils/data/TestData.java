@@ -1,6 +1,6 @@
-package tests;
+package utils.data;
 
-public class TestData {
+public final class TestData {
 
     /**
      * Test constants (data) that is used in tests

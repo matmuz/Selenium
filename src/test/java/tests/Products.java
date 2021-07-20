@@ -4,16 +4,16 @@ import base.BaseTest;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
-import static issues.DefectHandler.skipTestIfDefectIsOpen;
-import static issues.Defects.DEFECT23;
-import static tests.TestData.CUSTOMIZABLE_PRODUCT_NAME;
-import static tests.TestData.TEST_PRODUCT_NAME;
-import static tests.TestMethods.assertEquals;
+import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
+import static utils.issues.Defects.DEFECT23;
+import static utils.data.TestData.CUSTOMIZABLE_PRODUCT_NAME;
+import static utils.data.TestData.TEST_PRODUCT_NAME;
+import static utils.methods.TestMethods.assertEquals;
 
 /**
  * A collection of tests that check basic product/s functionalities
  */
-public class Products extends BaseTest {
+public final class Products extends BaseTest {
 
     /**
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
