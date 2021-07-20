@@ -9,6 +9,7 @@ import pages.menu.TopMenuPage;
 import pages.products.HomePage;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Sign in page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -106,15 +107,12 @@ public final class SignInPage extends BasePage {
 
     @Step("Find order number")
     public String findOrderNumber(String orderNumber) {
-        for (WebElement webElement : orderReferenceNumbersList) {
-            if (webElement
-                    .getText()
-                    .equals(orderNumber)) {
-                return webElement
-                        .getText();
-            }
-        }
-        return "null";
+        return orderReferenceNumbersList.stream()
+                .filter(WebElement -> WebElement.getText()
+                        .equals(orderNumber))
+                .collect(Collectors.toList())
+                .get(0)
+                .getText();
     }
 
     @Step("Go to order history")

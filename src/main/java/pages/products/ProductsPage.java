@@ -1,15 +1,16 @@
 package pages.products;
 
-import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * A group of products page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -33,14 +34,13 @@ public final class ProductsPage extends BasePage {
 
     @Step("Go to product")
     public ProductPage goToProduct(String productName) {
-        for (WebElement allProduct : allProducts) {
-            if (allProduct.getText()
-                    .toUpperCase()
-                    .contains(productName.toUpperCase())) {
-                allProduct.click();
-                break;
-            }
-        }
+        allProducts.stream()
+                .filter(WebElement -> WebElement.getText()
+                        .toUpperCase()
+                        .contains(productName.toUpperCase()))
+                .collect(Collectors.toList())
+                .get(0)
+                .click();
         return new ProductPage(driver);
     }
 

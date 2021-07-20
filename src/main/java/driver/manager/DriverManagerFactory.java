@@ -1,4 +1,4 @@
-package driver;
+package driver.manager;
 
 /**
  * Driver factory class responsible for getting a particular driver manager

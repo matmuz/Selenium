@@ -11,6 +11,9 @@ import static utils.issues.Constants.DEFECT_MESSAGE;
  */
 public final class DefectHandler {
 
+    private DefectHandler() {
+    }
+
     private static boolean isOpen(Defects defect) {
         return get(BASE_URI_ISSUES + "/" + defect.getDefectId()).then()
                 .extract()

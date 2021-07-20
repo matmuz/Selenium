@@ -1,15 +1,16 @@
 package pages.products;
 
-import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Home page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -25,14 +26,13 @@ public final class HomePage extends BasePage {
 
     @Step("Enter popular product")
     public ProductPage enterPopularProduct(String popularProductName) {
-        for (WebElement popularProduct : popularProducts) {
-            if (popularProduct.getText()
-                    .toUpperCase()
-                    .contains(popularProductName.toUpperCase())) {
-                popularProduct.click();
-                break;
-            }
-        }
+        popularProducts.stream()
+                .filter(WebElement -> WebElement.getText()
+                        .toUpperCase()
+                        .contains(popularProductName.toUpperCase()))
+                .collect(Collectors.toList())
+                .get(0)
+                .click();
         return new ProductPage(driver);
     }
 

@@ -2,7 +2,7 @@ package base;
 
 import data.GuestUser;
 import data.TestUser;
-import driver.DriverManager;
+import driver.manager.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ import pages.application.PrestaShop;
 import java.io.ByteArrayInputStream;
 import java.sql.Timestamp;
 
-import static driver.DriverManagerFactory.getManager;
+import static driver.manager.DriverManagerFactory.getManager;
 import static io.qameta.allure.Allure.addAttachment;
 import static java.lang.System.currentTimeMillis;
 

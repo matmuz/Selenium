@@ -1,6 +1,6 @@
 package pages.products;
 
-import driver.Waiter;
+import driver.utils.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
