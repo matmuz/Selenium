@@ -19,15 +19,10 @@ import java.sql.Timestamp;
 import static driver.manager.DriverManagerFactory.getManager;
 import static io.qameta.allure.Allure.addAttachment;
 import static java.lang.System.currentTimeMillis;
+import static org.testng.ITestResult.SKIP;
 
 /**
- * BaseTest class that is responsible for test preparation:
- * gets test users,
- * sets up driver,
- * launches driver at designated environment,
- * instantiates HomePage,
- * adds screenshot on fail,
- * quits the driver
+ * BaseTest class that is responsible for test preparation
  */
 public class BaseTest {
 
@@ -54,8 +49,9 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (!result.isSuccess() && result.getStatus() != 3) {
-            addAttachment("Test failure " + new Timestamp(currentTimeMillis()), new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+        if (!result.isSuccess() && result.getStatus() != SKIP) {
+            addAttachment("Test failure " + new Timestamp(currentTimeMillis()),
+                          new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
         driverManager.quitDriver();
     }
