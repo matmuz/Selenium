@@ -13,21 +13,21 @@ import static io.restassured.RestAssured.get;
  */
 public final class HealthCheck {
 
-    private final static Logger logger = Logger.getRootLogger();
+    private final static Logger LOGGER = Logger.getRootLogger();
 
     private HealthCheck() {
         BasicConfigurator.configure();
-        logger.setLevel(Level.INFO);
+        LOGGER.setLevel(Level.INFO);
     }
 
     @Test
     @Parameters({"environment"})
     public void healthCheck(String environment) {
-        logger.info("Running health check...");
+        LOGGER.info("Running health check...");
         int statusCode = checkAppsAvailability(environment);
-        logger.info("Health check ended with status code: " + statusCode);
+        LOGGER.info("Health check ended with status code: " + statusCode);
         if (statusCode != 200) {
-            logger.info("Health check failed with status code: " + statusCode + " Tests will not run.");
+            LOGGER.info("Health check failed with status code: " + statusCode + " Tests will not run.");
             System.exit(0);
         }
     }
