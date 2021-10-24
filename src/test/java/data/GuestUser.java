@@ -13,10 +13,8 @@ public final class GuestUser extends User {
 
     private GuestUser() {
         super();
-        address = faker.address()
-                .streetName();
-        city = faker.address()
-                .city();
+        address = faker.address().streetName();
+        city = faker.address().city();
         postalCode = "" + (random.nextInt(89999) + 10000);
         country = "Poland";
     }

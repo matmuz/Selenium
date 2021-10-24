@@ -17,13 +17,10 @@ public abstract class User {
     private final String password;
 
     protected User() {
-        firstName = faker.name()
-                .firstName();
-        lastName = faker.name()
-                .lastName();
+        firstName = faker.name().firstName();
+        lastName = faker.name().lastName();
         email = firstName + lastName + "@gmail.com";
-        password = faker.phoneNumber()
-                .cellPhone();
+        password = faker.phoneNumber().cellPhone();
     }
 
     public String getFirstName() {

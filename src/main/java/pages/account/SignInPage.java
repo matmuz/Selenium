@@ -108,11 +108,10 @@ public final class SignInPage extends BasePage {
     @Step("Find order number")
     public String findOrderNumber(String orderNumber) {
         return orderReferenceNumbersList.stream()
-                .filter(WebElement -> WebElement.getText()
-                        .equals(orderNumber))
-                .collect(Collectors.toList())
-                .get(0)
-                .getText();
+                                        .filter(WebElement -> WebElement.getText().equals(orderNumber))
+                                        .collect(Collectors.toList())
+                                        .get(0)
+                                        .getText();
     }
 
     @Step("Go to order history")

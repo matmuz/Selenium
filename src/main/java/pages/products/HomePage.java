@@ -27,28 +27,26 @@ public final class HomePage extends BasePage {
     @Step("Enter popular product")
     public ProductPage enterPopularProduct(String popularProductName) {
         popularProducts.stream()
-                .filter(WebElement -> WebElement.getText()
-                        .toUpperCase()
-                        .contains(popularProductName.toUpperCase()))
-                .collect(Collectors.toList())
-                .get(0)
-                .click();
+                       .filter(WebElement -> WebElement.getText()
+                                                       .toUpperCase()
+                                                       .contains(popularProductName.toUpperCase()))
+                       .collect(Collectors.toList())
+                       .get(0)
+                       .click();
         return new ProductPage(driver);
     }
 
     @Step("Enter random popular product")
     public ProductPage enterRandomPopularProduct() {
         Random random = new Random();
-        popularProducts.get(random.nextInt(popularProducts.size()))
-                .click();
+        popularProducts.get(random.nextInt(popularProducts.size())).click();
         return new ProductPage(driver);
     }
 
     @Step("Add random popular product")
     public HomePage addRandomPopularProducts(OrderModel order, int numberOfProducts) {
         for (int i = 0; i < numberOfProducts; i++) {
-            enterRandomPopularProduct().addProductToCart(order)
-                    .goToProductsPage();
+            enterRandomPopularProduct().addProductToCart(order).goToProductsPage();
         }
         return this;
     }

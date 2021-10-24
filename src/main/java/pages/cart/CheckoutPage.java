@@ -82,7 +82,8 @@ public final class CheckoutPage extends BasePage {
     private WebElement orderReferenceNumberBox;
 
     @Step("Place order")
-    public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city, String postalCode, String country) {
+    public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city,
+                                          String postalCode, String country) {
         Random random = new Random();
         firstNameBox.sendKeys(firstName);
         lastNameBox.sendKeys(lastName);
@@ -97,8 +98,7 @@ public final class CheckoutPage extends BasePage {
         select.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
-                .click();
+        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -112,8 +112,7 @@ public final class CheckoutPage extends BasePage {
         postalCodeBox.sendKeys(postalCode);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
-                .click();
+        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -124,8 +123,7 @@ public final class CheckoutPage extends BasePage {
         Random random = new Random();
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size()))
-                .click();
+        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;

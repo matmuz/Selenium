@@ -18,14 +18,14 @@ public final class OrderModel {
 
     public double getOrderItemsPrice() {
         return Math.round(productsInOrder.stream()
-                                  .mapToDouble(ProductModel::getProductPrice)
-                                  .sum() * 100.0) / 100.0;
+                                         .mapToDouble(ProductModel::getProductPrice)
+                                         .sum() * 100.0) / 100.0;
     }
 
     public int getOrderItemsQuantity() {
         return productsInOrder.stream()
-                .mapToInt((ProductModel::getQuantity))
-                .sum();
+                              .mapToInt((ProductModel::getQuantity))
+                              .sum();
     }
 
     public void addProductToList(ProductModel productModel) {
@@ -34,9 +34,8 @@ public final class OrderModel {
 
     public void deleteProductFromList(String productName) {
         productsInOrder = productsInOrder.stream()
-                .filter(productModel -> !productModel.getProductName()
-                        .equals(productName))
-                .collect(Collectors.toList());
+                                         .filter(productModel -> !productModel.getProductName().equals(productName))
+                                         .collect(Collectors.toList());
     }
 
     public void setOrderReferenceNumber(String orderReferenceNumber) {

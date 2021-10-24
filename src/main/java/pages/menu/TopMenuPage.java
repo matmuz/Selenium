@@ -101,8 +101,7 @@ public final class TopMenuPage extends BasePage {
     @Step("Go to random products section")
     public ProductsPage goToRandomProductsSection() {
         Random random = new Random();
-        categories.get(random.nextInt(categories.size()))
-                .click();
+        categories.get(random.nextInt(categories.size())).click();
         return new ProductsPage(driver);
     }
 

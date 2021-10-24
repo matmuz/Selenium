@@ -20,32 +20,32 @@ public final class HelpRequest extends BaseTest {
     public void shouldSendContactMessageAsGuest() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToContactUsPage()
-                             .submitHelpRequest(TEST_HELP_SUBJECT, guestUser.getEmail(), TEST_HELP_MESSAGE)
-                             .getResponseMessage(), HELP_RESPONSE_MESSAGE);
+                               .getTopMenuPage()
+                               .goToContactUsPage()
+                               .submitHelpRequest(TEST_HELP_SUBJECT, guestUser.getEmail(), TEST_HELP_MESSAGE)
+                               .getResponseMessage(), HELP_RESPONSE_MESSAGE);
     }
 
     @Test
     public void shouldSendContactMessageAsLoggedUser() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToSignInSection()
-                             .logIn(EMAIL, PASSWORD)
-                             .getTopMenuPage()
-                             .goToContactUsPage()
-                             .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
-                             .getResponseMessage(), HELP_RESPONSE_MESSAGE);
+                               .getTopMenuPage()
+                               .goToSignInSection()
+                               .logIn(EMAIL, PASSWORD)
+                               .getTopMenuPage()
+                               .goToContactUsPage()
+                               .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
+                               .getResponseMessage(), HELP_RESPONSE_MESSAGE);
     }
 
     @Test
     public void shouldNotSendContactMessageAsGuest() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToContactUsPage()
-                             .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
-                             .getAlertMessage(), ALERT_MESSAGE);
+                               .getTopMenuPage()
+                               .goToContactUsPage()
+                               .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
+                               .getAlertMessage(), ALERT_MESSAGE);
     }
 }

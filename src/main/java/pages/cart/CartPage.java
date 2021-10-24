@@ -42,73 +42,60 @@ public final class CartPage extends BasePage {
     private WebElement itemsPriceBox;
 
     public int getItemsQuantity() {
-        String[] split = (summaryLine.getText()
-                .split(" "));
+        String[] split = (summaryLine.getText().split(" "));
         return Integer.parseInt(split[0]);
     }
 
     public Double getShippingCost() {
-        String price = shippingCostBox.getText()
-                .replace(",", ".")
-                .replace("zł", "");
+        String price = shippingCostBox.getText().replace(",", ".").replace("zł", "");
         return Double.parseDouble(price);
     }
 
     public double getTotalPrice() {
-        String price = totalPriceBox.getText()
-                .replace(",", ".")
-                .replace("zł", "");
+        String price = totalPriceBox.getText().replace(",", ".").replace("zł", "");
         return Double.parseDouble(price);
     }
 
     public double getItemsPrice() {
-        String price = itemsPriceBox.getText()
-                .replace(",", ".")
-                .replace("zł", "");
+        String price = itemsPriceBox.getText().replace(",", ".").replace("zł", "");
         return Double.parseDouble(price);
     }
 
     @Step("Delete item from cart")
     public CartPage deleteItemFromCart(String name) {
         WebElement cartItem = cartItems.stream()
-                .filter(WebElement -> WebElement.getText()
-                        .toUpperCase()
-                        .contains(name.toUpperCase()))
-                .collect(Collectors.toList())
-                .get(0);
-        cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
-                .click();
-        Waiter.wait(driver)
-                .until(ExpectedConditions.invisibilityOf(cartItem));
+                                       .filter(WebElement -> WebElement.getText()
+                                                                       .toUpperCase()
+                                                                       .contains(name.toUpperCase()))
+                                       .collect(Collectors.toList())
+                                       .get(0);
+        cartItem.findElement(By.cssSelector(".material-icons.float-xs-left")).click();
+        Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
     }
 
     @Step("Delete item from cart")
     public CartPage deleteItemFromCart(OrderModel order, String name) {
         WebElement cartItem = cartItems.stream()
-                .filter(WebElement -> WebElement.getText()
-                        .toUpperCase()
-                        .contains(name.toUpperCase()))
-                .collect(Collectors.toList())
-                .get(0);
-        cartItem.findElement(By.cssSelector(".material-icons.float-xs-left"))
-                .click();
+                                       .filter(WebElement -> WebElement.getText()
+                                                                       .toUpperCase()
+                                                                       .contains(name.toUpperCase()))
+                                       .collect(Collectors.toList())
+                                       .get(0);
+        cartItem.findElement(By.cssSelector(".material-icons.float-xs-left")).click();
         order.deleteProductFromList(name);
-        Waiter.wait(driver)
-                .until(ExpectedConditions.invisibilityOf(cartItem));
+        Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
     }
 
     public String getItemDetailsByName(String productName) {
         return cartItems.stream()
-                .filter(WebElement -> WebElement.getText()
-                        .toUpperCase()
-                        .contains(productName.toUpperCase()))
-                .collect(Collectors.toList())
-                .get(0)
-                .findElement(By.cssSelector(".product-line-info"))
-                .getText()
-                .toUpperCase();
+                        .filter(WebElement -> WebElement.getText().toUpperCase().contains(productName.toUpperCase()))
+                        .collect(Collectors.toList())
+                        .get(0)
+                        .findElement(By.cssSelector(".product-line-info"))
+                        .getText()
+                        .toUpperCase();
     }
 
     @Step("Go to checkout")

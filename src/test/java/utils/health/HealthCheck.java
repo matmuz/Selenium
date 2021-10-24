@@ -34,8 +34,8 @@ public final class HealthCheck {
 
     private static int checkAppsAvailability(String environment) {
         return get(environment).then()
-                .extract()
-                .response()
-                .statusCode();
+                               .extract()
+                               .response()
+                               .statusCode();
     }
 }

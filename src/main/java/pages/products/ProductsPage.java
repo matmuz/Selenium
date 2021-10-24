@@ -27,28 +27,24 @@ public final class ProductsPage extends BasePage {
     @Step("Go to random product")
     public ProductPage goToRandomProduct() {
         Random random = new Random();
-        allProducts.get(random.nextInt(allProducts.size()))
-                .click();
+        allProducts.get(random.nextInt(allProducts.size())).click();
         return new ProductPage(driver);
     }
 
     @Step("Go to product")
     public ProductPage goToProduct(String productName) {
         allProducts.stream()
-                .filter(WebElement -> WebElement.getText()
-                        .toUpperCase()
-                        .contains(productName.toUpperCase()))
-                .collect(Collectors.toList())
-                .get(0)
-                .click();
+                   .filter(WebElement -> WebElement.getText().toUpperCase().contains(productName.toUpperCase()))
+                   .collect(Collectors.toList())
+                   .get(0)
+                   .click();
         return new ProductPage(driver);
     }
 
     @Step("Add random products")
     public ProductsPage addRandomProducts(OrderModel order, int numberOfProducts) {
         for (int i = 0; i < numberOfProducts; i++) {
-            goToRandomProduct().addProductToCart(order)
-                    .goToProductsPage();
+            goToRandomProduct().addProductToCart(order).goToProductsPage();
         }
         return this;
     }
@@ -56,8 +52,7 @@ public final class ProductsPage extends BasePage {
     @Step("Add random products")
     public ProductsPage addRandomProducts(int numberOfProducts) {
         for (int i = 0; i < numberOfProducts; i++) {
-            goToRandomProduct().addProductToCart()
-                    .goToProductsPage();
+            goToRandomProduct().addProductToCart().goToProductsPage();
         }
         return this;
     }

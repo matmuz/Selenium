@@ -20,57 +20,58 @@ public final class Account extends BaseTest {
     public void shouldNotLogIn() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToSignInSection()
-                             .logIn(guestUser.getEmail(), guestUser.getPassword())
-                             .getTopMenuPage()
-                             .getLoggedUsername(), LOGIN_TEXT);
+                               .getTopMenuPage()
+                               .goToSignInSection()
+                               .logIn(guestUser.getEmail(), guestUser.getPassword())
+                               .getTopMenuPage()
+                               .getLoggedUsername(), LOGIN_TEXT);
     }
 
     @Test
     public void shouldCreateAnAccount() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToSignInSection()
-                             .createAccount(testUser.getFirstName(), testUser.getLastName(), testUser.getEmail(), testUser.getPassword())
-                             .getTopMenuPage()
-                             .getLoggedUsername(), testUser.getFullName());
+                               .getTopMenuPage()
+                               .goToSignInSection()
+                               .createAccount(testUser.getFirstName(), testUser.getLastName(), testUser.getEmail(),
+                                              testUser.getPassword())
+                               .getTopMenuPage()
+                               .getLoggedUsername(), testUser.getFullName());
     }
 
     @Test
     public void shouldNotCreateAnAccount() {
 
         assertNotEquals(prestaShop.openPrestaShop()
-                                .getTopMenuPage()
-                                .goToSignInSection()
-                                .createAccount(FIRSTNAME, LASTNAME, EMAIL, PASSWORD)
-                                .getTopMenuPage()
-                                .getLoggedUsername(), getFullName());
+                                  .getTopMenuPage()
+                                  .goToSignInSection()
+                                  .createAccount(FIRSTNAME, LASTNAME, EMAIL, PASSWORD)
+                                  .getTopMenuPage()
+                                  .getLoggedUsername(), getFullName());
     }
 
     @Test
     public void shouldLogIn() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToSignInSection()
-                             .logIn(EMAIL, PASSWORD)
-                             .getTopMenuPage()
-                             .getLoggedUsername(), getFullName());
+                               .getTopMenuPage()
+                               .goToSignInSection()
+                               .logIn(EMAIL, PASSWORD)
+                               .getTopMenuPage()
+                               .getLoggedUsername(), getFullName());
     }
 
     @Test
     public void shouldLogOut() {
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToSignInSection()
-                             .logIn(EMAIL, PASSWORD)
-                             .getTopMenuPage()
-                             .signOut()
-                             .getTopMenuPage()
-                             .getLoggedUsername(), LOGIN_TEXT);
+                               .getTopMenuPage()
+                               .goToSignInSection()
+                               .logIn(EMAIL, PASSWORD)
+                               .getTopMenuPage()
+                               .signOut()
+                               .getTopMenuPage()
+                               .getLoggedUsername(), LOGIN_TEXT);
     }
 
     @Test
@@ -79,8 +80,8 @@ public final class Account extends BaseTest {
         skipTestIfDefectIsOpen(DEFECT21);
 
         assertEquals(prestaShop.openPrestaShop()
-                             .getTopMenuPage()
-                             .goToSignInSection()
-                             .resetPassword(EMAIL), RESET_RESPONSE + EMAIL);
+                               .getTopMenuPage()
+                               .goToSignInSection()
+                               .resetPassword(EMAIL), RESET_RESPONSE + EMAIL);
     }
 }
