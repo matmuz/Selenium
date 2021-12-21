@@ -14,7 +14,7 @@ import static utils.methods.TestMethods.assertNotEquals;
 /**
  * A collection of tests that check basic account functionalities
  */
-public final class Account extends BaseTest {
+public final class AccountTests extends BaseTest {
 
     @Test
     public void shouldNotLogIn() {

@@ -15,7 +15,7 @@ import static utils.methods.TestMethods.assertNotEquals;
 /**
  * A collection of tests that check basic cart functionalities
  */
-public final class Order extends BaseTest {
+public final class OrdersTest extends BaseTest {
 
     /**
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing

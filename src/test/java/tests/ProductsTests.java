@@ -13,7 +13,7 @@ import static utils.methods.TestMethods.assertEquals;
 /**
  * A collection of tests that check basic product/s functionalities
  */
-public final class Products extends BaseTest {
+public final class ProductsTests extends BaseTest {
 
     /**
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing

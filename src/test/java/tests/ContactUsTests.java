@@ -14,7 +14,7 @@ import static utils.methods.TestMethods.assertEquals;
 /**
  * A collection of tests that check sending help requests functionality
  */
-public final class HelpRequest extends BaseTest {
+public final class ContactUsTests extends BaseTest {
 
     @Test
     public void shouldSendContactMessageAsGuest() {
