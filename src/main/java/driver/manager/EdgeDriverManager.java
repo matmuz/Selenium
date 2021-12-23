@@ -14,7 +14,7 @@ public final class EdgeDriverManager extends DriverManager {
 
     @Override
     public void startService() {
-        if (null == edgeDriverService) {
+        if (edgeDriverService == null) {
             try {
                 edgeDriverService = new EdgeDriverService.Builder()
                         .usingDriverExecutable(new File("src/main/resources/drivers/msedgedriver.exe"))
@@ -29,7 +29,7 @@ public final class EdgeDriverManager extends DriverManager {
 
     @Override
     public void stopService() {
-        if (null != edgeDriverService && edgeDriverService.isRunning())
+        if (edgeDriverService != null && edgeDriverService.isRunning())
             edgeDriverService.stop();
     }
 

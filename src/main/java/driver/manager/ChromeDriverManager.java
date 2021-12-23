@@ -15,7 +15,7 @@ public final class ChromeDriverManager extends DriverManager {
 
     @Override
     public void startService() {
-        if (null == chromeDriverService) {
+        if (chromeDriverService == null) {
             try {
                 chromeDriverService = new ChromeDriverService.Builder()
                         .usingDriverExecutable(new File("src/main/resources/drivers/chromedriver.exe"))
@@ -30,7 +30,7 @@ public final class ChromeDriverManager extends DriverManager {
 
     @Override
     public void stopService() {
-        if (null != chromeDriverService && chromeDriverService.isRunning())
+        if (chromeDriverService != null && chromeDriverService.isRunning())
             chromeDriverService.stop();
     }
 
