@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
@@ -74,6 +75,7 @@ public final class AccountTests extends BaseTest {
                                .getLoggedUsername(), LOGIN_TEXT);
     }
 
+    @Issue("https://github.com/matmuz/Automation/issues/21")
     @Test
     public void shouldSendResetPasswordLink() {
 

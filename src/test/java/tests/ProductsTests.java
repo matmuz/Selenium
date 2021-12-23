@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import io.qameta.allure.Issue;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
@@ -37,7 +38,7 @@ public final class ProductsTests extends BaseTest {
         order = new OrderModel();
 
         assertEquals(prestaShop.openPrestaShop()
-                               .addRandomPopularProducts(order, 4)
+                               .addRandomPopularProducts(order, 3)
                                .getTopMenuPage()
                                .goToCart()
                                .getItemsQuantity(), order.getOrderItemsQuantity());
@@ -51,7 +52,7 @@ public final class ProductsTests extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(order, 6)
+                               .addRandomProducts(order, 3)
                                .getTopMenuPage()
                                .goToCart()
                                .getItemsQuantity(), order.getOrderItemsQuantity());
@@ -86,6 +87,7 @@ public final class ProductsTests extends BaseTest {
                                .getItemsPrice(), order.getOrderItemsPrice());
     }
 
+    @Issue("https://github.com/matmuz/Automation/issues/23")
     @Test
     public void shouldFindSearchedProduct() {
 

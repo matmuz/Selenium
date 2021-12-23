@@ -1,14 +1,15 @@
 package tests;
 
 import base.BaseTest;
+import io.qameta.allure.Issue;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
+import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
 import static utils.issues.Defects.DEFECT22;
-import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
 import static utils.methods.TestMethods.assertEquals;
 import static utils.methods.TestMethods.assertNotEquals;
 
@@ -22,6 +23,7 @@ public final class OrdersTest extends BaseTest {
      */
     private OrderModel order;
 
+    @Issue("https://github.com/matmuz/Automation/issues/22")
     @Test
     public void shouldCheckOrderPrice() {
 
@@ -34,7 +36,7 @@ public final class OrdersTest extends BaseTest {
                                .addProductToCart(order)
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(order, 5)
+                               .addRandomProducts(order, 3)
                                .getTopMenuPage()
                                .goToCart()
                                .getItemsPrice(), order.getOrderItemsPrice());
@@ -63,7 +65,7 @@ public final class OrdersTest extends BaseTest {
                                .decreaseQuantityBy(10)
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(order, 3)
+                               .addRandomProducts(order, 1)
                                .getTopMenuPage()
                                .goToCart()
                                .getItemsQuantity(), order.getOrderItemsQuantity());
@@ -92,7 +94,7 @@ public final class OrdersTest extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(5)
+                               .addRandomProducts(3)
                                .getTopMenuPage()
                                .goToCart()
                                .proceedToCheckout()
@@ -111,7 +113,7 @@ public final class OrdersTest extends BaseTest {
                                .logIn(EMAIL, PASSWORD)
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(5)
+                               .addRandomProducts(3)
                                .getTopMenuPage()
                                .goToCart()
                                .proceedToCheckout()
@@ -130,7 +132,7 @@ public final class OrdersTest extends BaseTest {
                                .logIn(EMAIL, PASSWORD)
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(5)
+                               .addRandomProducts(3)
                                .getTopMenuPage()
                                .goToCart()
                                .proceedToCheckout()
