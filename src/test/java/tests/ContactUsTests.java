@@ -5,10 +5,8 @@ import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
-import static pages.help.ContactUsPage.ALERT_MESSAGE;
-import static pages.help.ContactUsPage.HELP_RESPONSE_MESSAGE;
+import static pages.help.ContactUsPage.*;
 import static utils.data.TestData.TEST_HELP_MESSAGE;
-import static utils.data.TestData.TEST_HELP_SUBJECT;
 import static utils.methods.TestMethods.assertEquals;
 
 /**
@@ -22,7 +20,7 @@ public final class ContactUsTests extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                                .getTopMenuPage()
                                .goToContactUsPage()
-                               .submitHelpRequest(TEST_HELP_SUBJECT, guestUser.getEmail(), TEST_HELP_MESSAGE)
+                               .submitHelpRequest(CUSTOMER_SERVICE, guestUser.getEmail(), TEST_HELP_MESSAGE)
                                .getResponseMessage(), HELP_RESPONSE_MESSAGE);
     }
 
@@ -35,7 +33,7 @@ public final class ContactUsTests extends BaseTest {
                                .logIn(EMAIL, PASSWORD)
                                .getTopMenuPage()
                                .goToContactUsPage()
-                               .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
+                               .submitHelpRequest(WEBMASTER, TEST_HELP_MESSAGE)
                                .getResponseMessage(), HELP_RESPONSE_MESSAGE);
     }
 
@@ -45,7 +43,7 @@ public final class ContactUsTests extends BaseTest {
         assertEquals(prestaShop.openPrestaShop()
                                .getTopMenuPage()
                                .goToContactUsPage()
-                               .submitHelpRequest(TEST_HELP_SUBJECT, TEST_HELP_MESSAGE)
+                               .submitHelpRequest(CUSTOMER_SERVICE, TEST_HELP_MESSAGE)
                                .getAlertMessage(), ALERT_MESSAGE);
     }
 }

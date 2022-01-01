@@ -1,11 +1,11 @@
 package pages.help;
 
-import pages.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import pages.base.BasePage;
 import pages.menu.TopMenuPage;
 
 /**
@@ -15,6 +15,8 @@ public final class ContactUsPage extends BasePage {
 
     public static final String HELP_RESPONSE_MESSAGE = "Your message has been successfully sent to our team.";
     public static final String ALERT_MESSAGE = "Invalid email address.";
+    public static final String CUSTOMER_SERVICE = "Customer service";
+    public static final String WEBMASTER = "Webmaster";
 
     public ContactUsPage(WebDriver driver) {
         super(driver);
