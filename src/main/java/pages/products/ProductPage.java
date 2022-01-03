@@ -60,7 +60,7 @@ public final class ProductPage extends BasePage {
     }
 
     public double getProductPrice() {
-        String price = priceBox.getText().replace(",", ".").replace("zł", "");
+        String price = priceBox.getText().replace(",", ".").replace("$", "");
         return Double.parseDouble(price);
     }
 

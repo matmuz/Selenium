@@ -47,17 +47,17 @@ public final class CartPage extends BasePage {
     }
 
     public Double getShippingCost() {
-        String price = shippingCostBox.getText().replace(",", ".").replace("zł", "");
+        String price = shippingCostBox.getText().replace(",", ".").replace("$", "");
         return Double.parseDouble(price);
     }
 
     public double getTotalPrice() {
-        String price = totalPriceBox.getText().replace(",", ".").replace("zł", "");
+        String price = totalPriceBox.getText().replace(",", ".").replace("$", "");
         return Double.parseDouble(price);
     }
 
     public double getItemsPrice() {
-        String price = itemsPriceBox.getText().replace(",", ".").replace("zł", "");
+        String price = itemsPriceBox.getText().replace(",", ".").replace("$", "");
         return Double.parseDouble(price);
     }
 
