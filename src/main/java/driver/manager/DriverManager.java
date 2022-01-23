@@ -8,8 +8,11 @@ import org.openqa.selenium.WebDriver;
 public abstract class DriverManager implements IDriverManager {
 
     protected WebDriver driver;
+
     protected abstract void startService();
+
     protected abstract void stopService();
+
     protected abstract void createDriver();
 
     @Override

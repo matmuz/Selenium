@@ -47,7 +47,7 @@ public class BaseTest {
         prestaShop = new PrestaShop(driver);
     }
 
-    @AfterMethod
+    @AfterMethod()
     public void tearDown(ITestResult result) {
         if (!result.isSuccess() && result.getStatus() != SKIP) {
             addAttachment("Test failure " + new Timestamp(currentTimeMillis()),

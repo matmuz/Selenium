@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 public interface IDriverManager {
 
     void quitDriver();
+
     WebDriver getDriver();
 
 }
