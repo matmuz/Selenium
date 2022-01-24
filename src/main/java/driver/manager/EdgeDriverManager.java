@@ -1,7 +1,8 @@
 package driver.manager;
 
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 
@@ -35,7 +36,8 @@ public final class EdgeDriverManager extends DriverManager {
 
     @Override
     public void createDriver() {
-        driver = new EdgeDriver(edgeDriverService);
-        driver.manage().window().maximize();
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("start-maximized");
+        driver = new RemoteWebDriver(edgeDriverService.getUrl(), options);
     }
 }

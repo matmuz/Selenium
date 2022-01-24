@@ -1,8 +1,8 @@
 package driver.manager;
 
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 
@@ -38,7 +38,6 @@ public final class ChromeDriverManager extends DriverManager {
     public void createDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        options.addArguments("--disable-gpu");
-        driver = new ChromeDriver(chromeDriverService, options);
+        driver = new RemoteWebDriver(chromeDriverService.getUrl(), options);
     }
 }
