@@ -8,7 +8,7 @@
 
     <test name="Health Check">
         <classes>
-            <class name="utils.health.HealthCheck"/>
+            <class name="tests.HealthCheckTest"/>
         </classes>
     </test>
 

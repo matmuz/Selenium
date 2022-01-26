@@ -60,8 +60,13 @@ public final class ProductPage extends BasePage {
     }
 
     public double getProductPrice() {
-        String price = priceBox.getText().replace(",", ".").replace("$", "");
-        return Double.parseDouble(price);
+        return Double.parseDouble(priceBox.getText()
+                                          .replace(",", ".")
+                                          .replace("$", ""));
+    }
+
+    public String getProductCurrency() {
+        return priceBox.getText().substring(0, 1);
     }
 
     @Step("Add product to cart")

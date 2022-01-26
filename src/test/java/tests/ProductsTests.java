@@ -5,10 +5,9 @@ import io.qameta.allure.Issue;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
+import static utils.data.TestData.*;
 import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
 import static utils.issues.Defects.DEFECT23;
-import static utils.data.TestData.CUSTOMIZABLE_PRODUCT_NAME;
-import static utils.data.TestData.TEST_PRODUCT_NAME;
 import static utils.methods.TestMethods.assertEquals;
 
 /**
@@ -20,6 +19,11 @@ public final class ProductsTests extends BaseTest {
      * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
      */
     private OrderModel order;
+
+    @Test
+    public void shouldCheckProductsCurrency() {
+        assertEquals(prestaShop.openPrestaShop().enterRandomPopularProduct().getProductCurrency(), US_CURRENCY);
+    }
 
     @Test
     public void shouldAddCustomizableProduct() {
