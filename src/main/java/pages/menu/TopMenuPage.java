@@ -6,7 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.account.SignInPage;
+import pages.account.AccountPage;
 import pages.cart.CartPage;
 import pages.help.ContactUsPage;
 import pages.products.HomePage;
@@ -68,9 +68,9 @@ public final class TopMenuPage extends BasePage {
     }
 
     @Step("Go to sign in section")
-    public SignInPage goToSignInSection() {
+    public AccountPage goToSignInSection() {
         signInButton.click();
-        return new SignInPage(driver);
+        return new AccountPage(driver);
     }
 
     @Step("Go to clothes section")
@@ -87,7 +87,7 @@ public final class TopMenuPage extends BasePage {
 
     @Step("Go to art section")
     public ProductsPage goToArtSection() {
-        categories.get(3).click();
+        categories.get(2).click();
         return new ProductsPage(driver);
     }
 
@@ -100,8 +100,7 @@ public final class TopMenuPage extends BasePage {
 
     @Step("Go to random products section")
     public ProductsPage goToRandomProductsSection() {
-        Random random = new Random();
-        categories.get(random.nextInt(categories.size())).click();
+        categories.get(new Random().nextInt(categories.size())).click();
         return new ProductsPage(driver);
     }
 
@@ -111,6 +110,11 @@ public final class TopMenuPage extends BasePage {
         return new CartPage(driver);
     }
 
+    /**
+     * Gets logged username from top menu
+     *
+     * @return logged username as String
+     */
     public String getLoggedUsername() {
         try {
             return loggedUserBox.getText();

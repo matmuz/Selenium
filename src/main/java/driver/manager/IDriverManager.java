@@ -7,8 +7,10 @@ import org.openqa.selenium.WebDriver;
  */
 public interface IDriverManager {
 
+    WebDriver getDriver();
+
     void quitDriver();
 
-    WebDriver getDriver();
+    void stopService();
 
 }

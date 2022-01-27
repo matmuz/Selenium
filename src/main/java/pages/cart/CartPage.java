@@ -1,6 +1,6 @@
 package pages.cart;
 
-import driver.utils.Waiter;
+import driver.waiter.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.base.BasePage;
-import pages.menu.TopMenuPage;
+import pages.base.IPriceConverter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 /**
  * Cart page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-public final class CartPage extends BasePage {
+public final class CartPage extends BasePage implements IPriceConverter {
+
+    private final String deleteButtonOfAnItemLocator = ".material-icons.float-xs-left";
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -41,24 +43,40 @@ public final class CartPage extends BasePage {
     @FindBy(css = "#cart-subtotal-products .value")
     private WebElement itemsPriceBox;
 
+    /**
+     * Gets items quantity
+     *
+     * @return items quantity as an int
+     */
     public int getItemsQuantity() {
-        String[] split = (summaryLine.getText().split(" "));
-        return Integer.parseInt(split[0]);
+        return Integer.parseInt(summaryLine.getText().split(" ")[0]);
     }
 
-    public Double getShippingCost() {
-        String price = shippingCostBox.getText().replace(",", ".").replace("$", "");
-        return Double.parseDouble(price);
+    /**
+     * Gets shipping cost
+     *
+     * @return shipping cost as double
+     */
+    public double getShippingCost() {
+        return convertPriceTextToNumbers(shippingCostBox.getText());
     }
 
+    /**
+     * Gets total price
+     *
+     * @return total price as double
+     */
     public double getTotalPrice() {
-        String price = totalPriceBox.getText().replace(",", ".").replace("$", "");
-        return Double.parseDouble(price);
+        return convertPriceTextToNumbers(totalPriceBox.getText());
     }
 
+    /**
+     * Gets items price
+     *
+     * @return items price as double
+     */
     public double getItemsPrice() {
-        String price = itemsPriceBox.getText().replace(",", ".").replace("$", "");
-        return Double.parseDouble(price);
+        return convertPriceTextToNumbers(itemsPriceBox.getText());
     }
 
     @Step("Delete item from cart")
@@ -69,7 +87,7 @@ public final class CartPage extends BasePage {
                                                                        .contains(name.toUpperCase()))
                                        .collect(Collectors.toList())
                                        .get(0);
-        cartItem.findElement(By.cssSelector(".material-icons.float-xs-left")).click();
+        cartItem.findElement(By.cssSelector(deleteButtonOfAnItemLocator)).click();
         Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
     }
@@ -82,12 +100,18 @@ public final class CartPage extends BasePage {
                                                                        .contains(name.toUpperCase()))
                                        .collect(Collectors.toList())
                                        .get(0);
-        cartItem.findElement(By.cssSelector(".material-icons.float-xs-left")).click();
+        cartItem.findElement(By.cssSelector(deleteButtonOfAnItemLocator)).click();
         order.deleteProductFromList(name);
         Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
     }
 
+    /**
+     * Gets items details filtering by products name
+     *
+     * @param productName product name of a product to find
+     * @return product details as String
+     */
     public String getItemDetailsByName(String productName) {
         return cartItems.stream()
                         .filter(WebElement -> WebElement.getText().toUpperCase().contains(productName.toUpperCase()))
@@ -102,9 +126,5 @@ public final class CartPage extends BasePage {
     public CheckoutPage proceedToCheckout() {
         proceedToCheckoutButton.click();
         return new CheckoutPage(driver);
-    }
-
-    public TopMenuPage getTopMenuPage() {
-        return new TopMenuPage(driver);
     }
 }

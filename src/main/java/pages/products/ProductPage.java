@@ -1,6 +1,6 @@
 package pages.products;
 
-import driver.utils.Waiter;
+import driver.waiter.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
@@ -9,14 +9,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.base.BasePage;
-import pages.menu.TopMenuPage;
+import pages.base.IPriceConverter;
 
 import java.util.List;
 
 /**
  * A particular product page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-public final class ProductPage extends BasePage {
+public final class ProductPage extends BasePage implements IPriceConverter {
 
     private static final String PERSONALIZATION_TEXT = "Test Personalisation 123";
     private static final String CUSTOMIZABLE_PRODUCT_TEXT = "CUSTOMIZABLE";
@@ -55,16 +55,29 @@ public final class ProductPage extends BasePage {
     @FindBy(css = "span[itemprop='name']")
     private List<WebElement> categories;
 
+    /**
+     * Gets product name
+     *
+     * @return product name as a String
+     */
     public String getProductName() {
         return productNameBox.getText();
     }
 
+    /**
+     * Gets product price
+     *
+     * @return product price as a double
+     */
     public double getProductPrice() {
-        return Double.parseDouble(priceBox.getText()
-                                          .replace(",", ".")
-                                          .replace("$", ""));
+        return convertPriceTextToNumbers(priceBox.getText());
     }
 
+    /**
+     * Gets product currency
+     *
+     * @return product currency as a String
+     */
     public String getProductCurrency() {
         return priceBox.getText().substring(0, 1);
     }
@@ -97,10 +110,18 @@ public final class ProductPage extends BasePage {
         return this;
     }
 
+    /**
+     * Gets product current quantity
+     *
+     * @return product quantity as an int
+     */
     public int getQuantity() {
         return Integer.parseInt(quantityBox.getAttribute("value"));
     }
 
+    /**
+     * Sets personalisation text on a product that can be personalised
+     */
     public void setPersonalisedText() {
         productMessage.sendKeys(PERSONALIZATION_TEXT);
         saveCustomisation.click();
@@ -125,9 +146,5 @@ public final class ProductPage extends BasePage {
     @Step("Go to products page")
     public void goToProductsPage() {
         categories.get(1).click();
-    }
-
-    public TopMenuPage getTopMenuPage() {
-        return new TopMenuPage(driver);
     }
 }

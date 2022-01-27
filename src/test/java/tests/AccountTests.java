@@ -5,12 +5,11 @@ import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static data.ExistingUser.*;
-import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
-import static utils.issues.Defects.DEFECT21;
-import static pages.account.SignInPage.RESET_RESPONSE;
+import static issues.DefectHandler.skipTestIfDefectIsOpen;
+import static issues.Defects.DEFECT21;
+import static pages.account.AccountPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
-import static utils.methods.TestMethods.assertEquals;
-import static utils.methods.TestMethods.assertNotEquals;
+import static assertions.CustomAssertions.*;
 
 /**
  * A collection of tests that check basic account functionalities
@@ -63,16 +62,14 @@ public final class AccountTests extends BaseTest {
     }
 
     @Test
-    public void shouldLogOut() {
+    public void shouldCheckSavedAddress() {
 
-        assertEquals(prestaShop.openPrestaShop()
-                               .getTopMenuPage()
-                               .goToSignInSection()
-                               .logIn(EMAIL, PASSWORD)
-                               .getTopMenuPage()
-                               .signOut()
-                               .getTopMenuPage()
-                               .getLoggedUsername(), LOGIN_TEXT);
+        assertTextContains(prestaShop.openPrestaShop()
+                                     .getTopMenuPage()
+                                     .goToSignInSection()
+                                     .logIn(EMAIL, PASSWORD)
+                                     .goToAddresses()
+                                     .getMyAddressContents(), new String[]{ADDRESS, POSTAL_CODE, CITY});
     }
 
     @Issue("https://github.com/matmuz/Automation/issues/21")

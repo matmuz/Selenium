@@ -5,20 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
-import pages.menu.TopMenuPage;
 import pages.products.HomePage;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * Sign in page class responsible for getting needed selectors form the page and providing methods for moving between the elements
+ * Account page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-public final class SignInPage extends BasePage {
+public final class AccountPage extends BasePage {
 
     public static final String RESET_RESPONSE = "If this email address has been registered in our shop, you will receive a link to reset your password at ";
 
-    public SignInPage(WebDriver driver) {
+    public AccountPage(WebDriver driver) {
         super(driver);
     }
 
@@ -70,6 +68,12 @@ public final class SignInPage extends BasePage {
     @FindBy(css = ".alert.alert-danger")
     private WebElement alertBox;
 
+    @FindBy(css = "#addresses-link")
+    private WebElement addresses;
+
+    @FindBy(css = ".address-body")
+    private WebElement myAddress;
+
     @FindBy(css = "#history-link")
     private WebElement orderHistory;
 
@@ -77,11 +81,11 @@ public final class SignInPage extends BasePage {
     private List<WebElement> orderReferenceNumbersList;
 
     @Step("Log in")
-    public HomePage logIn(String email, String password) {
+    public AccountPage logIn(String email, String password) {
         loginEmailBox.sendKeys(email);
         loginPasswordBox.sendKeys(password);
         signInButton.click();
-        return new HomePage(driver);
+        return new AccountPage(driver);
     }
 
     @Step("Create account")
@@ -106,21 +110,28 @@ public final class SignInPage extends BasePage {
     }
 
     @Step("Find order number")
-    public String findOrderNumber(String orderNumber) {
-        return orderReferenceNumbersList.stream()
-                                        .filter(WebElement -> WebElement.getText().equals(orderNumber))
-                                        .collect(Collectors.toList())
-                                        .get(0)
-                                        .getText();
+    public boolean findOrderNumber(String orderNumber) {
+        return orderReferenceNumbersList.stream().anyMatch(WebElement -> WebElement.getText().equals(orderNumber));
     }
 
     @Step("Go to order history")
-    public SignInPage goToOrderHistory() {
+    public AccountPage goToOrderHistory() {
         orderHistory.click();
         return this;
     }
 
-    public TopMenuPage getTopMenuPage() {
-        return new TopMenuPage(driver);
+    @Step("Go to addresses")
+    public AccountPage goToAddresses() {
+        addresses.click();
+        return this;
+    }
+
+    /**
+     * Gets contents of "My Address"
+     *
+     * @return contents of "My Address" as String
+     */
+    public String getMyAddressContents() {
+        return myAddress.getText();
     }
 }

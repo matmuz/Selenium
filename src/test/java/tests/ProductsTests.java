@@ -5,19 +5,16 @@ import io.qameta.allure.Issue;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
-import static utils.data.TestData.*;
-import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
-import static utils.issues.Defects.DEFECT23;
-import static utils.methods.TestMethods.assertEquals;
+import static data.TestData.*;
+import static issues.DefectHandler.skipTestIfDefectIsOpen;
+import static issues.Defects.DEFECT23;
+import static assertions.CustomAssertions.assertEquals;
 
 /**
  * A collection of tests that check basic product/s functionalities
  */
 public final class ProductsTests extends BaseTest {
 
-    /**
-     * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
-     */
     private OrderModel order;
 
     @Test
@@ -76,7 +73,7 @@ public final class ProductsTests extends BaseTest {
     }
 
     @Test
-    public void shouldDeleteProductFromCart() {
+    public void shouldCheckOrderPriceAfterProductDeletion() {
 
         order = new OrderModel();
 
@@ -85,6 +82,10 @@ public final class ProductsTests extends BaseTest {
                                .goToClothesSection()
                                .goToProduct(TEST_PRODUCT_NAME)
                                .addProductToCart(order)
+                               .increaseQuantityBy(2)
+                               .getTopMenuPage()
+                               .goToRandomProductsSection()
+                               .addRandomProducts(order, 2)
                                .getTopMenuPage()
                                .goToCart()
                                .deleteItemFromCart(order, TEST_PRODUCT_NAME)

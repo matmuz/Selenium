@@ -11,33 +11,31 @@ import java.io.File;
  */
 public final class EdgeDriverManager extends DriverManager {
 
-    private EdgeDriverService edgeDriverService;
-
+    /**
+     * Creates - if absent - a Edge Driver Service instance
+     */
     @Override
     public void startService() {
-        if (edgeDriverService == null) {
+        if (service == null) {
             try {
-                edgeDriverService = new EdgeDriverService.Builder()
+                service = new EdgeDriverService.Builder()
                         .usingDriverExecutable(new File("src/main/resources/drivers/msedgedriver.exe"))
                         .usingAnyFreePort()
                         .build();
-                edgeDriverService.start();
+                service.start();
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }
     }
 
-    @Override
-    public void stopService() {
-        if (edgeDriverService != null && edgeDriverService.isRunning())
-            edgeDriverService.stop();
-    }
-
+    /**
+     * Sets Edge options and creates a Driver on a related service
+     */
     @Override
     public void createDriver() {
         EdgeOptions options = new EdgeOptions();
         options.addArguments("start-maximized");
-        driver = new RemoteWebDriver(edgeDriverService.getUrl(), options);
+        driver = new RemoteWebDriver(service.getUrl(), options);
     }
 }

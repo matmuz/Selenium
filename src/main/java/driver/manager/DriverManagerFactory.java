@@ -7,6 +7,12 @@ public final class DriverManagerFactory {
 
     private static DriverManager driverManager;
 
+    /**
+     * Creates or returns a respective Driver Manager
+     *
+     * @param driverType driver type that is needed to determine the type of the manager
+     * @return a particular driver manager instance
+     */
     public static DriverManager getManager(String driverType) {
         if (driverManager == null) {
             if (driverType.equals("chrome")) {

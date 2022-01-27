@@ -7,20 +7,16 @@ import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
+import static issues.DefectHandler.skipTestIfDefectIsOpen;
+import static issues.Defects.DEFECT22;
 import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
-import static utils.issues.DefectHandler.skipTestIfDefectIsOpen;
-import static utils.issues.Defects.DEFECT22;
-import static utils.methods.TestMethods.assertEquals;
-import static utils.methods.TestMethods.assertNotEquals;
+import static assertions.CustomAssertions.*;
 
 /**
  * A collection of tests that check basic cart functionalities
  */
 public final class OrdersTest extends BaseTest {
 
-    /**
-     * OrderModel instance that is instantiated during tests to verify the UI data against the data stored while testing
-     */
     private OrderModel order;
 
     @Issue("https://github.com/matmuz/Automation/issues/22")
@@ -126,21 +122,21 @@ public final class OrdersTest extends BaseTest {
 
         order = new OrderModel();
 
-        assertEquals(prestaShop.openPrestaShop()
-                               .getTopMenuPage()
-                               .goToSignInSection()
-                               .logIn(EMAIL, PASSWORD)
-                               .getTopMenuPage()
-                               .goToRandomProductsSection()
-                               .addRandomProducts(3)
-                               .getTopMenuPage()
-                               .goToCart()
-                               .proceedToCheckout()
-                               .placeOrderAsLoggedUser()
-                               .getOrderReference(order)
-                               .getTopMenuPage()
-                               .goToSignInSection()
-                               .goToOrderHistory()
-                               .findOrderNumber(order.getOrderReferenceNumber()), order.getOrderReferenceNumber());
+        assertTrue(prestaShop.openPrestaShop()
+                                         .getTopMenuPage()
+                                         .goToSignInSection()
+                                         .logIn(EMAIL, PASSWORD)
+                                         .getTopMenuPage()
+                                         .goToRandomProductsSection()
+                                         .addRandomProducts(3)
+                                         .getTopMenuPage()
+                                         .goToCart()
+                                         .proceedToCheckout()
+                                         .placeOrderAsLoggedUser()
+                                         .setOrderReferenceNumberOfAnOrderToAModel(order)
+                                         .getTopMenuPage()
+                                         .goToSignInSection()
+                                         .goToOrderHistory()
+                                         .findOrderNumber(order.getOrderReferenceNumber()));
     }
 }

@@ -1,4 +1,4 @@
-package utils.data;
+package data;
 
 /**
  * Class responsible for providing test constants (data) that is used in tests.
@@ -11,6 +11,9 @@ public final class TestData {
 
     public static final String US_CURRENCY = "$";
 
+    /**
+     * Private constructor - do not allow to create an instance
+     */
     private TestData() {
     }
 }

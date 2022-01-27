@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
-import pages.menu.TopMenuPage;
 
 import java.util.List;
 import java.util.Random;
@@ -38,8 +37,7 @@ public final class HomePage extends BasePage {
 
     @Step("Enter random popular product")
     public ProductPage enterRandomPopularProduct() {
-        Random random = new Random();
-        popularProducts.get(random.nextInt(popularProducts.size())).click();
+        popularProducts.get(new Random().nextInt(popularProducts.size())).click();
         return new ProductPage(driver);
     }
 
@@ -49,9 +47,5 @@ public final class HomePage extends BasePage {
             enterRandomPopularProduct().addProductToCart(order).goToProductsPage();
         }
         return this;
-    }
-
-    public TopMenuPage getTopMenuPage() {
-        return new TopMenuPage(driver);
     }
 }

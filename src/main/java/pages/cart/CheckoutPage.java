@@ -1,13 +1,12 @@
 package pages.cart;
 
-import org.openqa.selenium.support.ui.Select;
-import pages.base.BasePage;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.menu.TopMenuPage;
+import org.openqa.selenium.support.ui.Select;
+import pages.base.BasePage;
 
 import java.util.List;
 import java.util.Random;
@@ -84,7 +83,6 @@ public final class CheckoutPage extends BasePage {
     @Step("Place order")
     public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city,
                                           String postalCode, String country) {
-        Random random = new Random();
         firstNameBox.sendKeys(firstName);
         lastNameBox.sendKeys(lastName);
         emailBox.sendKeys(email);
@@ -98,7 +96,7 @@ public final class CheckoutPage extends BasePage {
         select.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -106,13 +104,12 @@ public final class CheckoutPage extends BasePage {
 
     @Step("Place order")
     public CheckoutPage placeOrderAsLoggedUser(String address, String city, String postalCode) {
-        Random random = new Random();
         addressBox.sendKeys(address);
         cityBox.sendKeys(city);
         postalCodeBox.sendKeys(postalCode);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -120,29 +117,35 @@ public final class CheckoutPage extends BasePage {
 
     @Step("Place order")
     public CheckoutPage placeOrderAsLoggedUser() {
-        Random random = new Random();
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(random.nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
     }
 
+    /**
+     * Gets order confirmation message if placed
+     *
+     * @return order confirmation as String
+     */
     public String getConfirmationMessage() {
         return confirmationMessageBox.getText();
     }
 
-    public CheckoutPage getOrderReference(OrderModel order) {
+    /**
+     * Sets order reference number to a model
+     *
+     * @param order model of an order to set reference number of the placed order
+     * @return new Checkout Page instance - current page
+     */
+    public CheckoutPage setOrderReferenceNumberOfAnOrderToAModel(OrderModel order) {
         String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
         String orderNumber = split[1].trim();
         String[] secondSplit = orderNumber.split("Payment method:");
         String secondOrderNumber = secondSplit[0].trim();
         order.setOrderReferenceNumber(secondOrderNumber);
         return new CheckoutPage(driver);
-    }
-
-    public TopMenuPage getTopMenuPage() {
-        return new TopMenuPage(driver);
     }
 }

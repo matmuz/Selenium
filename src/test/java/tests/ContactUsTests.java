@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
+import static data.TestData.TEST_HELP_MESSAGE;
 import static pages.help.ContactUsPage.*;
-import static utils.data.TestData.TEST_HELP_MESSAGE;
-import static utils.methods.TestMethods.assertEquals;
+import static assertions.CustomAssertions.assertEquals;
 
 /**
  * A collection of tests that check sending help requests functionality

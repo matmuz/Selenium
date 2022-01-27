@@ -1,4 +1,4 @@
-package utils.issues;
+package issues;
 
 /**
  * A collection of defects in PrestaShop that are reported on GitHub.
@@ -17,6 +17,11 @@ public enum Defects {
         this.defectId = defectId;
     }
 
+    /**
+     * Gets defect id (GitHub id)
+     *
+     * @return defect id as an int
+     */
     public int getDefectId() {
         return defectId;
     }

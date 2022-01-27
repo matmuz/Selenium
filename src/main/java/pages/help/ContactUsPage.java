@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.base.BasePage;
-import pages.menu.TopMenuPage;
 
 /**
  * Contact us page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -78,15 +77,21 @@ public final class ContactUsPage extends BasePage {
         return this;
     }
 
+    /**
+     * Gets response message after send request
+     *
+     * @return response message as a String
+     */
     public String getResponseMessage() {
         return responseMessage.getText();
     }
 
+    /**
+     * Gets alert message after wrongly send request
+     *
+     * @return alert message as a String
+     */
     public String getAlertMessage() {
         return alertMessage.getText();
-    }
-
-    public TopMenuPage getTopMenuPage() {
-        return new TopMenuPage(driver);
     }
 }

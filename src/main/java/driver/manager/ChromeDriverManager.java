@@ -11,33 +11,31 @@ import java.io.File;
  */
 public final class ChromeDriverManager extends DriverManager {
 
-    private ChromeDriverService chromeDriverService;
-
+    /**
+     * Creates - if absent - a Chrome Driver Service instance
+     */
     @Override
     public void startService() {
-        if (chromeDriverService == null) {
+        if (service == null) {
             try {
-                chromeDriverService = new ChromeDriverService.Builder()
+                service = new ChromeDriverService.Builder()
                         .usingDriverExecutable(new File("src/main/resources/drivers/chromedriver.exe"))
                         .usingAnyFreePort()
                         .build();
-                chromeDriverService.start();
+                service.start();
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }
     }
 
-    @Override
-    public void stopService() {
-        if (chromeDriverService != null && chromeDriverService.isRunning())
-            chromeDriverService.stop();
-    }
-
+    /**
+     * Sets Chrome options and creates a Driver on a related service
+     */
     @Override
     public void createDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        driver = new RemoteWebDriver(chromeDriverService.getUrl(), options);
+        driver = new RemoteWebDriver(service.getUrl(), options);
     }
 }

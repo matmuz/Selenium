@@ -19,7 +19,7 @@ import static java.lang.System.currentTimeMillis;
 import static org.testng.ITestResult.SKIP;
 
 /**
- * BaseTest class that is responsible for test preparation
+ * BaseTest class that is responsible for test set up and tear down
  */
 public class BaseTest {
 
@@ -29,27 +29,49 @@ public class BaseTest {
     protected TestUser testUser;
     protected GuestUser guestUser;
 
+    /**
+     * Creates or gets Test and Guest user before running test classes
+     */
     @BeforeTest
-    public void prepareTestUsers() {
+    protected void prepareTestUsers() {
         testUser = TestUser.getUser();
         guestUser = GuestUser.getUser();
     }
 
+    /**
+     * Prepares Driver and its Manager, finally it creates a new PrestaShop instance before each test
+     *
+     * @param browser     browser on which tests will be run
+     * @param environment base url of the application
+     */
     @BeforeMethod
     @Parameters({"browser", "environment"})
-    public void setUp(String browser, String environment) {
+    protected void setUp(String browser, String environment) {
         driverManager = getManager(browser);
         driver = driverManager.getDriver();
         driver.get(environment);
         prestaShop = new PrestaShop(driver);
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result) {
+    /**
+     * Quits the driver and screenshots entire page upon fail after each test
+     *
+     * @param result result of a test needed to determine whether screenshot is needed
+     */
+    @AfterMethod(alwaysRun = true)
+    protected void tearDown(ITestResult result) {
         if (!result.isSuccess() && result.getStatus() != SKIP) {
             addAttachment("Test failure " + new Timestamp(currentTimeMillis()),
                           new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
         driverManager.quitDriver();
+    }
+
+    /**
+     * Quits Driver Service via manager after all tests
+     */
+    @AfterSuite(alwaysRun = true)
+    protected void stopService() {
+        driverManager.stopService();
     }
 }
