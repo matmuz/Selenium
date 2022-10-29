@@ -6,12 +6,6 @@
     <parameter name="browser" value="CHROME"/>
     <parameter name="environment" value="http://146.59.32.4/"/>
 
-    <test name="Health Check">
-        <classes>
-            <class name="tests.HealthCheckTest"/>
-        </classes>
-    </test>
-
     <test name="Account">
         <classes>
             <class name="tests.AccountTests"/>

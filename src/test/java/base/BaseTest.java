@@ -4,32 +4,44 @@ import data.GuestUser;
 import data.TestUser;
 import driver.factory.WebDriverFactory;
 import driver.types.DriverTypes;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.application.PrestaShop;
 
 import java.io.ByteArrayInputStream;
 import java.sql.Timestamp;
 
 import static io.qameta.allure.Allure.addAttachment;
+import static io.restassured.RestAssured.get;
 import static java.lang.System.currentTimeMillis;
 import static org.testng.ITestResult.SKIP;
 
 /**
  * BaseTest class that is responsible for test set up and tear down
  */
+@Slf4j
 public class BaseTest {
 
     private WebDriver driver;
     protected PrestaShop prestaShop;
     protected TestUser testUser;
     protected GuestUser guestUser;
+
+    @BeforeSuite
+    @Parameters({"environment"})
+    public void healthCheck(String environment) {
+        log.info("Running health check...");
+        int statusCode = get(environment).then().extract().response().statusCode();
+        if (statusCode != 200) {
+            log.info(String.format("Health check failed with status code: %s. Tests will not run.", statusCode));
+            System.exit(0);
+        }
+        log.info(String.format("Health check ended with status code: %s.", statusCode));
+    }
 
     /**
      * Creates or gets Test and Guest user before running test classes
