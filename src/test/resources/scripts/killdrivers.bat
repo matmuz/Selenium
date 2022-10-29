@@ -1,2 +1,2 @@
-taskkill /im chromedriver.exe /f
-taskkill /im msedgedriver.exe /f
+taskkill /T /F /IM chromedriver.exe
+taskkill /T /F /IM msedgedriver.exe

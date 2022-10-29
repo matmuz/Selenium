@@ -2,6 +2,7 @@ package data;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -43,9 +44,9 @@ public final class ExistingUser {
      *
      * @param file path to a file
      * @return Json as a String
-     * @throws Exception if a file is not found
+     * @throws IOException if a file is not found
      */
-    public static String convertFileIntoString(String file) throws Exception {
+    public static String convertFileIntoString(String file) throws IOException {
         return new String(Files.readAllBytes(Paths.get(file)));
     }
 

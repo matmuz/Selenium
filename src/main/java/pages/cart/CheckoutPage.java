@@ -1,10 +1,12 @@
 package pages.cart;
 
+import helpers.waiter.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import pages.base.BasePage;
 
@@ -80,6 +82,9 @@ public final class CheckoutPage extends BasePage {
     @FindBy(css = "#order-details")
     private WebElement orderReferenceNumberBox;
 
+    @FindBy(css = "input[name='vat_number']")
+    private WebElement vatNumberInput;
+
     @Step("Place order")
     public CheckoutPage placeOrderAsGuest(String firstName, String lastName, String email, String address, String city,
                                           String postalCode, String country) {
@@ -89,11 +94,11 @@ public final class CheckoutPage extends BasePage {
         customerPrivacyCheckbox.click();
         privacyAcceptanceCheckbox.click();
         goToAddressButton.click();
+        new Select(countryDropdown).selectByVisibleText(country);
+        Waiter.wait(driver).until(ExpectedConditions.visibilityOf(vatNumberInput));
         addressBox.sendKeys(address);
         cityBox.sendKeys(city);
         postalCodeBox.sendKeys(postalCode);
-        Select select = new Select(countryDropdown);
-        select.selectByVisibleText(country);
         goToShippingButton.click();
         confirmShippingButton.click();
         paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();

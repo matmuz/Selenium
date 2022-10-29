@@ -1,6 +1,7 @@
 package pages.products;
 
-import driver.waiter.Waiter;
+import helpers.converter.IPriceConverter;
+import helpers.waiter.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
 import models.ProductModel;
@@ -9,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.base.BasePage;
-import pages.base.IPriceConverter;
 
 import java.util.List;
 

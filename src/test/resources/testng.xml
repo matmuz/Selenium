@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="PrestaShop">
+<suite name="PrestaShop" parallel="tests" thread-count="4">
 
-    <parameter name="browser" value="chrome"/>
+    <parameter name="browser" value="CHROME"/>
     <parameter name="environment" value="http://146.59.32.4/"/>
 
     <test name="Health Check">

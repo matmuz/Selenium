@@ -1,4 +1,4 @@
-package pages.base;
+package helpers.converter;
 
 /**
  * Interface that provides default implementation for converting price from WebElement text to double and is used

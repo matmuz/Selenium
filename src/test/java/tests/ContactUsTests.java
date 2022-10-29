@@ -3,11 +3,11 @@ package tests;
 import base.BaseTest;
 import org.testng.annotations.Test;
 
+import static assertions.CustomAssertions.assertEquals;
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
 import static data.TestData.TEST_HELP_MESSAGE;
 import static pages.help.ContactUsPage.*;
-import static assertions.CustomAssertions.assertEquals;
 
 /**
  * A collection of tests that check sending help requests functionality

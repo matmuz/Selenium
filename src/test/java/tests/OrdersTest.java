@@ -5,12 +5,12 @@ import io.qameta.allure.Issue;
 import models.OrderModel;
 import org.testng.annotations.Test;
 
+import static assertions.CustomAssertions.*;
 import static data.ExistingUser.EMAIL;
 import static data.ExistingUser.PASSWORD;
 import static issues.DefectHandler.skipTestIfDefectIsOpen;
 import static issues.Defects.DEFECT22;
 import static pages.cart.CheckoutPage.CONFIRMATION_MESSAGE;
-import static assertions.CustomAssertions.*;
 
 /**
  * A collection of tests that check basic cart functionalities
