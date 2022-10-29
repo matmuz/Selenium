@@ -35,7 +35,7 @@ public class BaseTest {
     @Parameters({"environment"})
     public void healthCheck(String environment) {
         log.info("Running health check...");
-        int statusCode = get(environment).then().extract().response().statusCode();
+        int statusCode = get(environment).statusCode();
         if (statusCode != 200) {
             log.info(String.format("Health check failed with status code: %s. Tests will not run.", statusCode));
             System.exit(0);
