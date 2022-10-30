@@ -10,9 +10,9 @@ public final class WebDriverOptionsFactory {
     public static AbstractDriverOptions getWebDriverOptions(DriverTypes driverType) {
         switch (driverType) {
             case CHROME:
-                return new ChromeOptions().addArguments("start-maximized");
+                return new ChromeOptions().addArguments("start-maximized").addArguments("incognito");
             case EDGE:
-                return new EdgeOptions().addArguments("start-maximized");
+                return new EdgeOptions().addArguments("start-maximized").addArguments("inprivate");
             default:
                 throw new UnsupportedOperationException("Unsupported driver type selected");
         }
