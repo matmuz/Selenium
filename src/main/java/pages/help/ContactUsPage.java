@@ -41,8 +41,7 @@ public final class ContactUsPage extends BasePage {
 
     @Step("Select subject")
     public void selectSubject(String subject) {
-        Select select = new Select(subjectDropdown);
-        select.selectByVisibleText(subject);
+        new Select(subjectDropdown).selectByVisibleText(subject);
     }
 
     @Step("Set email")

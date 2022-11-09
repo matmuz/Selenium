@@ -79,7 +79,7 @@ public final class CheckoutPage extends BasePage {
     @FindBy(css = ".h1.card-title")
     private WebElement confirmationMessageBox;
 
-    @FindBy(css = "#order-details")
+    @FindBy(css = "#order-details li:nth-of-type(1)")
     private WebElement orderReferenceNumberBox;
 
     @FindBy(css = "input[name='vat_number']")
@@ -146,11 +146,7 @@ public final class CheckoutPage extends BasePage {
      * @return new Checkout Page instance - current page
      */
     public CheckoutPage setOrderReferenceNumberOfAnOrderToAModel(OrderModel order) {
-        String[] split = (orderReferenceNumberBox.getText()).split("Order reference:");
-        String orderNumber = split[1].trim();
-        String[] secondSplit = orderNumber.split("Payment method:");
-        String secondOrderNumber = secondSplit[0].trim();
-        order.setOrderReferenceNumber(secondOrderNumber);
+        order.setOrderReferenceNumber(orderReferenceNumberBox.getText().split("Order reference: ")[1]);
         return new CheckoutPage(driver);
     }
 }

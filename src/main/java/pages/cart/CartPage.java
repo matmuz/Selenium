@@ -19,7 +19,8 @@ import java.util.stream.Collectors;
  */
 public final class CartPage extends BasePage implements IPriceConverter {
 
-    private final String deleteButtonOfAnItemLocator = ".material-icons.float-xs-left";
+    private final By deleteButtonOfAnItemLocator = By.cssSelector(".material-icons.float-xs-left");
+    private final By itemDetailsLocator = By.cssSelector(".product-line-info");
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -87,7 +88,7 @@ public final class CartPage extends BasePage implements IPriceConverter {
                                                                        .contains(name.toUpperCase()))
                                        .collect(Collectors.toList())
                                        .get(0);
-        cartItem.findElement(By.cssSelector(deleteButtonOfAnItemLocator)).click();
+        cartItem.findElement(deleteButtonOfAnItemLocator).click();
         Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
     }
@@ -100,7 +101,7 @@ public final class CartPage extends BasePage implements IPriceConverter {
                                                                        .contains(name.toUpperCase()))
                                        .collect(Collectors.toList())
                                        .get(0);
-        cartItem.findElement(By.cssSelector(deleteButtonOfAnItemLocator)).click();
+        cartItem.findElement(deleteButtonOfAnItemLocator).click();
         order.deleteProductFromList(name);
         Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
@@ -117,7 +118,7 @@ public final class CartPage extends BasePage implements IPriceConverter {
                         .filter(WebElement -> WebElement.getText().toUpperCase().contains(productName.toUpperCase()))
                         .collect(Collectors.toList())
                         .get(0)
-                        .findElement(By.cssSelector(".product-line-info"))
+                        .findElement(itemDetailsLocator)
                         .getText()
                         .toUpperCase();
     }

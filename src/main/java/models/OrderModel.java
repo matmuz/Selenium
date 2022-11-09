@@ -37,7 +37,7 @@ public final class OrderModel {
      */
     public int getOrderItemsQuantity() {
         return productsInOrder.stream()
-                              .mapToInt((ProductModel::getQuantity))
+                              .mapToInt(ProductModel::getQuantity)
                               .sum();
     }
 

@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 public final class ExistingUser {
 
     private static final String PATH_TO_FILE = "src/test/resources/data/existingUser.json";
+    private static final String ADDRESS_KEY = "my_address";
 
     public static final String FIRSTNAME;
     public static final String LASTNAME;
@@ -34,9 +35,9 @@ public final class ExistingUser {
         LASTNAME = jsonObject.getString("lastname");
         EMAIL = jsonObject.getString("email");
         PASSWORD = jsonObject.getString("password");
-        ADDRESS = jsonObject.getJSONObject("my_address").getString("address");
-        POSTAL_CODE = jsonObject.getJSONObject("my_address").getString("postal_code");
-        CITY = jsonObject.getJSONObject("my_address").getString("city");
+        ADDRESS = getAddressObject(jsonObject).getString("address");
+        POSTAL_CODE = getAddressObject(jsonObject).getString("postal_code");
+        CITY = getAddressObject(jsonObject).getString("city");
     }
 
     /**
@@ -57,5 +58,9 @@ public final class ExistingUser {
      */
     public static String getFullName() {
         return FIRSTNAME + " " + LASTNAME;
+    }
+
+    private static JSONObject getAddressObject(JSONObject jsonObject) {
+        return jsonObject.getJSONObject(ADDRESS_KEY);
     }
 }
