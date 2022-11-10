@@ -7,7 +7,7 @@ import org.openqa.selenium.remote.AbstractDriverOptions;
 
 public final class WebDriverOptionsFactory {
 
-    public static AbstractDriverOptions getWebDriverOptions(DriverTypes driverType) {
+    public static AbstractDriverOptions<? extends AbstractDriverOptions<?>> getWebDriverOptions(DriverTypes driverType) {
         switch (driverType) {
             case CHROME:
                 return new ChromeOptions().addArguments("start-maximized").addArguments("incognito");

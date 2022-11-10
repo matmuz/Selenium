@@ -7,17 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
-import static driver.types.DriverTypes.CHROME;
-import static driver.types.DriverTypes.EDGE;
-
 public final class WebDriverFactory {
 
     public WebDriver getDriver(DriverTypes driverType) {
         switch (driverType) {
             case CHROME:
-                return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getWebDriverOptions(CHROME));
+                return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getWebDriverOptions(driverType));
             case EDGE:
-                return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getWebDriverOptions(EDGE));
+                return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getWebDriverOptions(driverType));
             default:
                 throw new UnsupportedOperationException("Unsupported driver type selected");
         }
