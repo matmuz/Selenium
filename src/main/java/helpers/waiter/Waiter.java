@@ -5,6 +5,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static configuration.ConfigurationRetriever.getConfiguration;
+
 /**
  * Default Waiter class that returns WebDriverWait to avoid multiple instantiations
  */
@@ -26,7 +28,7 @@ public final class Waiter {
      */
     public static WebDriverWait wait(WebDriver driver) {
         if (wait == null) {
-            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait = new WebDriverWait(driver, Duration.ofSeconds(getConfiguration().timeout()));
         }
         return wait;
     }
