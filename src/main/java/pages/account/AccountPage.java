@@ -126,11 +126,7 @@ public final class AccountPage extends BasePage {
         return this;
     }
 
-    /**
-     * Gets contents of "My Address"
-     *
-     * @return contents of "My Address" as String
-     */
+    @Step("Get My Address contents")
     public String getMyAddressContents() {
         return myAddress.getText();
     }

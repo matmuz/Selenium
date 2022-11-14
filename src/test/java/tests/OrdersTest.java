@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import io.qameta.allure.Issue;
 import models.OrderModel;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static assertions.CustomAssertions.*;
@@ -20,8 +21,8 @@ public final class OrdersTest extends BaseTest {
     private OrderModel order;
 
     @Issue("https://github.com/matmuz/Automation/issues/22")
-    @Test
-    public void shouldCheckOrderPrice() {
+    @Test(dataProvider = "numberOfProducts")
+    public void shouldCheckOrderPrice(int numberOfProducts) {
 
         skipTestIfDefectIsOpen(DEFECT22);
 
@@ -32,7 +33,7 @@ public final class OrdersTest extends BaseTest {
                                .addProductToCart(order)
                                .getTopMenuPage()
                                .goToRandomProductsSection()
-                               .addRandomProducts(order, 3)
+                               .addRandomProducts(order, numberOfProducts)
                                .getTopMenuPage()
                                .goToCart()
                                .getItemsPrice(), order.getOrderItemsPrice());
@@ -123,20 +124,25 @@ public final class OrdersTest extends BaseTest {
         order = new OrderModel();
 
         assertTrue(prestaShop.openPrestaShop()
-                                         .getTopMenuPage()
-                                         .goToSignInSection()
-                                         .logIn(EMAIL, PASSWORD)
-                                         .getTopMenuPage()
-                                         .goToRandomProductsSection()
-                                         .addRandomProducts(3)
-                                         .getTopMenuPage()
-                                         .goToCart()
-                                         .proceedToCheckout()
-                                         .placeOrderAsLoggedUser()
-                                         .setOrderReferenceNumberOfAnOrderToAModel(order)
-                                         .getTopMenuPage()
-                                         .goToSignInSection()
-                                         .goToOrderHistory()
-                                         .findOrderNumber(order.getOrderReferenceNumber()));
+                             .getTopMenuPage()
+                             .goToSignInSection()
+                             .logIn(EMAIL, PASSWORD)
+                             .getTopMenuPage()
+                             .goToRandomProductsSection()
+                             .addRandomProducts(3)
+                             .getTopMenuPage()
+                             .goToCart()
+                             .proceedToCheckout()
+                             .placeOrderAsLoggedUser()
+                             .setOrderReferenceNumberOfAnOrderToAModel(order)
+                             .getTopMenuPage()
+                             .goToSignInSection()
+                             .goToOrderHistory()
+                             .findOrderNumber(order.getOrderReferenceNumber()));
+    }
+
+    @DataProvider
+    public static Object[][] numberOfProducts() {
+        return new Object[][]{{2}, {3}, {5}};
     }
 }

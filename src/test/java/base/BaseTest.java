@@ -15,6 +15,7 @@ import pages.application.PrestaShop;
 import java.io.ByteArrayInputStream;
 import java.sql.Timestamp;
 
+import static configuration.ConfigurationRetriever.getConfiguration;
 import static io.qameta.allure.Allure.addAttachment;
 import static io.restassured.RestAssured.get;
 import static java.lang.System.currentTimeMillis;
@@ -55,7 +56,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"browser", "environment"})
     protected void setUp(String browser, String environment) {
-        driver = new WebDriverFactory().getDriver(DriverTypes.valueOf(browser));
+        driver = new WebDriverFactory().getDriver(DriverTypes.valueOf(browser), getConfiguration().isLocal());
         driver.get(environment);
         prestaShop = new PrestaShop(driver);
     }

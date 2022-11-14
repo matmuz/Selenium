@@ -11,7 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 import pages.base.BasePage;
 
 import java.util.List;
-import java.util.Random;
+
+import static helpers.utils.Utils.getRandomElementFromList;
 
 /**
  * Checkout page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -101,7 +102,7 @@ public final class CheckoutPage extends BasePage {
         postalCodeBox.sendKeys(postalCode);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(getRandomElementFromList(paymentRadioButtons)).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -114,7 +115,7 @@ public final class CheckoutPage extends BasePage {
         postalCodeBox.sendKeys(postalCode);
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(getRandomElementFromList(paymentRadioButtons)).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
@@ -124,27 +125,18 @@ public final class CheckoutPage extends BasePage {
     public CheckoutPage placeOrderAsLoggedUser() {
         goToShippingButton.click();
         confirmShippingButton.click();
-        paymentRadioButtons.get(new Random().nextInt(paymentRadioButtons.size())).click();
+        paymentRadioButtons.get(getRandomElementFromList(paymentRadioButtons)).click();
         agreeCheckbox.click();
         placeOrderButton.click();
         return this;
     }
 
-    /**
-     * Gets order confirmation message if placed
-     *
-     * @return order confirmation as String
-     */
+    @Step("Get confirmation message")
     public String getConfirmationMessage() {
         return confirmationMessageBox.getText();
     }
 
-    /**
-     * Sets order reference number to a model
-     *
-     * @param order model of an order to set reference number of the placed order
-     * @return new Checkout Page instance - current page
-     */
+    @Step("Set order reference number of an order to a model")
     public CheckoutPage setOrderReferenceNumberOfAnOrderToAModel(OrderModel order) {
         order.setOrderReferenceNumber(orderReferenceNumberBox.getText().split("Order reference: ")[1]);
         return new CheckoutPage(driver);

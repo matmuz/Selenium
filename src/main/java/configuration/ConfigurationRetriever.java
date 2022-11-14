@@ -2,7 +2,7 @@ package configuration;
 
 import org.aeonbits.owner.ConfigFactory;
 
-public class ConfigurationRetriever {
+public final class ConfigurationRetriever {
 
     private static Configuration configuration;
 

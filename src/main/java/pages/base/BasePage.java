@@ -2,6 +2,7 @@ package pages.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import pages.footer.FooterPage;
 import pages.menu.TopMenuPage;
 
 /**
@@ -28,5 +29,14 @@ public abstract class BasePage {
      */
     public TopMenuPage getTopMenuPage() {
         return new TopMenuPage(driver);
+    }
+
+    /**
+     * Gets footer page from any context of the app
+     *
+     * @return Footer Page instance
+     */
+    public FooterPage getFooterPage() {
+        return new FooterPage(driver);
     }
 }

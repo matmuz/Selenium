@@ -76,20 +76,12 @@ public final class ContactUsPage extends BasePage {
         return this;
     }
 
-    /**
-     * Gets response message after send request
-     *
-     * @return response message as a String
-     */
+    @Step("Get response message")
     public String getResponseMessage() {
         return responseMessage.getText();
     }
 
-    /**
-     * Gets alert message after wrongly send request
-     *
-     * @return alert message as a String
-     */
+    @Step("Get alert message")
     public String getAlertMessage() {
         return alertMessage.getText();
     }

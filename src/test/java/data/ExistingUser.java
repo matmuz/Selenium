@@ -11,7 +11,7 @@ import java.nio.file.Paths;
  */
 public final class ExistingUser {
 
-    private static final String PATH_TO_FILE = "src/test/resources/data/existingUser.json";
+    private static final String PATH_TO_FILE = "src/test/resources/data/existing_user.json";
     private static final String ADDRESS_KEY = "my_address";
 
     public static final String FIRSTNAME;

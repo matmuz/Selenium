@@ -8,8 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+
+import static helpers.utils.Utils.getRandomElementFromList;
+import static helpers.utils.Utils.getWebElementFromListByName;
 
 /**
  * Home page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -25,19 +26,13 @@ public final class HomePage extends BasePage {
 
     @Step("Enter popular product")
     public ProductPage enterPopularProduct(String popularProductName) {
-        popularProducts.stream()
-                       .filter(WebElement -> WebElement.getText()
-                                                       .toUpperCase()
-                                                       .contains(popularProductName.toUpperCase()))
-                       .collect(Collectors.toList())
-                       .get(0)
-                       .click();
+        getWebElementFromListByName(popularProducts, popularProductName).click();
         return new ProductPage(driver);
     }
 
     @Step("Enter random popular product")
     public ProductPage enterRandomPopularProduct() {
-        popularProducts.get(new Random().nextInt(popularProducts.size())).click();
+        popularProducts.get(getRandomElementFromList(popularProducts)).click();
         return new ProductPage(driver);
     }
 

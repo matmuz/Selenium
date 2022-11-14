@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="PrestaShop" parallel="tests" thread-count="5">
+
+    <parameter name="browser" value="EDGE"/>
+    <parameter name="environment" value="http://146.59.32.4/"/>
+
+    <test name="Account">
+        <classes>
+            <class name="tests.AccountTests"/>
+        </classes>
+    </test>
+
+    <test name="Footer">
+        <classes>
+            <class name="tests.FooterTests"/>
+        </classes>
+    </test>
+
+    <test name="Help Request">
+        <classes>
+            <class name="tests.ContactUsTests"/>
+        </classes>
+    </test>
+
+    <test name="Order">
+        <classes>
+            <class name="tests.OrdersTest"/>
+        </classes>
+    </test>
+
+    <test name="Products">
+        <classes>
+            <class name="tests.ProductsTests"/>
+        </classes>
+    </test>
+
+</suite>

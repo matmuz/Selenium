@@ -4,12 +4,14 @@ import base.BaseTest;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
+import static assertions.CustomAssertions.*;
 import static data.ExistingUser.*;
 import static issues.DefectHandler.skipTestIfDefectIsOpen;
 import static issues.Defects.DEFECT21;
 import static pages.account.AccountPage.RESET_RESPONSE;
 import static pages.menu.TopMenuPage.LOGIN_TEXT;
-import static assertions.CustomAssertions.*;
 
 /**
  * A collection of tests that check basic account functionalities
@@ -69,7 +71,7 @@ public final class AccountTests extends BaseTest {
                                      .goToSignInSection()
                                      .logIn(EMAIL, PASSWORD)
                                      .goToAddresses()
-                                     .getMyAddressContents(), new String[]{ADDRESS, POSTAL_CODE, CITY});
+                                     .getMyAddressContents(), List.of(ADDRESS, POSTAL_CODE, CITY));
     }
 
     @Issue("https://github.com/matmuz/Automation/issues/21")

@@ -9,12 +9,18 @@ import org.openqa.selenium.edge.EdgeOptions;
 
 public final class WebDriverFactory {
 
-    public WebDriver getDriver(DriverTypes driverType) {
+    public WebDriver getDriver(DriverTypes driverType, boolean isLocal) {
         switch (driverType) {
             case CHROME:
-                return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getWebDriverOptions(driverType));
+                if (isLocal) {
+                    return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getLocalWebDriverOptions(driverType));
+                }
+                return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getRemoteWebDriverOptions(driverType));
             case EDGE:
-                return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getWebDriverOptions(driverType));
+                if (isLocal) {
+                    return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getLocalWebDriverOptions(driverType));
+                }
+                return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getRemoteWebDriverOptions(driverType));
             default:
                 throw new UnsupportedOperationException("Unsupported driver type selected");
         }

@@ -6,4 +6,6 @@ import org.aeonbits.owner.Config;
 public interface Configuration extends Config {
 
     int timeout();
+
+    boolean isLocal();
 }

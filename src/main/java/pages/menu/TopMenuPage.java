@@ -1,19 +1,20 @@
 package pages.menu;
 
-import pages.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.account.AccountPage;
+import pages.base.BasePage;
 import pages.cart.CartPage;
 import pages.help.ContactUsPage;
 import pages.products.HomePage;
 import pages.products.ProductsPage;
 
 import java.util.List;
-import java.util.Random;
+
+import static helpers.utils.Utils.getRandomElementFromList;
 
 /**
  * Top menu page class responsible for getting needed selectors form the top menu and providing methods for moving between the elements
@@ -56,6 +57,7 @@ public final class TopMenuPage extends BasePage {
     @FindBy(css = ".logo.img-responsive")
     private WebElement myStoreButton;
 
+    @Step("Go to home page")
     public HomePage goToHomePage() {
         myStoreButton.click();
         return new HomePage(driver);
@@ -100,7 +102,7 @@ public final class TopMenuPage extends BasePage {
 
     @Step("Go to random products section")
     public ProductsPage goToRandomProductsSection() {
-        categories.get(new Random().nextInt(categories.size())).click();
+        categories.get(getRandomElementFromList(categories)).click();
         return new ProductsPage(driver);
     }
 
@@ -110,11 +112,7 @@ public final class TopMenuPage extends BasePage {
         return new CartPage(driver);
     }
 
-    /**
-     * Gets logged username from top menu
-     *
-     * @return logged username as String
-     */
+    @Step("Get logged username")
     public String getLoggedUsername() {
         try {
             return loggedUserBox.getText();

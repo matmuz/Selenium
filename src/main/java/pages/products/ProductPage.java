@@ -1,6 +1,5 @@
 package pages.products;
 
-import helpers.converter.IPriceConverter;
 import helpers.waiter.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
@@ -13,10 +12,12 @@ import pages.base.BasePage;
 
 import java.util.List;
 
+import static helpers.utils.Utils.convertPriceTextToNumbers;
+
 /**
  * A particular product page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-public final class ProductPage extends BasePage implements IPriceConverter {
+public final class ProductPage extends BasePage {
 
     private static final String PERSONALIZATION_TEXT = "Test Personalisation 123";
     private static final String CUSTOMIZABLE_PRODUCT_TEXT = "CUSTOMIZABLE";
@@ -55,29 +56,17 @@ public final class ProductPage extends BasePage implements IPriceConverter {
     @FindBy(css = "span[itemprop='name']")
     private List<WebElement> categories;
 
-    /**
-     * Gets product name
-     *
-     * @return product name as a String
-     */
+    @Step("Get product name")
     public String getProductName() {
         return productNameBox.getText();
     }
 
-    /**
-     * Gets product price
-     *
-     * @return product price as a double
-     */
+    @Step("Get product price")
     public double getProductPrice() {
         return convertPriceTextToNumbers(priceBox.getText());
     }
 
-    /**
-     * Gets product currency
-     *
-     * @return product currency as a String
-     */
+    @Step("Get product currency")
     public String getProductCurrency() {
         return priceBox.getText().substring(0, 1);
     }
@@ -110,18 +99,12 @@ public final class ProductPage extends BasePage implements IPriceConverter {
         return this;
     }
 
-    /**
-     * Gets product current quantity
-     *
-     * @return product quantity as an int
-     */
+    @Step("Get product quantity")
     public int getQuantity() {
         return Integer.parseInt(quantityBox.getAttribute("value"));
     }
 
-    /**
-     * Sets personalisation text on a product that can be personalised
-     */
+    @Step("Set personalised text")
     public void setPersonalisedText() {
         productMessage.sendKeys(PERSONALIZATION_TEXT);
         saveCustomisation.click();

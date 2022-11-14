@@ -8,8 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+
+import static helpers.utils.Utils.getRandomElementFromList;
+import static helpers.utils.Utils.getWebElementFromListByName;
 
 /**
  * A group of products page class responsible for getting needed selectors form the page and providing methods for moving between the elements
@@ -25,17 +26,13 @@ public final class ProductsPage extends BasePage {
 
     @Step("Go to random product")
     public ProductPage goToRandomProduct() {
-        allProducts.get(new Random().nextInt(allProducts.size())).click();
+        allProducts.get(getRandomElementFromList(allProducts)).click();
         return new ProductPage(driver);
     }
 
     @Step("Go to product")
     public ProductPage goToProduct(String productName) {
-        allProducts.stream()
-                   .filter(WebElement -> WebElement.getText().toUpperCase().contains(productName.toUpperCase()))
-                   .collect(Collectors.toList())
-                   .get(0)
-                   .click();
+        getWebElementFromListByName(allProducts, productName).click();
         return new ProductPage(driver);
     }
 

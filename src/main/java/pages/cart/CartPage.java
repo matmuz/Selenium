@@ -1,6 +1,5 @@
 package pages.cart;
 
-import helpers.converter.IPriceConverter;
 import helpers.waiter.Waiter;
 import io.qameta.allure.Step;
 import models.OrderModel;
@@ -12,12 +11,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.base.BasePage;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static helpers.utils.Utils.convertPriceTextToNumbers;
+import static helpers.utils.Utils.getWebElementFromListByName;
 
 /**
  * Cart page class responsible for getting needed selectors form the page and providing methods for moving between the elements
  */
-public final class CartPage extends BasePage implements IPriceConverter {
+public final class CartPage extends BasePage {
 
     private final By deleteButtonOfAnItemLocator = By.cssSelector(".material-icons.float-xs-left");
     private final By itemDetailsLocator = By.cssSelector(".product-line-info");
@@ -44,50 +45,29 @@ public final class CartPage extends BasePage implements IPriceConverter {
     @FindBy(css = "#cart-subtotal-products .value")
     private WebElement itemsPriceBox;
 
-    /**
-     * Gets items quantity
-     *
-     * @return items quantity as an int
-     */
+    @Step("Get items quantity")
     public int getItemsQuantity() {
         return Integer.parseInt(summaryLine.getText().split(" ")[0]);
     }
 
-    /**
-     * Gets shipping cost
-     *
-     * @return shipping cost as double
-     */
+    @Step("Get shipping cost")
     public double getShippingCost() {
         return convertPriceTextToNumbers(shippingCostBox.getText());
     }
 
-    /**
-     * Gets total price
-     *
-     * @return total price as double
-     */
+    @Step("Get total price")
     public double getTotalPrice() {
         return convertPriceTextToNumbers(totalPriceBox.getText());
     }
 
-    /**
-     * Gets items price
-     *
-     * @return items price as double
-     */
+    @Step("Get items price")
     public double getItemsPrice() {
         return convertPriceTextToNumbers(itemsPriceBox.getText());
     }
 
     @Step("Delete item from cart")
     public CartPage deleteItemFromCart(String name) {
-        WebElement cartItem = cartItems.stream()
-                                       .filter(WebElement -> WebElement.getText()
-                                                                       .toUpperCase()
-                                                                       .contains(name.toUpperCase()))
-                                       .collect(Collectors.toList())
-                                       .get(0);
+        WebElement cartItem = getWebElementFromListByName(cartItems, name);
         cartItem.findElement(deleteButtonOfAnItemLocator).click();
         Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
@@ -95,32 +75,18 @@ public final class CartPage extends BasePage implements IPriceConverter {
 
     @Step("Delete item from cart")
     public CartPage deleteItemFromCart(OrderModel order, String name) {
-        WebElement cartItem = cartItems.stream()
-                                       .filter(WebElement -> WebElement.getText()
-                                                                       .toUpperCase()
-                                                                       .contains(name.toUpperCase()))
-                                       .collect(Collectors.toList())
-                                       .get(0);
+        WebElement cartItem = getWebElementFromListByName(cartItems, name);
         cartItem.findElement(deleteButtonOfAnItemLocator).click();
         order.deleteProductFromList(name);
         Waiter.wait(driver).until(ExpectedConditions.invisibilityOf(cartItem));
         return this;
     }
 
-    /**
-     * Gets items details filtering by products name
-     *
-     * @param productName product name of a product to find
-     * @return product details as String
-     */
+    @Step("Get item details by provided name")
     public String getItemDetailsByName(String productName) {
-        return cartItems.stream()
-                        .filter(WebElement -> WebElement.getText().toUpperCase().contains(productName.toUpperCase()))
-                        .collect(Collectors.toList())
-                        .get(0)
-                        .findElement(itemDetailsLocator)
-                        .getText()
-                        .toUpperCase();
+        return getWebElementFromListByName(cartItems, productName).findElement(itemDetailsLocator)
+                                                                  .getText()
+                                                                  .toUpperCase();
     }
 
     @Step("Go to checkout")
@@ -128,4 +94,5 @@ public final class CartPage extends BasePage implements IPriceConverter {
         proceedToCheckoutButton.click();
         return new CheckoutPage(driver);
     }
+
 }
