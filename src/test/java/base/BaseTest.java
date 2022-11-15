@@ -54,9 +54,10 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    @Parameters({"browser", "environment"})
-    protected void setUp(String browser, String environment) {
-        driver = new WebDriverFactory().getDriver(DriverTypes.valueOf(browser), getConfiguration().isLocal());
+    @Parameters({"environment"})
+    protected void setUp(String environment) {
+        driver = new WebDriverFactory().getDriver(DriverTypes.valueOf(getConfiguration().browser()),
+                                                  getConfiguration().isLocal());
         driver.get(environment);
         prestaShop = new PrestaShop(driver);
     }

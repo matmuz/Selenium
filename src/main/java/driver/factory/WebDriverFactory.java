@@ -10,19 +10,32 @@ import org.openqa.selenium.edge.EdgeOptions;
 public final class WebDriverFactory {
 
     public WebDriver getDriver(DriverTypes driverType, boolean isLocal) {
+        if (isLocal) {
+            return getLocalDriver(driverType);
+        } else {
+            return getRemoteDriver(driverType);
+        }
+    }
+
+    private WebDriver getLocalDriver(DriverTypes driverType) {
         switch (driverType) {
             case CHROME:
-                if (isLocal) {
-                    return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getLocalWebDriverOptions(driverType));
-                }
+                return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getLocalWebDriverOptions(driverType));
+            case EDGE:
+                return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getLocalWebDriverOptions(driverType));
+            default:
+                throw new UnsupportedOperationException("Unsupported local driver type selected");
+        }
+    }
+
+    private WebDriver getRemoteDriver(DriverTypes driverType) {
+        switch (driverType) {
+            case CHROME:
                 return new ChromeDriver((ChromeOptions) WebDriverOptionsFactory.getRemoteWebDriverOptions(driverType));
             case EDGE:
-                if (isLocal) {
-                    return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getLocalWebDriverOptions(driverType));
-                }
                 return new EdgeDriver((EdgeOptions) WebDriverOptionsFactory.getRemoteWebDriverOptions(driverType));
             default:
-                throw new UnsupportedOperationException("Unsupported driver type selected");
+                throw new UnsupportedOperationException("Unsupported remote driver type selected");
         }
     }
 }

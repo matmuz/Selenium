@@ -2,10 +2,12 @@ package configuration;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:configuration.properties"})
+@Config.Sources({"system:properties", "classpath:configuration.properties"})
 public interface Configuration extends Config {
 
     int timeout();
 
     boolean isLocal();
+
+    String browser();
 }
