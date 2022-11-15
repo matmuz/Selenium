@@ -1,6 +1,6 @@
 package configuration;
 
-import org.aeonbits.owner.ConfigFactory;
+import org.aeonbits.owner.ConfigCache;
 
 public final class ConfigurationRetriever {
 
@@ -10,9 +10,6 @@ public final class ConfigurationRetriever {
     }
 
     public static Configuration getConfiguration() {
-        if (configuration == null) {
-            return ConfigFactory.create(Configuration.class);
-        }
-        return configuration;
+        return ConfigCache.getOrCreate(Configuration.class);
     }
 }
