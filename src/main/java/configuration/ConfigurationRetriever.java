@@ -4,8 +4,6 @@ import org.aeonbits.owner.ConfigCache;
 
 public final class ConfigurationRetriever {
 
-    private static Configuration configuration;
-
     private ConfigurationRetriever() {
     }
 
