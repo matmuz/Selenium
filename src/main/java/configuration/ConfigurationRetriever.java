@@ -8,6 +8,6 @@ public final class ConfigurationRetriever {
     }
 
     public static Configuration getConfiguration() {
-        return ConfigCache.getOrCreate(Configuration.class);
+        return ConfigCache.getOrCreate(Configuration.class, System.getProperties());
     }
 }

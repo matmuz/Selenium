@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -25,9 +26,9 @@ public final class OrderModel {
      * @return items price in order as a double
      */
     public double getOrderItemsPrice() {
-        return Math.round(productsInOrder.stream()
-                                         .mapToDouble(ProductModel::getProductPrice)
-                                         .sum() * 100.0) / 100.0;
+        return calculate().apply(productsInOrder.stream()
+                                                .mapToDouble(ProductModel::getProductPrice)
+                                                .sum());
     }
 
     /**
@@ -77,5 +78,9 @@ public final class OrderModel {
      */
     public String getOrderReferenceNumber() {
         return this.orderReferenceNumber;
+    }
+
+    private Function<Double, Double> calculate() {
+        return input -> Math.round(input * 100.0) / 100.0;
     }
 }
