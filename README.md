@@ -1,6 +1,6 @@
 # Selenium
 
-This is my first automation project which is based on Sii's example app (PrestaShop). The purpose of this project is to show a sample of my code using Java and Selenium - a testing framework in this case. My focus is the English version of the App (you can switch between Polish and English). Feel free to use the framework if you want, but keep it mind that at this moment it is being constantly updated and developed (which includes fixes and refactoring).
+Project based on Sii's example app (PrestaShop). The purpose of this project is to show a sample of Java and Selenium - a testing framework in this case. My focus is the English version of the App (you can switch between Polish and English).
 
 To run tests (Java and Maven required!):
 
