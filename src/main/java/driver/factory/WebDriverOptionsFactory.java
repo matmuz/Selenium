@@ -11,12 +11,10 @@ public final class WebDriverOptionsFactory {
         switch (driverType) {
             case CHROME:
                 return new ChromeOptions().addArguments("window-size=1920,1080")
-                                          .addArguments("incognito")
-                                          .setHeadless(true);
+                                          .addArguments("headless=new");
             case EDGE:
                 return new EdgeOptions().addArguments("window-size=1920,1080")
-                                        .addArguments("inprivate")
-                                        .setHeadless(true);
+                                        .addArguments("headless");
             default:
                 throw new UnsupportedOperationException("Unsupported driver type selected");
         }
@@ -25,11 +23,9 @@ public final class WebDriverOptionsFactory {
     public static AbstractDriverOptions<? extends AbstractDriverOptions<?>> getLocalWebDriverOptions(DriverTypes driverType) {
         switch (driverType) {
             case CHROME:
-                return new ChromeOptions().addArguments("start-maximized")
-                                          .addArguments("incognito");
+                return new ChromeOptions().addArguments("start-maximized");
             case EDGE:
-                return new EdgeOptions().addArguments("start-maximized")
-                                        .addArguments("inprivate");
+                return new EdgeOptions().addArguments("start-maximized");
             default:
                 throw new UnsupportedOperationException("Unsupported driver type selected");
         }
